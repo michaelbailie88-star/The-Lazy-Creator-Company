@@ -1266,6 +1266,30 @@ section p {
 }
 
 /* ==================================================================
+   STANDING RULE — read this before adding any new product card.
+
+   Every product added to products.html gets its own color identity,
+   automatically, as part of the same push that adds it. Do not wait
+   to be asked. Process:
+
+   1. If the product is an internal page on this site (like Faith
+      Library, Activity Vault, Website Builds), pull its REAL color
+      from that page's own existing theme CSS — don't invent one.
+   2. If the product is external (like Safe Passage, Kingdom Radar),
+      derive a color from its actual real content/copy/branding
+      language — verified via web_fetch, never guessed from the name
+      alone. Flag clearly that it's content-derived, not sampled from
+      real brand pixels, since external live sites can't be
+      screenshotted from here.
+   3. Add one new .pc-<slug> block below, following the exact pattern
+      already established: border-left accent, hover box-shadow tint,
+      and .product-badge.live background/color/border tint.
+   4. Add class="product-card pc-<slug>" to that card's HTML.
+   5. Verify (tag balance + render check) before pushing, same as
+      every other change.
+   ================================================================== */
+
+/* ==================================================================
    PRODUCTS PAGE — per-product color identity.
    Faith Library, Activity Vault, Website Builds: real colors pulled
    directly from each product's own live page theme (wood-bg,

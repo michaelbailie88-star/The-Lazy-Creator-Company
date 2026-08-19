@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/img/blog-uploads"
+public_folder: "/assets/img/blog-uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    files:
+      - name: "posts"
+        label: "All Posts"
+        file: "content/blog-posts.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "Post Body", name: "body", widget: "markdown" }

@@ -41,63 +41,8 @@
 
 <section>
   <div class="wrap">
-    <div class="blog-list">
-
-      <article class="blog-post">
-        <div class="blog-post-date">2026</div>
-        <h2 class="blog-post-title">Why Every Product Starts With One Question</h2>
-        <div class="blog-post-body">
-          <p>Before anything gets built here, it gets asked one question: does this point to
-          God, or just to a checkout page? That's not a slogan for the About page &mdash; it's
-          the actual filter. Some ideas fail it and get shelved. Some pass it and become the
-          Faith Library or the Activity Vault.</p>
-          <p>It's a strange way to run a business, and it's slower than just chasing whatever's
-          trending. But it's the only version of this that's sustainable long-term, because it's
-          the only version that's actually true to why it started.</p>
-        </div>
-      </article>
-
-      <article class="blog-post">
-        <div class="blog-post-date">2026</div>
-        <h2 class="blog-post-title">Building the Faith Library, One Book at a Time</h2>
-        <div class="blog-post-body">
-          <p>Thirty illustrated Bible story books didn't happen as one big push &mdash; they
-          happened one book at a time, each one starting with the scripture first and the story
-          second, never the other way around.</p>
-          <p>The goal was never to talk down to a young reader. Kids can handle honest stories
-          told simply &mdash; a boy sharing his lunch, a kid who wouldn't run away, a friend who
-          stayed. The hard part wasn't writing the stories. It was staying disciplined enough not
-          to over-explain them.</p>
-        </div>
-      </article>
-
-      <article class="blog-post">
-        <div class="blog-post-date">2026</div>
-        <h2 class="blog-post-title">What Activity Vault Actually Took</h2>
-        <div class="blog-post-body">
-          <p>5,330 activities across five modules didn't come from guessing what educators might
-          want. It came from working closely with a Senior Childhood Educator with 20 years in
-          early-childhood development &mdash; someone who's actually run these programs, not just
-          designed them from the outside.</p>
-          <p>Every activity got tested against one real standard: does it work with real kids, on
-          a real day, not just on paper. That's the difference between a resource that looks good
-          and one that actually gets used.</p>
-        </div>
-      </article>
-
-      <article class="blog-post">
-        <div class="blog-post-date">2026</div>
-        <h2 class="blog-post-title">The Tools Behind Everything Here</h2>
-        <div class="blog-post-body">
-          <p>None of this runs on a big team or a big budget &mdash; it runs on a specific stack
-          of tools used consistently: Claude for building, Netlify and Vercel for hosting,
-          Gumroad for selling, Canva for design.</p>
-          <p>The full breakdown &mdash; what each tool does, why it's the one used here, and
-          what the alternatives are &mdash; lives on the <a href="/toolbox.html" style="color:var(--teal-bright);">Toolbox page</a>.
-          Worth a look if you're building something similar yourself.</p>
-        </div>
-      </article>
-
+    <div class="blog-list" id="blog-list">
+      <p style="color:var(--text-muted);">Loading posts&hellip;</p>
     </div>
   </div>
 </section>
@@ -136,6 +81,40 @@
   </div>
   <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Co. All rights reserved.</div>
 </footer>
+
+<script src="/assets/js/marked.min.js"></script>
+<script>
+(async function () {
+  const listEl = document.getElementById('blog-list');
+  try {
+    const res = await fetch('/content/blog-posts.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load posts (' + res.status + ')');
+    const data = await res.json();
+    const posts = (data.posts || []).slice().sort(function (a, b) {
+      return new Date(b.date) - new Date(a.date);
+    });
+
+    if (posts.length === 0) {
+      listEl.innerHTML = '<p style="color:var(--text-muted);">No posts yet — check back soon.</p>';
+      return;
+    }
+
+    listEl.innerHTML = posts.map(function (post) {
+      const dateObj = new Date(post.date + 'T00:00:00');
+      const dateLabel = isNaN(dateObj) ? post.date : dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const bodyHtml = window.marked ? marked.parse(post.body || '') : '<p>' + (post.body || '') + '</p>';
+      return '<article class="blog-post">' +
+        '<div class="blog-post-date">' + dateLabel + '</div>' +
+        '<h2 class="blog-post-title">' + post.title + '</h2>' +
+        '<div class="blog-post-body">' + bodyHtml + '</div>' +
+        '</article>';
+    }).join('');
+  } catch (err) {
+    listEl.innerHTML = '<p style="color:var(--text-muted);">Couldn\'t load posts right now. Try refreshing.</p>';
+    console.error('Blog load error:', err);
+  }
+})();
+</script>
 
 </body>
 </html>

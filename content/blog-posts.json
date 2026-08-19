@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "title": "Why Every Product Starts With One Question",
+      "date": "2026-01-15",
+      "body": "Before anything gets built here, it gets asked one question: does this point to God, or just to a checkout page? That's not a slogan for the About page — it's the actual filter. Some ideas fail it and get shelved. Some pass it and become the Faith Library or the Activity Vault.\n\nIt's a strange way to run a business, and it's slower than just chasing whatever's trending. But it's the only version of this that's sustainable long-term, because it's the only version that's actually true to why it started."
+    },
+    {
+      "title": "Building the Faith Library, One Book at a Time",
+      "date": "2026-01-08",
+      "body": "Thirty illustrated Bible story books didn't happen as one big push — they happened one book at a time, each one starting with the scripture first and the story second, never the other way around.\n\nThe goal was never to talk down to a young reader. Kids can handle honest stories told simply — a boy sharing his lunch, a kid who wouldn't run away, a friend who stayed. The hard part wasn't writing the stories. It was staying disciplined enough not to over-explain them."
+    },
+    {
+      "title": "What Activity Vault Actually Took",
+      "date": "2026-01-01",
+      "body": "5,330 activities across five modules didn't come from guessing what educators might want. It came from working closely with a Senior Childhood Educator with 20 years in early-childhood development — someone who's actually run these programs, not just designed them from the outside.\n\nEvery activity got tested against one real standard: does it work with real kids, on a real day, not just on paper. That's the difference between a resource that looks good and one that actually gets used."
+    },
+    {
+      "title": "The Tools Behind Everything Here",
+      "date": "2025-12-20",
+      "body": "None of this runs on a big team or a big budget — it runs on a specific stack of tools used consistently: Claude for building, Netlify and Vercel for hosting, Gumroad for selling, Canva for design.\n\nThe full breakdown — what each tool does, why it's the one used here, and what the alternatives are — lives on the [Toolbox page](/toolbox.html). Worth a look if you're building something similar yourself."
+    }
+  ]
+}
