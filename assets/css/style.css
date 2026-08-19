@@ -1201,3 +1201,66 @@ section p {
   gap: 24px;
   margin-top: 22px;
 }
+
+/* ==================================================================
+   ILLUMINATED MANUSCRIPT — background & glassmorphism only.
+   No HTML/content changes. Original layout, original text, untouched.
+   ================================================================== */
+:root {
+  --ms-parchment: #ece0c6;
+  --ms-ink: #2e2313;
+  --ms-ink-soft: #5a4a30;
+  --ms-gold: #b8862e;
+  --ms-gold-bright: #d4af37;
+  --ms-ultramarine: #24466e;
+  --ms-vermillion: #a8322a;
+  --ms-vermillion-bright: #c44236;
+}
+
+.manuscript-page {
+  background-color: var(--ms-parchment);
+  background-image: radial-gradient(circle, rgba(90,70,40,0.07) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.ms-topband { height: 4px; background: var(--ms-gold); }
+
+.manuscript-page .site-nav {
+  background: rgba(236, 224, 198, 0.94);
+  border-bottom: 2px solid var(--ms-gold);
+  backdrop-filter: blur(6px);
+}
+.manuscript-page .nav-links a { color: var(--ms-ink-soft); font-weight: 600; }
+.manuscript-page .nav-links a:hover, .manuscript-page .nav-links a.active-preview { color: var(--ms-vermillion); }
+.manuscript-page .brand { color: var(--ms-vermillion); }
+
+.manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title { color: var(--ms-ink); }
+.manuscript-page .section-intro, .manuscript-page .build-list-desc, .manuscript-page .web-desc,
+.manuscript-page section p, .manuscript-page .scripture-text, .manuscript-page .scripture-ref,
+.manuscript-page .hero p.lede { color: var(--ms-ink-soft); }
+.manuscript-page .label-gold { color: var(--ms-gold); }
+.manuscript-page .label-teal { color: var(--ms-ultramarine); }
+.manuscript-page .web-title { color: var(--ms-ink); }
+.manuscript-page .btn-outline { color: var(--ms-ink); border-color: rgba(90,70,40,0.4); }
+.manuscript-page .btn-teal { background: var(--ms-ultramarine); color: #f2ead0; }
+.manuscript-page .btn-gold { background: var(--ms-gold-bright); color: #2e2313; }
+.manuscript-page .build-list li { border-bottom: 1px solid rgba(184,134,46,0.28); }
+.manuscript-page .free-gift-thumb, .manuscript-page .split-card-thumb {
+  border: 2px solid var(--ms-gold);
+  box-shadow: 0 6px 16px rgba(90,70,40,0.15);
+}
+.manuscript-page .quote-block { border-left: 3px solid var(--ms-vermillion); }
+
+/* Glassmorphism — frosted-glass panels, preserved and applied to every card + the hero frame */
+.manuscript-page .glass-frame,
+.manuscript-page .surface,
+.manuscript-page .split-card,
+.manuscript-page .web-card,
+.manuscript-page .av-module-card,
+.manuscript-page .product-card {
+  background: rgba(255, 251, 240, 0.55);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid rgba(184,134,46,0.4);
+  box-shadow: 0 8px 24px rgba(90,70,40,0.08), inset 0 1px 0 rgba(255,255,255,0.5);
+}
