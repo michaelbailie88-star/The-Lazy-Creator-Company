@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — The Lazy Creator Co.</title>
+<meta name="description" content="Notes on actually building The Lazy Creator Co. — the real process, tools, and decisions.">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/index.html"><span class="brand-mark"></span>The Lazy Creator Co.</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/products.html">Products</a>
+      <a href="/marketplace.html">Marketplace</a>
+      <a href="/resources.html">Resources</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/toolbox.html">Toolbox</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="section-label label-teal">The Blog</div>
+    <h1>Notes on actually building this</h1>
+    <p class="lede">The real process, tools, and decisions behind every product on this site
+    &mdash; not theory.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="blog-list">
+
+      <article class="blog-post">
+        <div class="blog-post-date">2026</div>
+        <h2 class="blog-post-title">Why Every Product Starts With One Question</h2>
+        <div class="blog-post-body">
+          <p>Before anything gets built here, it gets asked one question: does this point to
+          God, or just to a checkout page? That's not a slogan for the About page &mdash; it's
+          the actual filter. Some ideas fail it and get shelved. Some pass it and become the
+          Faith Library or the Activity Vault.</p>
+          <p>It's a strange way to run a business, and it's slower than just chasing whatever's
+          trending. But it's the only version of this that's sustainable long-term, because it's
+          the only version that's actually true to why it started.</p>
+        </div>
+      </article>
+
+      <article class="blog-post">
+        <div class="blog-post-date">2026</div>
+        <h2 class="blog-post-title">Building the Faith Library, One Book at a Time</h2>
+        <div class="blog-post-body">
+          <p>Thirty illustrated Bible story books didn't happen as one big push &mdash; they
+          happened one book at a time, each one starting with the scripture first and the story
+          second, never the other way around.</p>
+          <p>The goal was never to talk down to a young reader. Kids can handle honest stories
+          told simply &mdash; a boy sharing his lunch, a kid who wouldn't run away, a friend who
+          stayed. The hard part wasn't writing the stories. It was staying disciplined enough not
+          to over-explain them.</p>
+        </div>
+      </article>
+
+      <article class="blog-post">
+        <div class="blog-post-date">2026</div>
+        <h2 class="blog-post-title">What Activity Vault Actually Took</h2>
+        <div class="blog-post-body">
+          <p>5,330 activities across five modules didn't come from guessing what educators might
+          want. It came from working closely with a Senior Childhood Educator with 20 years in
+          early-childhood development &mdash; someone who's actually run these programs, not just
+          designed them from the outside.</p>
+          <p>Every activity got tested against one real standard: does it work with real kids, on
+          a real day, not just on paper. That's the difference between a resource that looks good
+          and one that actually gets used.</p>
+        </div>
+      </article>
+
+      <article class="blog-post">
+        <div class="blog-post-date">2026</div>
+        <h2 class="blog-post-title">The Tools Behind Everything Here</h2>
+        <div class="blog-post-body">
+          <p>None of this runs on a big team or a big budget &mdash; it runs on a specific stack
+          of tools used consistently: Claude for building, Netlify and Vercel for hosting,
+          Gumroad for selling, Canva for design.</p>
+          <p>The full breakdown &mdash; what each tool does, why it's the one used here, and
+          what the alternatives are &mdash; lives on the <a href="/toolbox.html" style="color:var(--teal-bright);">Toolbox page</a>.
+          Worth a look if you're building something similar yourself.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:560px;text-align:center;">
+    <div class="section-label label-gold">Stay Connected</div>
+    <h2 class="section-title">Get new posts by email</h2>
+    <p class="section-intro">No spam, no daily emails &mdash; just launches and new posts as
+    they happen.</p>
+    <form name="newsletter-blog" method="POST" data-netlify="true" style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px;">
+      <input type="hidden" name="form-name" value="newsletter-blog">
+      <input type="email" name="email" placeholder="you@email.com" required style="flex:1;min-width:220px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:11px 14px;color:inherit;">
+      <button class="btn btn-gold" type="submit">Subscribe &rarr;</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="brand-mark"></span>The Lazy Creator Co.</div>
+      <div>Kingdom-first creator who also builds.</div>
+      <div style="margin-top:10px;"><a href="mailto:thelazycreatorco@gmail.com" style="color:var(--gold-bright);">thelazycreatorco@gmail.com</a></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.tiktok.com/@the_lazycreator" target="_blank" rel="noopener">TikTok (Faith)</a>
+      <a href="https://www.tiktok.com/@thelazycreatorcompany" target="_blank" rel="noopener">TikTok (Build)</a>
+      <a href="https://www.youtube.com/@Thelazycreatorco" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/thelazycreatorco/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Co. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

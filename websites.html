@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Websites — The Lazy Creator Co.</title>
+<meta name="description" content="Websites built by The Lazy Creator Co. — concept mockups and real client work.">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+
+</head>
+<body class="desktop-bg">
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/index.html"><span class="brand-mark"></span>The Lazy Creator Co.</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/products.html">Products</a>
+      <a href="/marketplace.html">Marketplace</a>
+      <a href="/resources.html">Resources</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/toolbox.html">Toolbox</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+<div class="back-breadcrumb">
+  <div class="wrap">
+    <a href="/products.html" class="back-link">&larr; Back to Products</a>
+  </div>
+</div>
+
+
+<div class="browser-chrome">
+  <div class="wrap browser-chrome-inner">
+    <div class="traffic-lights">
+      <span class="tl-red"></span><span class="tl-yellow"></span><span class="tl-green"></span>
+    </div>
+    <div class="browser-tabs">
+      <div class="browser-tab active">
+        <span class="tab-dot"></span>Websites &amp; Digital Products
+      </div>
+      <div class="browser-tab">GitHub</div>
+      <div class="browser-tab">Figma</div>
+      <div class="browser-tab">localhost:3000</div>
+      <div class="browser-tab-new">+</div>
+    </div>
+    <div class="browser-url-bar">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      thelazycreatorco.com/websites
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="matrix-frame">
+      <canvas class="matrix-frame-canvas"></canvas>
+      <div class="matrix-frame-content">
+        <div class="section-label label-teal">Websites &amp; Digital Products</div>
+        <h1>Websites I build.</h1>
+        <p class="lede">A mix of concept mockups and real client work &mdash; clean, fast,
+        hand-coded sites built around what a local business actually needs. Below is a running
+        look at what I've built and what's live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="wrap">
+    <div class="web-grid">
+      <div class="web-card">
+        <div class="thumb-wrap">
+          <span class="web-badge mock">Mock Build</span>
+          <img src="/assets/web/hairstylz.jpg" alt="HairStylz by Jodie mockup site">
+        </div>
+        <div class="web-body">
+          <div class="web-title">HairStylz by Jodie</div>
+          <div class="web-desc">Salon portfolio &amp; booking-style mockup with a gallery and service menu.</div>
+        </div>
+      </div>
+      <div class="web-card">
+        <div class="thumb-wrap">
+          <span class="web-badge mock">Mock Build</span>
+          <img src="/assets/web/leaks-plumbing.jpg" alt="Leaks Plumbing mockup site">
+        </div>
+        <div class="web-body">
+          <div class="web-title">Leaks Plumbing</div>
+          <div class="web-desc">Local trades site mockup &mdash; trust bar, service grid, and reviews.</div>
+        </div>
+      </div>
+      <div class="web-card">
+        <div class="thumb-wrap">
+          <span class="web-badge mock">Mock Build</span>
+          <img src="/assets/web/titos-pizza.jpg" alt="Tito's Pizza mockup site">
+        </div>
+        <div class="web-body">
+          <div class="web-title">Tito's Pizza</div>
+          <div class="web-desc">Restaurant concept mockup, in progress.</div>
+        </div>
+      </div>
+      <div class="web-card-empty">Real client sites will go here as they launch.</div>
+    </div>
+  </div>
+</section>
+<div class="matrix-divider"><canvas class="matrix-divider-canvas"></canvas></div>
+
+
+<section>
+  <div class="wrap">
+    <div class="quote-block">
+      <p class="quote-text">&ldquo;Build the thing. Then let it point past you.&rdquo;</p>
+      <p class="quote-attr">&mdash; Michael Bailie, Founder</p>
+    </div>
+  </div>
+</section>
+<div class="matrix-divider"><canvas class="matrix-divider-canvas"></canvas></div>
+
+
+<section id="inquiry">
+  <div class="wrap">
+    <div class="section-label label-gold">Start a Project</div>
+    <h2 class="section-title">Website inquiry form</h2>
+    <p class="section-intro">Fill this out and I'll follow up with next steps. The more
+    accurate the info, the faster your site gets built.</p>
+
+    <form class="inquiry-form" name="website-inquiry" method="POST" data-netlify="true"
+          netlify-honeypot="bot-field" enctype="multipart/form-data" action="/websites/thank-you.html">
+      <input type="hidden" name="form-name" value="website-inquiry">
+      <p style="display:none;">
+        <label>Don&rsquo;t fill this out if you're human: <input name="bot-field"></label>
+      </p>
+
+      <fieldset class="form-fieldset">
+        <legend>Business Basics</legend>
+        <div class="form-row">
+          <label for="biz-name">Legal / Business Name</label>
+          <input class="form-input" type="text" id="biz-name" name="Legal Business Name" required>
+        </div>
+        <div class="form-row">
+          <label for="dba-name">&ldquo;Doing Business As&rdquo; Name <span class="field-hint">(if different)</span></label>
+          <input class="form-input" type="text" id="dba-name" name="DBA Name">
+        </div>
+        <div class="form-row">
+          <label for="biz-email">Business Email</label>
+          <input class="form-input" type="email" id="biz-email" name="Business Email" required>
+        </div>
+        <div class="form-row">
+          <label for="biz-phone">Phone Number</label>
+          <input class="form-input" type="tel" id="biz-phone" name="Phone Number">
+        </div>
+        <div class="form-row">
+          <label for="biz-address">Physical Address</label>
+          <input class="form-input" type="text" id="biz-address" name="Physical Address">
+        </div>
+        <div class="form-row">
+          <label for="biz-hours">Hours of Operation</label>
+          <input class="form-input" type="text" id="biz-hours" name="Hours of Operation">
+        </div>
+        <div class="form-row">
+          <label for="biz-social">Facebook / Instagram / Other Social Links</label>
+          <input class="form-input" type="text" id="biz-social" name="Social Links">
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Visual Assets</legend>
+        <p class="fieldset-note">Attach what you have &mdash; you can always email more later.</p>
+        <div class="form-row">
+          <label for="logo-file">Logo file <span class="field-hint">(highest resolution you have)</span></label>
+          <input class="form-file" type="file" id="logo-file" name="Logo File">
+        </div>
+        <div class="form-row">
+          <label for="photo-files">Real Photos <span class="field-hint">(storefront, products, staff, interior &mdash; 8&ndash;10 ideal)</span></label>
+          <input class="form-file" type="file" id="photo-files" name="Photos" multiple>
+        </div>
+        <div class="form-row">
+          <label for="brand-colors">Preferred Brand Colors <span class="field-hint">(if any)</span></label>
+          <input class="form-input" type="text" id="brand-colors" name="Brand Colors">
+        </div>
+        <div class="form-row">
+          <label for="brand-fonts">Fonts or Existing Brand Style Guide <span class="field-hint">(if any)</span></label>
+          <input class="form-input" type="text" id="brand-fonts" name="Brand Fonts">
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Content</legend>
+        <div class="form-row">
+          <label for="menu-file">Menu, Service List, or Pricing <span class="field-hint">(document, PDF, or clear photo)</span></label>
+          <input class="form-file" type="file" id="menu-file" name="Menu or Price List">
+        </div>
+        <div class="form-row">
+          <label for="about-blurb">Short &ldquo;About Us&rdquo; Blurb <span class="field-hint">(2&ndash;4 sentences)</span></label>
+          <textarea class="form-textarea" id="about-blurb" name="About Us Blurb"></textarea>
+        </div>
+        <div class="form-check-row">
+          <input type="checkbox" id="draft-about" name="Request" value="I'd like the developer to draft the About Us blurb">
+          <label for="draft-about" style="margin:0;">I&rsquo;d like the developer to draft this for my approval</label>
+        </div>
+        <div class="form-row">
+          <label for="testimonials">Reviews or Testimonials You&rsquo;d Like Featured <span class="field-hint">(optional)</span></label>
+          <textarea class="form-textarea" id="testimonials" name="Testimonials"></textarea>
+        </div>
+        <div class="form-row">
+          <label for="main-cta">Main Call-to-Action <span class="field-hint">(e.g. "Call Now", "Order Online", "Book Appointment")</span></label>
+          <input class="form-input" type="text" id="main-cta" name="Main CTA">
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Technical</legend>
+        <div class="form-check-row">
+          <input type="radio" id="has-domain-yes" name="Has Domain" value="Yes, I own a domain">
+          <label for="has-domain-yes" style="margin:0;">Yes, I already own a domain name</label>
+        </div>
+        <div class="form-check-row">
+          <input type="radio" id="has-domain-no" name="Has Domain" value="No, not yet">
+          <label for="has-domain-no" style="margin:0;">No, not yet</label>
+        </div>
+        <div class="form-row">
+          <label for="domain-info">If yes &mdash; Domain Name &amp; Registrar <span class="field-hint">(GoDaddy, Namecheap, etc.)</span></label>
+          <input class="form-input" type="text" id="domain-info" name="Domain Info">
+        </div>
+        <p class="form-policy-note">Domain registration and hosting are the client's own responsibility &mdash; I don't purchase or manage domains on anyone's behalf.</p>
+        <div class="form-row" style="margin-top:18px;">
+          <label for="booking-system">Existing Booking/Ordering System to Link <span class="field-hint">(Square, OpenTable, DoorDash, etc.)</span></label>
+          <input class="form-input" type="text" id="booking-system" name="Booking System">
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Anything Else?</legend>
+        <div class="form-row">
+          <label for="extra-notes">Use this space for anything you want included that wasn&rsquo;t covered above</label>
+          <textarea class="form-textarea" id="extra-notes" name="Additional Notes" style="min-height:120px;"></textarea>
+        </div>
+      </fieldset>
+
+      <div class="form-submit-row">
+        <button class="form-submit-btn" type="submit">Submit Inquiry</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="brand-mark"></span>The Lazy Creator Co.</div>
+      <div>Kingdom-first creator who also builds.</div>
+      <div style="margin-top:10px;"><a href="mailto:thelazycreatorco@gmail.com" style="color:var(--gold-bright);">thelazycreatorco@gmail.com</a></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.tiktok.com/@the_lazycreator" target="_blank" rel="noopener">TikTok (Faith)</a>
+      <a href="https://www.tiktok.com/@thelazycreatorcompany" target="_blank" rel="noopener">TikTok (Build)</a>
+      <a href="https://www.youtube.com/@Thelazycreatorco" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/thelazycreatorco/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Co. All rights reserved.</div>
+</footer>
+
+<script>
+(function() {
+  const NEON = ['#39ff14', '#00e5ff', '#ff1053']; // green, blue, red
+  const CHARS = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズヅブプ0123456789';
+
+  function makeMatrix(canvas, opts) {
+    const ctx = canvas.getContext('2d');
+    let cols, drops, colColors, safeZone = null;
+    const fontSize = opts.fontSize || 16;
+    const pad = opts.safeZonePadding || 18;
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      cols = Math.floor(canvas.width / fontSize);
+      drops = new Array(cols).fill(0).map(() => Math.random() * -50);
+      colColors = new Array(cols).fill(0).map(() => NEON[Math.floor(Math.random() * NEON.length)]);
+
+      if (opts.safeZoneEl) {
+        const zoneRect = opts.safeZoneEl.getBoundingClientRect();
+        safeZone = {
+          x1: (zoneRect.left - rect.left) - pad,
+          y1: (zoneRect.top - rect.top) - pad,
+          x2: (zoneRect.right - rect.left) + pad,
+          y2: (zoneRect.bottom - rect.top) + pad
+        };
+      }
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    let frame = 0;
+    function draw() {
+      frame++;
+      ctx.fillStyle = opts.trail || 'rgba(3,3,3,0.14)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < cols; i++) {
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        if (safeZone && x > safeZone.x1 && x < safeZone.x2 && y > safeZone.y1 && y < safeZone.y2) {
+          // inside the text's own rectangle -- skip drawing so the words stay clean;
+          // rain still fills left, right, top, and bottom all around it
+          drops[i] += opts.speed || 1;
+          continue;
+        }
+
+        // occasionally swap a column's color so it feels alive/alternating
+        if (Math.random() < 0.01) colColors[i] = NEON[Math.floor(Math.random() * NEON.length)];
+
+        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+        ctx.fillStyle = colColors[i];
+        ctx.shadowColor = colColors[i];
+        ctx.shadowBlur = opts.glow || 4;
+        ctx.fillText(char, x, y);
+        ctx.shadowBlur = 0;
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i] += opts.speed || 1;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    document.querySelectorAll('.matrix-divider-canvas').forEach(c => {
+      makeMatrix(c, { fontSize: 15, speed: 0.9, trail: 'rgba(3,3,3,0.18)', glow: 6 });
+    });
+    const frameCanvas = document.querySelector('.matrix-frame-canvas');
+    const frameContent = document.querySelector('.matrix-frame-content');
+    if (frameCanvas) {
+      makeMatrix(frameCanvas, { fontSize: 15, speed: 0.7, trail: 'rgba(3,3,3,0.12)', glow: 6, safeZoneEl: frameContent, safeZonePadding: 16 });
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
