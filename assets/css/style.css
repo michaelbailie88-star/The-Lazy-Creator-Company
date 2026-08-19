@@ -1264,3 +1264,40 @@ section p {
   border: 1px solid rgba(184,134,46,0.4);
   box-shadow: 0 8px 24px rgba(90,70,40,0.08), inset 0 1px 0 rgba(255,255,255,0.5);
 }
+
+/* ==================================================================
+   PRODUCTS PAGE — per-product color identity.
+   Faith Library, Activity Vault, Website Builds: real colors pulled
+   directly from each product's own live page theme (wood-bg,
+   av-electric, browser-chrome tab-dot).
+   Safe Passage, Kingdom Radar: colors derived from verified real
+   copy/content of each site (lighthouse/storm imagery; radar/scan +
+   faith imagery) — not sampled from actual brand pixels, since
+   external live sites can't be screenshotted from here.
+   ================================================================== */
+.product-card { border-left: 3px solid transparent; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+
+/* Faith Library — warm wood/oak brown, from shop.html's real wood-bg theme */
+.pc-faithlib { border-left-color: #a85c3a; }
+.pc-faithlib:hover { box-shadow: 0 8px 26px rgba(168,92,58,0.16); }
+.pc-faithlib .product-badge.live { background: rgba(168,92,58,0.16); color: #d68a5c; border-color: rgba(168,92,58,0.4); }
+
+/* Activity Vault — electric blue, from activity-vault.html's real av-electric theme */
+.pc-activityvault { border-left-color: #3b82f6; }
+.pc-activityvault:hover { box-shadow: 0 8px 26px rgba(59,130,246,0.18); }
+.pc-activityvault .product-badge.live { background: rgba(59,130,246,0.16); color: #60a5fa; border-color: rgba(59,130,246,0.4); }
+
+/* Website Builds — terminal green, from websites.html's real browser-chrome tab-dot accent */
+.pc-websites { border-left-color: #39ff14; }
+.pc-websites:hover { box-shadow: 0 8px 26px rgba(57,255,20,0.14); }
+.pc-websites .product-badge.live { background: rgba(57,255,20,0.12); color: #6dff4a; border-color: rgba(57,255,20,0.35); }
+
+/* Safe Passage — navy + amber beacon, from the site's own "lighthouse for men navigating storms" framing */
+.pc-safepassage { border-left-color: #d99a3f; }
+.pc-safepassage:hover { box-shadow: 0 8px 26px rgba(217,154,63,0.16), inset 0 0 0 1px rgba(26,47,74,0.3); }
+.pc-safepassage .product-badge.live { background: rgba(217,154,63,0.16); color: #e3b567; border-color: rgba(217,154,63,0.4); }
+
+/* Kingdom Radar — indigo + gold, from the site's "radar / intelligence" + faith-content framing */
+.pc-kingdomradar { border-left-color: #8b6fd6; }
+.pc-kingdomradar:hover { box-shadow: 0 8px 26px rgba(139,111,214,0.18); }
+.pc-kingdomradar .product-badge.live { background: rgba(139,111,214,0.16); color: #ad96e6; border-color: rgba(139,111,214,0.4); }
