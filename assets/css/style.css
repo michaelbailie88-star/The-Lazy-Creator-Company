@@ -1224,25 +1224,37 @@ section p {
 }
 
 /* Ornamental divider — replaces a removed content section with a quiet visual break */
-.ms-divider {
+/* Pill row — quick links to a few other areas of the site */
+.ms-pillbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  max-width: 340px;
-  margin: 12px auto 8px;
+  gap: 12px;
+  max-width: 720px;
+  margin: 14px auto 6px;
   padding: 0 24px;
 }
-.ms-divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--ms-gold) 50%, transparent);
-  opacity: 0.6;
+.ms-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(184,134,46,0.5);
+  background: rgba(255,251,240,0.5);
+  backdrop-filter: blur(10px);
+  color: var(--ms-ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
-.ms-divider-mark {
-  color: var(--ms-gold);
-  font-size: 1.1rem;
-  opacity: 0.85;
+.ms-pill:hover {
+  background: rgba(212,175,55,0.16);
+  border-color: var(--ms-gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(184,134,46,0.18);
 }
 
 .ms-topband { height: 4px; background: var(--ms-gold); }
