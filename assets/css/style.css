@@ -1276,12 +1276,18 @@ section p {
 .manuscript-page .site-footer { color: var(--ms-ink-soft); border-top-color: rgba(90,70,40,0.25); }
 .manuscript-page .site-footer a { color: var(--ms-ink); }
 .manuscript-page .site-footer a:hover { color: var(--ms-vermillion); }
-.manuscript-page { --gold-bright: #a8721f; }
+.manuscript-page { --gold-bright: #8c5a0f; --gold: #9c6a1f; --teal-bright: #0d6b5f; }
 .manuscript-page .tool-meta strong { color: var(--ms-ink); }
+.manuscript-page .product-badge.soon { background: rgba(120,90,50,0.18); color: #6b4a28; border-color: rgba(120,90,50,0.4); }
+.manuscript-page .roadmap-status.now { background: rgba(184,134,46,0.24); color: #8a5f1a; border-color: rgba(184,134,46,0.5); }
+.manuscript-page .roadmap-status.next { background: rgba(13,92,82,0.16); color: #0d5c52; border-color: rgba(13,92,82,0.4); }
+.manuscript-page .roadmap-status.later { background: rgba(120,90,50,0.18); color: #6b4a28; border-color: rgba(120,90,50,0.4); }
+.manuscript-page .tool-tag { background: rgba(13,92,82,0.14); color: #0d5c52; border-color: rgba(13,92,82,0.4); }
 .manuscript-page .section-intro, .manuscript-page .build-list-desc, .manuscript-page .web-desc,
 .manuscript-page section p, .manuscript-page .scripture-text, .manuscript-page .scripture-ref,
 .manuscript-page .hero p.lede { color: var(--ms-ink-soft); }
-.manuscript-page .label-gold { color: var(--ms-gold); }
+.manuscript-page .label-gold { color: #8c5f14; }
+.manuscript-page .blog-post-date { color: #5a4a30; }
 .manuscript-page .label-teal { color: var(--ms-ultramarine); }
 .manuscript-page .web-title { color: var(--ms-ink); }
 .manuscript-page .btn-outline { color: var(--ms-ink); border-color: rgba(90,70,40,0.4); }
@@ -1300,7 +1306,12 @@ section p {
 .manuscript-page .split-card,
 .manuscript-page .web-card,
 .manuscript-page .av-module-card,
-.manuscript-page .product-card {
+.manuscript-page .product-card,
+.manuscript-page .project-card,
+.manuscript-page .roadmap-phase,
+.manuscript-page .tool-card,
+.manuscript-page .scripture-block,
+.manuscript-page .blog-post {
   background: rgba(255, 251, 240, 0.55);
   backdrop-filter: blur(14px) saturate(1.1);
   -webkit-backdrop-filter: blur(14px) saturate(1.1);
@@ -1364,29 +1375,29 @@ section p {
 /* Faith Library — warm wood/oak brown, from shop.html's real wood-bg theme */
 .pc-faithlib { border-left-color: #a85c3a; }
 .pc-faithlib:hover { box-shadow: 0 8px 26px rgba(168,92,58,0.16); }
-.pc-faithlib .product-badge.live { background: rgba(168,92,58,0.16); color: #d68a5c; border-color: rgba(168,92,58,0.4); }
+.pc-faithlib .product-badge.live { background: rgba(168,92,58,0.16); color: #a85c3a; border-color: rgba(168,92,58,0.4); }
 .pc-faithlib .btn { background: #a85c3a; color: #fff5eb; border-color: #a85c3a; }
 
 /* Activity Vault — electric blue, from activity-vault.html's real av-electric theme */
 .pc-activityvault { border-left-color: #3b82f6; }
 .pc-activityvault:hover { box-shadow: 0 8px 26px rgba(59,130,246,0.18); }
-.pc-activityvault .product-badge.live { background: rgba(59,130,246,0.16); color: #60a5fa; border-color: rgba(59,130,246,0.4); }
+.pc-activityvault .product-badge.live { background: rgba(59,130,246,0.16); color: #1e5ac8; border-color: rgba(59,130,246,0.4); }
 .pc-activityvault .btn { background: #3b82f6; color: #f4f8ff; border-color: #3b82f6; }
 
 /* Website Builds — terminal green, from websites.html's real browser-chrome tab-dot accent */
 .pc-websites { border-left-color: #39ff14; }
 .pc-websites:hover { box-shadow: 0 8px 26px rgba(57,255,20,0.14); }
-.pc-websites .product-badge.live { background: rgba(57,255,20,0.12); color: #6dff4a; border-color: rgba(57,255,20,0.35); }
+.pc-websites .product-badge.live { background: rgba(57,255,20,0.14); color: #0e6e1e; border-color: rgba(57,255,20,0.4); }
 .pc-websites .btn { background: #39ff14; color: #08210a; border-color: #39ff14; }
 
 /* Safe Passage — navy + amber beacon, from the site's own "lighthouse for men navigating storms" framing */
 .pc-safepassage { border-left-color: #d99a3f; }
 .pc-safepassage:hover { box-shadow: 0 8px 26px rgba(217,154,63,0.16), inset 0 0 0 1px rgba(26,47,74,0.3); }
-.pc-safepassage .product-badge.live { background: rgba(217,154,63,0.16); color: #e3b567; border-color: rgba(217,154,63,0.4); }
+.pc-safepassage .product-badge.live { background: rgba(217,154,63,0.16); color: #8c5f14; border-color: rgba(217,154,63,0.4); }
 .pc-safepassage .btn { background: #d99a3f; color: #2a1a05; border-color: #d99a3f; }
 
 /* Kingdom Radar — indigo + gold, from the site's "radar / intelligence" + faith-content framing */
 .pc-kingdomradar { border-left-color: #8b6fd6; }
 .pc-kingdomradar:hover { box-shadow: 0 8px 26px rgba(139,111,214,0.18); }
-.pc-kingdomradar .product-badge.live { background: rgba(139,111,214,0.16); color: #ad96e6; border-color: rgba(139,111,214,0.4); }
+.pc-kingdomradar .product-badge.live { background: rgba(139,111,214,0.16); color: #5540a0; border-color: rgba(139,111,214,0.4); }
 .pc-kingdomradar .btn { background: #8b6fd6; color: #f6f3ff; border-color: #8b6fd6; }
