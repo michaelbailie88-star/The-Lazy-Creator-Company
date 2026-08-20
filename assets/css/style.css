@@ -1277,7 +1277,20 @@ section p {
 .manuscript-page .site-footer a { color: var(--ms-ink); }
 .manuscript-page .site-footer a:hover { color: var(--ms-vermillion); }
 .manuscript-page { --gold-bright: #8c5a0f; --gold: #9c6a1f; --teal-bright: #0d6b5f; }
+.manuscript-page .tool-meta { color: var(--ms-ink-soft); }
 .manuscript-page .tool-meta strong { color: var(--ms-ink); }
+.manuscript-page .toolbox-jump {
+  background: rgba(255, 251, 240, 0.55);
+  backdrop-filter: blur(14px) saturate(1.1);
+  border: 1px solid rgba(184,134,46,0.4);
+}
+.manuscript-page .toolbox-jump a:nth-child(6n+1) { background: rgba(168,92,58,0.16); color: #a85c3a; border-color: rgba(168,92,58,0.4); }
+.manuscript-page .toolbox-jump a:nth-child(6n+2) { background: rgba(13,92,82,0.16); color: #0d5c52; border-color: rgba(13,92,82,0.4); }
+.manuscript-page .toolbox-jump a:nth-child(6n+3) { background: rgba(184,134,46,0.18); color: #8c5f14; border-color: rgba(184,134,46,0.45); }
+.manuscript-page .toolbox-jump a:nth-child(6n+4) { background: rgba(139,111,214,0.16); color: #5540a0; border-color: rgba(139,111,214,0.4); }
+.manuscript-page .toolbox-jump a:nth-child(6n+5) { background: rgba(168,50,42,0.14); color: #a8322a; border-color: rgba(168,50,42,0.4); }
+.manuscript-page .toolbox-jump a:nth-child(6n+6) { background: rgba(30,90,200,0.14); color: #1e5ac8; border-color: rgba(30,90,200,0.4); }
+.manuscript-page .toolbox-jump a:hover { filter: brightness(0.9); }
 .manuscript-page .product-badge.soon { background: rgba(120,90,50,0.18); color: #6b4a28; border-color: rgba(120,90,50,0.4); }
 .manuscript-page .roadmap-status.now { background: rgba(184,134,46,0.24); color: #8a5f1a; border-color: rgba(184,134,46,0.5); }
 .manuscript-page .roadmap-status.next { background: rgba(13,92,82,0.16); color: #0d5c52; border-color: rgba(13,92,82,0.4); }
