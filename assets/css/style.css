@@ -1223,6 +1223,28 @@ section p {
   background-size: 22px 22px;
 }
 
+/* Ornamental divider — replaces a removed content section with a quiet visual break */
+.ms-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  max-width: 340px;
+  margin: 12px auto 8px;
+  padding: 0 24px;
+}
+.ms-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ms-gold) 50%, transparent);
+  opacity: 0.6;
+}
+.ms-divider-mark {
+  color: var(--ms-gold);
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
 .ms-topband { height: 4px; background: var(--ms-gold); }
 
 .manuscript-page .site-nav {
