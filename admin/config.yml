@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: michaelbailie88-star/The-Lazy-Creator-Company
   branch: main
 
 media_folder: "assets/img/blog-uploads"
