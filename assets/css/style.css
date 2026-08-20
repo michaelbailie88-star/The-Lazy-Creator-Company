@@ -1270,7 +1270,14 @@ section p {
 .manuscript-page .nav-links a:hover, .manuscript-page .nav-links a.active-preview { color: var(--ms-vermillion); }
 .manuscript-page .brand { color: var(--ms-vermillion); }
 
-.manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title { color: var(--ms-ink); }
+.manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title,
+.manuscript-page .product-title, .manuscript-page .project-card-title,
+.manuscript-page .roadmap-title, .manuscript-page .tool-name { color: var(--ms-ink); }
+.manuscript-page .site-footer { color: var(--ms-ink-soft); border-top-color: rgba(90,70,40,0.25); }
+.manuscript-page .site-footer a { color: var(--ms-ink); }
+.manuscript-page .site-footer a:hover { color: var(--ms-vermillion); }
+.manuscript-page { --gold-bright: #a8721f; }
+.manuscript-page .tool-meta strong { color: var(--ms-ink); }
 .manuscript-page .section-intro, .manuscript-page .build-list-desc, .manuscript-page .web-desc,
 .manuscript-page section p, .manuscript-page .scripture-text, .manuscript-page .scripture-ref,
 .manuscript-page .hero p.lede { color: var(--ms-ink-soft); }
@@ -1300,6 +1307,20 @@ section p {
   border: 1px solid rgba(184,134,46,0.4);
   box-shadow: 0 8px 24px rgba(90,70,40,0.08), inset 0 1px 0 rgba(255,255,255,0.5);
 }
+
+/* ==================================================================
+   MANUSCRIPT TONE VARIANTS — same theme, different shade per page.
+   Applied alongside .manuscript-page on the body tag. Only overrides
+   the --ms-parchment variable; everything else (gold accents, glass-
+   morphism, dot texture, topband) inherits from .manuscript-page.
+   ================================================================== */
+.tone-projects    { --ms-parchment: #e7cfb2; }
+.tone-products     { --ms-parchment: #f0e8cc; }
+.tone-marketplace  { --ms-parchment: #e6d2c2; }
+.tone-resources    { --ms-parchment: #f1ebda; }
+.tone-blog         { --ms-parchment: #eae2b9; }
+.tone-toolbox      { --ms-parchment: #e6cea7; }
+.tone-about        { --ms-parchment: #ead7cd; }
 
 /* ==================================================================
    STANDING RULE — read this before adding any new product card.
