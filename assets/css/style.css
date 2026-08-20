@@ -1414,3 +1414,58 @@ section p {
 .pc-kingdomradar:hover { box-shadow: 0 8px 26px rgba(139,111,214,0.18); }
 .pc-kingdomradar .product-badge.live { background: rgba(139,111,214,0.16); color: #5540a0; border-color: rgba(139,111,214,0.4); }
 .pc-kingdomradar .btn { background: #8b6fd6; color: #f6f3ff; border-color: #8b6fd6; }
+
+/* ==================================================================
+   METALLIC GLASS — scoped to .metallic-glass only (About page).
+   Polished-gold gradient text for headings/titles, and a stronger
+   shimmer/sheen on glass cards. Body paragraph text stays solid dark
+   ink — gradient fill on small body copy would hurt readability,
+   which was just fixed site-wide. Applied to display text only.
+   ================================================================== */
+.metallic-glass h1,
+.metallic-glass h2,
+.metallic-glass h3,
+.metallic-glass .product-title,
+.metallic-glass .roadmap-title,
+.metallic-glass .section-title {
+  background: linear-gradient(115deg, #6b4a10 0%, #9c661f 22%, #8c5f14 42%, #6b4a10 58%, #9c661f 76%, #6b4a10 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #6b4a10; /* fallback for browsers without background-clip:text support */
+  filter: drop-shadow(0 1px 1px rgba(90,70,40,0.15));
+}
+
+/* Stronger glass + sheen on every card on this page */
+.metallic-glass .product-card,
+.metallic-glass .roadmap-phase,
+.metallic-glass .scripture-block,
+.metallic-glass .quote-block,
+.metallic-glass .glass-frame {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 253, 245, 0.62);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, rgba(212,175,55,0.9), rgba(255,255,255,0.5), rgba(184,134,46,0.85)) 1;
+  box-shadow: 0 10px 30px rgba(90,70,40,0.12), inset 0 1px 0 rgba(255,255,255,0.65), inset 0 -1px 0 rgba(184,134,46,0.15);
+}
+/* Diagonal shimmer sweep across each card */
+.metallic-glass .product-card::before,
+.metallic-glass .roadmap-phase::before,
+.metallic-glass .scripture-block::before,
+.metallic-glass .quote-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.35) 47%, rgba(255,244,214,0.55) 50%, rgba(255,255,255,0.35) 53%, transparent 70%);
+  pointer-events: none;
+}
+
+.metallic-glass .quote-block { border-left: 3px solid var(--ms-vermillion); border-image: none; }
+.metallic-glass .scripture-ref, .metallic-glass .quote-attr { color: var(--ms-ink-soft); position: relative; z-index: 1; }
+.metallic-glass .scripture-text, .metallic-glass .quote-text,
+.metallic-glass .product-desc, .metallic-glass .roadmap-desc,
+.metallic-glass section p { position: relative; z-index: 1; }
