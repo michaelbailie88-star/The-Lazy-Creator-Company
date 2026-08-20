@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sell on the Marketplace — The Lazy Creator Co.</title>
+<meta name="description" content="Submit your own digital product to The Lazy Creator Co. marketplace — real terms, real revenue split, no gatekeeping.">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="/index.html"><span class="brand-mark"></span>The Lazy Creator Co.</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/products.html">Products</a>
+      <a href="/marketplace.html">Marketplace</a>
+      <a href="/resources.html">Resources</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/toolbox.html">Toolbox</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap" style="text-align:left;max-width:720px;">
+    <div class="section-label label-gold">Marketplace</div>
+    <a href="/marketplace.html" class="back-breadcrumb"><span class="back-link">&larr; Back to Marketplace</span></a>
+    <h1 style="margin-top:12px;">Sell your product here</h1>
+    <p class="lede" style="margin-left:0;">Real terms, posted plainly, before you submit anything.
+    No hidden fees, no surprise review process &mdash; here's exactly what happens.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:720px;">
+    <div class="section-label label-gold">The Terms</div>
+    <h2 class="section-title">Creator Marketplace Agreement</h2>
+
+    <div class="surface" style="padding:26px 28px;margin-top:18px;">
+      <p><strong>Revenue split.</strong> You keep 85% of every sale. The Lazy Creator Co. keeps
+      15% as the marketplace fee. No other cuts, no tiered pricing based on volume &mdash; the
+      split is the same whether you sell one copy or a thousand.</p>
+
+      <p><strong>Listing goes live immediately.</strong> There's no waiting period or manual
+      review queue before your product appears. Once you submit and it passes the checklist
+      below, it's live. The Lazy Creator Co. reserves the right to remove any listing after the
+      fact &mdash; for content that doesn't fit the brand, quality concerns, or terms violations
+      &mdash; but that's a post-publish action, not a pre-publish gate.</p>
+
+      <p><strong>Content standards.</strong> Everything sold here has to actually be
+      faith-forward or clearly serve the audience this brand exists for &mdash; creators,
+      educators, families, and people building something with their own hands. No AI-generated
+      spam, no reskinned/reselling of someone else's work, no content that contradicts the
+      "does this point to God, or just to a checkout page?" filter every other product here gets
+      measured against.</p>
+
+      <p><strong>Ownership.</strong> You keep full ownership of what you make. Submitting a
+      product here grants The Lazy Creator Co. a license to list, market, and sell it on this
+      site &mdash; not a transfer of ownership or exclusivity. You're free to sell the same
+      product anywhere else too.</p>
+
+      <p><strong>Payouts.</strong> Payment mechanics (schedule, method, and minimum payout
+      threshold) are still being finalized and will be confirmed directly with approved
+      creators before your first sale. This page will be updated once that's locked in.</p>
+
+      <p style="color:var(--text-muted);font-size:0.85rem;margin-top:20px;">This is a plain-
+      language summary of the working terms, not a substitute for a formal signed agreement.
+      A complete written contract will be provided before any payout is issued.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:640px;">
+    <div class="section-label label-gold">Apply</div>
+    <h2 class="section-title">Submit your product</h2>
+    <p class="section-intro">Fill this out completely. Incomplete submissions get followed up
+    on by email before anything goes live.</p>
+
+    <form class="inquiry-form" name="marketplace-submission" method="POST" data-netlify="true"
+          netlify-honeypot="bot-field" action="/marketplace/thank-you.html">
+      <input type="hidden" name="form-name" value="marketplace-submission">
+      <p style="display:none;">
+        <label>Don&rsquo;t fill this out if you're human: <input name="bot-field"></label>
+      </p>
+
+      <fieldset class="form-fieldset">
+        <legend>About You</legend>
+        <div class="form-row">
+          <label for="creator-name">Your Name</label>
+          <input class="form-input" type="text" id="creator-name" name="Creator Name" required>
+        </div>
+        <div class="form-row">
+          <label for="creator-email">Email</label>
+          <input class="form-input" type="email" id="creator-email" name="Creator Email" required>
+        </div>
+        <div class="form-row">
+          <label for="creator-social">Website / Social Link <span class="field-hint">(so I can see your existing work)</span></label>
+          <input class="form-input" type="text" id="creator-social" name="Creator Social Link" required>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>About the Product</legend>
+        <div class="form-row">
+          <label for="product-name">Product Name</label>
+          <input class="form-input" type="text" id="product-name" name="Product Name" required>
+        </div>
+        <div class="form-row">
+          <label for="product-desc">Description <span class="field-hint">(what it is, who it's for)</span></label>
+          <textarea class="form-input" id="product-desc" name="Product Description" required></textarea>
+        </div>
+        <div class="form-row">
+          <label for="product-price">Price</label>
+          <input class="form-input" type="text" id="product-price" name="Product Price" placeholder="$" required>
+        </div>
+        <div class="form-row">
+          <label for="product-link">Link to the Product <span class="field-hint">(Gumroad, Etsy, your own store — wherever it lives now)</span></label>
+          <input class="form-input" type="text" id="product-link" name="Product Link" required>
+        </div>
+        <div class="form-row">
+          <label for="product-fit">Why this fits here <span class="field-hint">(one or two sentences)</span></label>
+          <textarea class="form-input" id="product-fit" name="Why It Fits" required></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Agreement</legend>
+        <div class="form-row" style="flex-direction:row;align-items:flex-start;gap:10px;">
+          <input type="checkbox" id="agree-terms" name="Agreed to Terms" value="Yes" required style="margin-top:4px;">
+          <label for="agree-terms" style="font-weight:400;">I've read the Creator Marketplace
+          Agreement above and agree to the 85/15 revenue split, the auto-list/removal policy,
+          and the content standards.</label>
+        </div>
+      </fieldset>
+
+      <button class="btn btn-gold" type="submit">Submit for listing &rarr;</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand" style="margin-bottom:8px;"><span class="brand-mark"></span>The Lazy Creator Co.</div>
+      <div>Kingdom-first creator who also builds.</div>
+      <div style="margin-top:10px;"><a href="mailto:thelazycreatorco@gmail.com" style="color:var(--gold-bright);">thelazycreatorco@gmail.com</a></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.tiktok.com/@the_lazycreator" target="_blank" rel="noopener">TikTok (Faith)</a>
+      <a href="https://www.tiktok.com/@thelazycreatorcompany" target="_blank" rel="noopener">TikTok (Build)</a>
+      <a href="https://www.youtube.com/@Thelazycreatorco" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://www.instagram.com/thelazycreatorco/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Co. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
