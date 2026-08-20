@@ -151,6 +151,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
 }
 .btn-outline:hover { border-color: var(--gold); color: var(--gold-bright); }
+.btn-av-green { background: #16a34a; color: #f0fdf4; border-color: #16a34a; }
+.btn-av-green:hover { box-shadow: 0 4px 24px rgba(22, 163, 74, 0.4); }
 
 /* ---------- Hero ---------- */
 .hero {
