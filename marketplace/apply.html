@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body class="manuscript-page tone-marketplace">
 
 <nav class="site-nav">
   <div class="wrap">
@@ -86,26 +86,22 @@
     <p class="section-intro">Fill this out completely. Incomplete submissions get followed up
     on by email before anything goes live.</p>
 
-    <form class="inquiry-form" name="marketplace-submission" method="POST" data-netlify="true"
-          netlify-honeypot="bot-field" action="/marketplace/thank-you.html">
-      <input type="hidden" name="form-name" value="marketplace-submission">
-      <p style="display:none;">
-        <label>Don&rsquo;t fill this out if you're human: <input name="bot-field"></label>
-      </p>
-
+    <form class="inquiry-form" id="marketplace-form" name="marketplace-submission">
       <fieldset class="form-fieldset">
         <legend>About You</legend>
         <div class="form-row">
           <label for="creator-name">Your Name</label>
-          <input class="form-input" type="text" id="creator-name" name="Creator Name" required>
+          <input class="form-input" type="text" id="creator-name" required>
         </div>
         <div class="form-row">
           <label for="creator-email">Email</label>
-          <input class="form-input" type="email" id="creator-email" name="Creator Email" required>
+          <input class="form-input" type="email" id="creator-email" required>
+          <p class="field-hint" style="margin-top:6px;">Use this exact email when you pay in the
+          next step &mdash; that's how your listing gets matched and published.</p>
         </div>
         <div class="form-row">
           <label for="creator-social">Website / Social Link <span class="field-hint">(so I can see your existing work)</span></label>
-          <input class="form-input" type="text" id="creator-social" name="Creator Social Link" required>
+          <input class="form-input" type="text" id="creator-social" required>
         </div>
       </fieldset>
 
@@ -113,40 +109,83 @@
         <legend>About the Product</legend>
         <div class="form-row">
           <label for="product-name">Product Name</label>
-          <input class="form-input" type="text" id="product-name" name="Product Name" required>
+          <input class="form-input" type="text" id="product-name" required>
         </div>
         <div class="form-row">
           <label for="product-desc">Description <span class="field-hint">(what it is, who it's for)</span></label>
-          <textarea class="form-input" id="product-desc" name="Product Description" required></textarea>
+          <textarea class="form-input" id="product-desc" required></textarea>
         </div>
         <div class="form-row">
           <label for="product-price">Price</label>
-          <input class="form-input" type="text" id="product-price" name="Product Price" placeholder="$" required>
+          <input class="form-input" type="text" id="product-price" placeholder="$" required>
         </div>
         <div class="form-row">
           <label for="product-link">Link to the Product <span class="field-hint">(Gumroad, Etsy, your own store — wherever it lives now)</span></label>
-          <input class="form-input" type="text" id="product-link" name="Product Link" required>
+          <input class="form-input" type="text" id="product-link" required>
         </div>
         <div class="form-row">
           <label for="product-fit">Why this fits here <span class="field-hint">(one or two sentences)</span></label>
-          <textarea class="form-input" id="product-fit" name="Why It Fits" required></textarea>
+          <textarea class="form-input" id="product-fit" required></textarea>
         </div>
       </fieldset>
 
       <fieldset class="form-fieldset">
         <legend>Agreement</legend>
         <div class="form-row" style="flex-direction:row;align-items:flex-start;gap:10px;">
-          <input type="checkbox" id="agree-terms" name="Agreed to Terms" value="Yes" required style="margin-top:4px;">
+          <input type="checkbox" id="agree-terms" required style="margin-top:4px;">
           <label for="agree-terms" style="font-weight:400;">I've read the Creator Marketplace
           Agreement above and agree to the 85/15 revenue split, the auto-list/removal policy,
           and the content standards.</label>
         </div>
       </fieldset>
 
-      <button class="btn btn-gold" type="submit">Submit for listing &rarr;</button>
+      <button class="btn btn-gold" type="submit" id="marketplace-submit-btn">Submit for listing &rarr;</button>
+      <p id="marketplace-form-error" style="color:#c44236;display:none;margin-top:10px;"></p>
     </form>
   </div>
 </section>
+
+<script>
+document.getElementById('marketplace-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const btn = document.getElementById('marketplace-submit-btn');
+  const errEl = document.getElementById('marketplace-form-error');
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  const payload = {
+    creatorName: document.getElementById('creator-name').value.trim(),
+    creatorEmail: document.getElementById('creator-email').value.trim(),
+    creatorSocial: document.getElementById('creator-social').value.trim(),
+    productName: document.getElementById('product-name').value.trim(),
+    productDesc: document.getElementById('product-desc').value.trim(),
+    productPrice: document.getElementById('product-price').value.trim(),
+    productLink: document.getElementById('product-link').value.trim(),
+    whyFits: document.getElementById('product-fit').value.trim(),
+    agreedToTerms: document.getElementById('agree-terms').checked,
+  };
+
+  try {
+    const res = await fetch('/.netlify/functions/submit-listing', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(function () { return {}; });
+      throw new Error(data.error || 'Submission failed. Try again.');
+    }
+    sessionStorage.setItem('marketplaceCreatorEmail', payload.creatorEmail);
+    window.location.href = '/marketplace/pay.html';
+  } catch (err) {
+    errEl.textContent = err.message || 'Something went wrong. Try again in a moment.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Submit for listing →';
+  }
+});
+</script>
 
 <footer class="site-footer">
   <div class="wrap footer-row">

@@ -1277,6 +1277,17 @@ section p {
 .manuscript-page .site-footer a { color: var(--ms-ink); }
 .manuscript-page .site-footer a:hover { color: var(--ms-vermillion); }
 .manuscript-page { --gold-bright: #8c5a0f; --gold: #9c6a1f; --teal-bright: #0d6b5f; }
+.manuscript-page .form-fieldset legend,
+.manuscript-page .form-row label,
+.manuscript-page .form-fieldset .fieldset-note,
+.manuscript-page .form-policy-note,
+.manuscript-page .back-link {
+  color: var(--ms-ink);
+}
+.manuscript-page .form-row .field-hint,
+.manuscript-page .section-intro {
+  color: var(--ms-ink-soft);
+}
 .manuscript-page .tool-meta { color: var(--ms-ink-soft); }
 .manuscript-page .tool-meta strong { color: var(--ms-ink); }
 .manuscript-page .toolbox-jump {

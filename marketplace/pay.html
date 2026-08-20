@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thank You — The Lazy Creator Co.</title>
-<meta name="description" content="Your marketplace submission has been received.">
+<title>Activate Your Listing — The Lazy Creator Co.</title>
+<meta name="description" content="One last step — pay to activate your marketplace listing.">
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
@@ -31,15 +31,24 @@
 </nav>
 
 <section class="hero">
-  <div class="wrap center">
-    <div class="section-label label-gold">Got It</div>
-    <h1>Submission received</h1>
-    <p class="lede">Thanks for applying &mdash; I'll review it and follow up by email, usually
-    within a few days. If anything's missing from what you sent, that's what I'll ask about
-    first.</p>
-    <div class="hero-actions">
-      <a class="btn btn-teal" href="/marketplace.html">Back to Marketplace</a>
+  <div class="wrap center" style="max-width:640px;">
+    <div class="section-label label-gold">One Last Step</div>
+    <h1>Activate your listing</h1>
+    <p class="lede">Your submission is saved. Pay below to go live — <strong>use the exact same
+    email you just submitted with</strong>, or your listing won't be matched automatically.</p>
+
+    <div id="email-reminder" style="display:none;margin:18px 0;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);">
+      Submitted with: <strong id="email-reminder-value"></strong>
     </div>
+
+    <div class="hero-actions" style="flex-direction:column;gap:14px;max-width:340px;margin:0 auto;">
+      <a class="btn btn-gold" href="https://buy.stripe.com/aFa14p3DPeHG2li4KHeIw0w" target="_blank" rel="noopener" style="width:100%;justify-content:center;">Pay Monthly &mdash; $12/mo &rarr;</a>
+      <a class="btn btn-teal" href="https://buy.stripe.com/dRm5kFcal432aROa51eIw0v" target="_blank" rel="noopener" style="width:100%;justify-content:center;">Pay Annually &mdash; $99/yr &rarr;</a>
+    </div>
+
+    <p style="margin-top:28px;color:var(--ms-ink-soft);font-size:0.85rem;">Once payment goes
+    through, your listing goes live automatically &mdash; usually within a minute or two. No
+    manual review, no waiting on a reply.</p>
   </div>
 </section>
 
@@ -63,6 +72,16 @@
   </div>
   <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Co. All rights reserved.</div>
 </footer>
+
+<script>
+(function () {
+  var email = sessionStorage.getItem('marketplaceCreatorEmail');
+  if (email) {
+    document.getElementById('email-reminder-value').textContent = email;
+    document.getElementById('email-reminder').style.display = 'block';
+  }
+})();
+</script>
 
 </body>
 </html>

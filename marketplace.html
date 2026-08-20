@@ -42,6 +42,16 @@
 
 <section>
   <div class="wrap">
+    <div class="section-label label-gold">Live Listings</div>
+    <h2 class="section-title">From other creators</h2>
+    <div id="marketplace-listings-grid" class="grid" style="margin-top:24px;">
+      <p style="color:var(--ms-ink-soft);">Loading listings&hellip;</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <div class="roadmap-list">
 
       <div class="roadmap-phase">
@@ -111,6 +121,50 @@
   </div>
   <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Co. All rights reserved.</div>
 </footer>
+
+<script>
+(async function () {
+  const gridEl = document.getElementById('marketplace-listings-grid');
+
+  // Untrusted content — these listings come from public creator submissions
+  // with zero manual review before publishing. Everything gets escaped
+  // before it touches innerHTML.
+  function esc(str) {
+    const div = document.createElement('div');
+    div.textContent = str == null ? '' : String(str);
+    return div.innerHTML;
+  }
+
+  try {
+    const res = await fetch('/content/marketplace-listings.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to load listings (' + res.status + ')');
+    const data = await res.json();
+    const entries = (data.entries || []).slice().sort(function (a, b) {
+      return new Date(b.subscribedAt || 0) - new Date(a.subscribedAt || 0);
+    });
+
+    if (entries.length === 0) {
+      gridEl.innerHTML = '<p style="color:var(--ms-ink-soft);">No creator listings yet &mdash; be the first.</p>';
+      return;
+    }
+
+    gridEl.innerHTML = entries.map(function (e) {
+      const safeLink = /^https?:\/\//i.test(e.productLink || '') ? e.productLink : '#';
+      return '<div class="product-card">' +
+        '<span class="product-badge live">Live</span>' +
+        '<h3 class="product-title">' + esc(e.productName) + '</h3>' +
+        '<p>' + esc(e.productDesc) + '</p>' +
+        '<p style="font-weight:700;margin-top:6px;">' + esc(e.productPrice) + '</p>' +
+        '<p style="color:var(--ms-ink-soft);font-size:0.85rem;margin-top:6px;">by ' + esc(e.creatorName) + '</p>' +
+        '<a class="btn btn-outline" href="' + esc(safeLink) + '" target="_blank" rel="noopener nofollow ugc" style="margin-top:14px;display:inline-flex;">View product &rarr;</a>' +
+        '</div>';
+    }).join('');
+  } catch (err) {
+    gridEl.innerHTML = '<p style="color:var(--ms-ink-soft);">Couldn\'t load listings right now. Try refreshing.</p>';
+    console.error('Marketplace listings load error:', err);
+  }
+})();
+</script>
 
 </body>
 </html>
