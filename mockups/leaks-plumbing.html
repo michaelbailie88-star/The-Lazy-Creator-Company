@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaks Plumbing — Guelph, Ontario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #12181F;
+    --panel: #1B242E;
+    --copper: #C97C4B;
+    --copper-light: #E0A374;
+    --copper-deep: #A85F35;
+    --white: #F1EDE6;
+    --steel: #8B97A3;
+    --line: rgba(241,237,230,0.12);
+    --good: #6FA383;
+    --cream: #EDE6D9;
+    --cream-panel: #E1D7C4;
+    --cream-line: rgba(18,24,31,0.10);
+    --cream-text: #2A241D;
+    --cream-steel: #6B6154;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--ink);
+    color: var(--white);
+    font-family: 'IBM Plex Sans', sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Bitter', serif; font-weight: 700; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--copper); font-weight: 600;
+  }
+
+  nav {
+    position: sticky; top:0; z-index:50;
+    background: rgba(18,24,31,0.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:74px; }
+  .brand { font-family:'Bitter',serif; font-weight:700; font-size:21px; letter-spacing:-0.01em; }
+  .brand span { color: var(--copper); }
+  nav ul { display:flex; gap:30px; list-style:none; font-size:14.5px; font-weight:500; }
+  nav ul a:hover { color: var(--copper); }
+  .nav-cta {
+    background: var(--copper); color: var(--ink); padding:11px 22px;
+    border-radius:2px; font-weight:700; font-size:14px;
+  }
+  @media (max-width:760px){ nav ul.links{ display:none; } }
+
+  /* HERO */
+  .hero {
+    position:relative; padding: 110px 0 90px;
+    background-size: cover; background-position: center;
+    isolation: isolate;
+  }
+  .hero::before {
+    content:""; position:absolute; inset:0; z-index:-1;
+    background: linear-gradient(100deg, rgba(18,24,31,0.94) 0%, rgba(18,24,31,0.82) 45%, rgba(18,24,31,0.55) 100%);
+  }
+  .hero-photo-label {
+    position:relative; z-index:2; max-width:1120px; margin:24px auto 0; padding:0 28px;
+    font-size:11px; color:var(--steel); letter-spacing:0.02em;
+  }
+  .hero .wrap { position:relative; z-index:2; }
+  .hero-grid { max-width:640px; padding-bottom:0; }
+  .hero h1 { font-size: clamp(38px, 5vw, 56px); line-height:1.08; margin: 16px 0 20px; }
+  .hero h1 em { font-style:normal; color: var(--copper); }
+  .hero p.lede { font-size:17px; color: var(--steel); max-width:460px; margin-bottom:30px; }
+  .btn-row { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px; border-radius:2px; font-weight:700; font-size:15px;
+  }
+  .btn-primary { background:var(--copper); color:var(--ink); }
+  .btn-ghost { border:1px solid var(--line); color:var(--white); }
+  .btn-primary:hover { background:var(--copper-light); }
+  .btn-ghost:hover { border-color: var(--copper); color:var(--copper); }
+
+  /* Pipe schematic signature */
+  .pipe-art { width:100%; }
+  .pipe-art svg { width:100%; height:auto; display:block; }
+  .pipe-art .flow { stroke-dasharray: 6 10; animation: flow 3s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -32; } }
+  @media (prefers-reduced-motion: reduce) { .pipe-art .flow { animation:none; } }
+
+  .trust-bar {
+    background: var(--panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding: 26px 0;
+  }
+  .trust-bar .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+  .trust-item { display:flex; align-items:baseline; gap:8px; }
+  .trust-item b { font-family:'Bitter',serif; font-size:22px; color:var(--copper); }
+  .trust-item span { font-size:13.5px; color:var(--steel); }
+
+  /* PIPE DIVIDER between sections */
+  .pipe-divider { position:relative; height:70px; overflow:hidden; }
+  .pipe-divider svg { position:absolute; left:0; top:50%; transform:translateY(-50%); width:100%; }
+
+  /* SERVICES */
+  .services-section { padding: 80px 0 90px; }
+  .services-head { max-width:560px; margin-bottom:50px; }
+  .services-head h2 { font-size:34px; margin-top:12px; }
+  .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .service-card { background:var(--ink); padding:30px 26px; }
+  .service-card .num { font-family:'Bitter',serif; font-size:13px; color:var(--copper); display:block; margin-bottom:16px; }
+  .service-card h3 { font-size:19px; margin-bottom:8px; }
+  .service-card p { font-size:14px; color:var(--steel); }
+  @media (max-width:820px){ .services-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .services-grid{ grid-template-columns:1fr; } }
+
+  .photo-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); margin-top:1px; }
+  .photo-slot {
+    aspect-ratio:4/3; background:var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12.5px; color:var(--steel); text-align:center; padding:12px;
+    letter-spacing:0.04em; text-transform:uppercase;
+  }
+  @media (max-width:820px){ .photo-strip{ grid-template-columns:1fr 1fr; } }
+  .photo-slot.has-image { position:relative; padding:0; overflow:hidden; }
+  .photo-slot.has-image img { width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.85) brightness(0.85); }
+  .photo-slot.illustrated { position:relative; padding:0; overflow:hidden; flex-direction:column; }
+  .photo-slot.illustrated svg { width:100%; height:100%; display:block; }
+  .photo-slot .stock-label {
+    position:absolute; left:0; right:0; bottom:0;
+    background:rgba(18,24,31,0.82); color:#F1EDE6;
+    font-size:10.5px; letter-spacing:0.03em; text-transform:none;
+    padding:7px 10px; text-align:left; line-height:1.35;
+  }
+
+  /* REVIEWS */
+  .reviews-section { padding:90px 0; border-top:1px solid var(--line); }
+  .reviews-head { max-width:600px; margin-bottom:44px; }
+  .reviews-head h2 { font-size:32px; margin-top:12px; }
+  .review-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .review-card { background:var(--panel); border:1px solid var(--line); padding:26px; border-radius:3px; }
+  .stars { color:var(--copper); font-size:14px; margin-bottom:12px; letter-spacing:2px; }
+  .review-card p { font-size:14.5px; color:var(--white); margin-bottom:14px; }
+  .review-card .who { font-size:12.5px; color:var(--steel); }
+  @media (max-width:820px){ .review-grid{ grid-template-columns:1fr; } }
+
+  /* ABOUT */
+  .about { padding:0 0 90px; }
+  .about .wrap { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .about h2 { font-size:32px; margin:12px 0 18px; }
+  .about p { color:var(--steel); font-size:15.5px; margin-bottom:14px; max-width:460px; }
+  @media (max-width:800px){ .about .wrap{ grid-template-columns:1fr; } }
+
+  /* SERVICE AREA + HOURS */
+  .info-section { padding:0 0 100px; }
+  .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .info-card { background:var(--panel); padding:40px; }
+  .info-card h3 { font-size:20px; margin-bottom:20px; }
+  .hours-row { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .hours-row:last-child { border-bottom:none; }
+  .hours-row span:first-child { color:var(--steel); }
+  .contact-line { display:flex; gap:14px; align-items:baseline; margin-bottom:14px; font-size:14.5px; }
+  .contact-line .eyebrow { min-width:80px; }
+  .badge {
+    display:inline-flex; align-items:center; gap:6px; margin-top:14px;
+    font-size:12.5px; color:var(--good); border:1px solid rgba(111,163,131,0.35);
+    padding:6px 12px; border-radius:2px;
+  }
+  @media (max-width:800px){ .info-grid{ grid-template-columns:1fr; } }
+
+  footer { border-top:1px solid var(--line); padding:36px 0; }
+  footer .wrap { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer p { font-size:12.5px; color:var(--steel); }
+
+  /* LIGHT SECTION VARIANT */
+  .light-section { background: var(--cream); color: var(--cream-text); }
+  .light-section .eyebrow { color: var(--copper-deep); }
+  .light-section h1, .light-section h2, .light-section h3 { color: var(--cream-text); }
+  .light-section p, .light-section .lede { color: var(--cream-steel); }
+  .light-section .services-grid,
+  .light-section .info-grid,
+  .light-section .photo-strip { background: var(--cream-line); border-color: var(--cream-line); }
+  .light-section .service-card,
+  .light-section .info-card { background: var(--cream); }
+  .light-section .service-card p,
+  .light-section .info-card .hours-row span:first-child,
+  .light-section .contact-line span:not(.eyebrow) { color: var(--cream-steel); }
+  .light-section .service-card h3,
+  .light-section .info-card h3,
+  .light-section .hours-row { color: var(--cream-text); }
+  .light-section .photo-slot { background: var(--cream-panel); color: var(--cream-steel); }
+  .light-section .hours-row { border-bottom:1px solid var(--cream-line); }
+  .light-section .btn-ghost { border-color: var(--cream-text); color: var(--cream-text); }
+  .light-section .btn-ghost:hover { border-color: var(--copper-deep); color: var(--copper-deep); }
+  .light-section .badge { border-color: rgba(111,163,131,0.5); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Leaks<span>.</span> Plumbing</div>
+    <ul class="links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#info">Service Area</a></li>
+    </ul>
+    <a href="tel:5192650453" class="nav-cta">(519) 265-0453</a>
+  </div>
+</nav>
+
+<section class="hero" style="background-image:url('/assets/mockups/leaks-plumbing/img-1.jpg');">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Family Owned &middot; Guelph, Ontario</div>
+        <h1>The leak stops<br>with <em>us.</em></h1>
+        <p class="lede">Quality workmanship and honest, reliable service — from a dripping faucet to a full basement repipe. Same-day calls, no surprises on the bill.</p>
+        <div class="btn-row">
+          <a href="tel:5192650453" class="btn btn-primary">Call Now</a>
+          <a href="#services" class="btn btn-ghost">See What We Do</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-photo-label">Stock photo background — not Leaks Plumbing's actual facility</div>
+</section>
+
+<div class="trust-bar">
+  <div class="wrap">
+    <div class="trust-item"><b>5.0★</b><span>Google Rating</span></div>
+    <div class="trust-item"><b>11</b><span>Verified Reviews</span></div>
+    <div class="trust-item"><b>Senior</b><span>Discounts Available</span></div>
+    <div class="trust-item"><b>Same-Day</b><span>Service Calls</span></div>
+  </div>
+</div>
+
+<section class="services-section light-section" id="services">
+  <div class="wrap">
+    <div class="services-head">
+      <div class="eyebrow">What We Do</div>
+      <h2>Six ways we keep your pipes where they belong.</h2>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="services-grid">
+      <div class="service-card"><span class="num">01</span><h3>Repair</h3><p>From dripping faucets to burst pipes — fixed right the first time.</p></div>
+      <div class="service-card"><span class="num">02</span><h3>New Installation</h3><p>Fixtures, water heaters, and full system installs for renos and new builds.</p></div>
+      <div class="service-card"><span class="num">03</span><h3>Water Treatment</h3><p>Softener and filtration systems tuned to Guelph's water.</p></div>
+      <div class="service-card"><span class="num">04</span><h3>Renovations</h3><p>Kitchen and bathroom reno plumbing, coordinated with your contractor.</p></div>
+      <div class="service-card"><span class="num">05</span><h3>Drain Cleaning</h3><p>Fast, thorough clearing for stubborn clogs and slow drains.</p></div>
+      <div class="service-card"><span class="num">06</span><h3>Camera Inspection</h3><p>CCTV drain camera to find the real problem before we dig.</p></div>
+    </div>
+    <div class="photo-strip">
+      <div class="photo-slot has-image">
+        <img src="/assets/mockups/leaks-plumbing/img-2.jpg" alt="Stock photo of a dripping faucet" loading="lazy">
+        <div class="stock-label">Stock photo placeholder — not Leaks Plumbing's actual photo</div>
+      </div>
+      <div class="photo-slot has-image">
+        <img src="/assets/mockups/leaks-plumbing/img-3.jpg" alt="Stock photo of a plumbing valve and gauge assembly" loading="lazy">
+        <div class="stock-label">Stock photo placeholder — not Leaks Plumbing's actual photo</div>
+      </div>
+      <div class="photo-slot has-image">
+        <img src="/assets/mockups/leaks-plumbing/img-4.jpg" alt="Stock photo of a pipe wrench" loading="lazy">
+        <div class="stock-label">Stock photo placeholder — not Leaks Plumbing's actual photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pipe-divider">
+  <svg viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="0" y1="35" x2="1200" y2="35" stroke="#8B97A3" stroke-width="1.5" opacity="0.25"/>
+    <circle cx="200" cy="35" r="5" fill="#12181F" stroke="#C97C4B" stroke-width="2"/>
+    <circle cx="600" cy="35" r="5" fill="#12181F" stroke="#C97C4B" stroke-width="2"/>
+    <circle cx="1000" cy="35" r="5" fill="#12181F" stroke="#C97C4B" stroke-width="2"/>
+  </svg>
+</div>
+
+<section class="reviews-section" id="reviews">
+  <div class="wrap">
+    <div class="reviews-head">
+      <div class="eyebrow">What Guelph Says</div>
+      <h2>We can't recommend Leaks Plumbing highly enough.</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Came out within hours, identified the cause, and did a temporary fix — then came back and handled a 20-foot trench dig for a 100-year-old pipe."</p>
+        <div class="who">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Only plumbers I will ever use! Billy and his team are wonderful. Reliable, fair pricing and quality work."</p>
+        <div class="who">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>"Assisted with a complicated project in a new home — completed it the same day and were incredibly creative on the approach."</p>
+        <div class="who">— Google Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about light-section">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Why Leaks</div>
+      <h2>Quality workmanship. Reliable service. No games.</h2>
+      <p>Leaks Plumbing has been Guelph's go-to for everything from a dripping shower valve to a full sewage line replacement. We show up, we tell you what's actually wrong, and we fix it right — no upselling, no disappearing after the invoice.</p>
+      <p>Led by Bill and a small, dependable team, we've built our reputation the old-fashioned way: one satisfied neighbour at a time.</p>
+    </div>
+    <div class="photo-slot has-image" style="aspect-ratio:4/5;">
+          <img src="/assets/mockups/leaks-plumbing/img-5.jpg" alt="Stock photo of a plumber working on a water heater" loading="lazy">
+          <div class="stock-label">Stock photo placeholder — not Leaks Plumbing's actual photo</div>
+        </div>
+  </div>
+</section>
+
+<section class="info-section" id="info">
+  <div class="wrap" style="padding:0;">
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Hours</h3>
+        <div class="hours-row"><span>Monday – Friday</span><span>8:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>By Appointment</span></div>
+        <div class="hours-row"><span>Emergency Calls</span><span>Available</span></div>
+        <div class="badge">✓ Senior Discounts Available</div>
+      </div>
+      <div class="info-card">
+        <h3>Find Us</h3>
+        <div class="contact-line"><span class="eyebrow">Address</span><span>46 Brant Ave, Guelph, ON N1E 1G2</span></div>
+        <div class="contact-line"><span class="eyebrow">Phone</span><span>(519) 265-0453</span></div>
+        <div class="contact-line"><span class="eyebrow">Area</span><span>Guelph &amp; Surrounding Area</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Leaks Plumbing, Guelph. Site by The Lazy Creator Co.</p>
+    <p>Mockup for portfolio purposes — photo slots to be replaced with client's own photography.</p>
+  </div>
+</footer>
+
+</body>
+</html>

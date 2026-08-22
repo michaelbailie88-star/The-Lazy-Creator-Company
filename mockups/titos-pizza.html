@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tito's Pizza — Guelph, Ontario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #201A16;
+    --charcoal-2: #2B231D;
+    --cream: #F3E9DC;
+    --flame: #E8963C;
+    --tomato: #B23A2E;
+    --basil: #5C8A5F;
+    --line: rgba(243,233,220,0.14);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--charcoal);
+    color: var(--cream);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    font-size: 12.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--flame); font-weight: 600;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top:0; z-index:50;
+    background: rgba(32,26,22,0.88); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .brand { font-family:'Fraunces',serif; font-weight:700; font-size:22px; }
+  .brand span { color: var(--flame); }
+  nav ul { display:flex; gap:32px; list-style:none; font-size:14.5px; font-weight:500; }
+  nav ul a:hover { color: var(--flame); }
+  .nav-cta {
+    background: var(--flame); color: var(--charcoal); padding:10px 20px;
+    border-radius:3px; font-weight:600; font-size:14px;
+  }
+  @media (max-width:720px){ nav ul.links{ display:none; } }
+
+  /* HERO */
+  .hero { position:relative; padding: 110px 0 140px; overflow:hidden; }
+  .hero .wrap { position:relative; z-index:2; max-width: 720px; }
+  .hero h1 { font-size: clamp(42px, 7vw, 74px); line-height:1.02; margin: 18px 0 22px; }
+  .hero h1 em { font-style:normal; color: var(--flame); }
+  .hero p.lede { font-size:18px; color: rgba(243,233,220,0.78); max-width:480px; margin-bottom:34px; }
+  .btn-row { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:3px; font-weight:600; font-size:15px;
+  }
+  .btn-primary { background:var(--flame); color:var(--charcoal); }
+  .btn-ghost { border:1px solid var(--line); color:var(--cream); }
+  .btn-primary:hover { background:#f2a85a; }
+  .btn-ghost:hover { border-color: var(--flame); color:var(--flame); }
+
+  /* Pizza peel signature divider */
+  .peel-divider { position:relative; height:120px; }
+  .peel-divider svg { position:absolute; top:0; left:0; width:100%; height:100%; }
+
+  /* Steam wisp animation */
+  .steam { position:absolute; right:8%; top:60px; width:180px; height:280px; opacity:0.35; z-index:1; }
+  .steam path { stroke:var(--flame); stroke-width:2; fill:none; stroke-linecap:round; }
+  .steam .s1 { animation: rise 6s ease-in-out infinite; }
+  .steam .s2 { animation: rise 6s ease-in-out infinite 2s; }
+  @keyframes rise {
+    0% { transform:translateY(20px); opacity:0; }
+    30% { opacity:0.5; }
+    100% { transform:translateY(-40px); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .steam .s1, .steam .s2 { animation:none; opacity:0.25; }
+  }
+
+  /* MENU */
+  .menu-section { padding: 20px 0 100px; }
+  .menu-head { max-width:560px; margin-bottom:56px; }
+  .menu-head h2 { font-size:38px; margin-top:14px; }
+  .menu-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .menu-card { background:var(--charcoal); padding:32px 26px; }
+  .menu-card .num { font-family:'Fraunces',serif; font-size:14px; color:var(--flame); margin-bottom:18px; display:block; }
+  .menu-card h3 { font-size:21px; margin-bottom:10px; }
+  .menu-card p { font-size:14.5px; color:rgba(243,233,220,0.65); }
+  @media (max-width:900px){ .menu-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .menu-grid{ grid-template-columns:1fr; } }
+
+  /* PHOTO STRIP (placeholders for real photos) */
+  .photo-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); margin-top:1px; }
+  .photo-slot {
+    aspect-ratio:1; background:var(--charcoal-2);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12.5px; color:rgba(243,233,220,0.4); text-align:center; padding:12px;
+    letter-spacing:0.05em; text-transform:uppercase;
+  }
+  @media (max-width:900px){ .photo-strip{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ABOUT */
+  .about { padding:110px 0; border-top:1px solid var(--line); }
+  .about .wrap { display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; }
+  .about h2 { font-size:36px; margin:14px 0 20px; }
+  .about p { color:rgba(243,233,220,0.75); font-size:16px; margin-bottom:16px; max-width:460px; }
+  .stat-row { display:flex; gap:40px; margin-top:36px; }
+  .stat b { font-family:'Fraunces',serif; font-size:34px; display:block; color:var(--flame); }
+  .stat span { font-size:13px; color:rgba(243,233,220,0.6); }
+  @media (max-width:800px){ .about .wrap{ grid-template-columns:1fr; } }
+
+  /* HOURS + LOCATION */
+  .info-section { padding:0 0 110px; }
+  .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .info-card { background:var(--charcoal-2); padding:44px; }
+  .info-card h3 { font-size:22px; margin-bottom:22px; }
+  .hours-row { display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid var(--line); font-size:14.5px; }
+  .hours-row:last-child { border-bottom:none; }
+  .hours-row span:first-child { color:rgba(243,233,220,0.6); }
+  .contact-line { display:flex; gap:14px; align-items:baseline; margin-bottom:16px; font-size:15px; }
+  .contact-line .eyebrow { min-width:90px; }
+  @media (max-width:800px){ .info-grid{ grid-template-columns:1fr; } }
+
+  /* FOOTER */
+  footer { border-top:1px solid var(--line); padding:40px 0; }
+  footer .wrap { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer p { font-size:13px; color:rgba(243,233,220,0.5); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Tito's<span>.</span></div>
+    <ul class="links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#info">Hours &amp; Location</a></li>
+    </ul>
+    <a href="tel:5197800808" class="nav-cta">(519) 780-0808</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Family Owned &middot; Guelph, Ontario</div>
+    <h1>Fresh dough,<br>fired daily,<br><em>made like family.</em></h1>
+    <p class="lede">Tito's has been serving Guelph honest, generous pizza for over a decade — hand-stretched dough, fresh Saputo cheese, and a menu built the way we'd feed our own table.</p>
+    <div class="btn-row">
+      <a href="#menu" class="btn btn-primary">View the Menu</a>
+      <a href="tel:5197800808" class="btn btn-ghost">Call to Order</a>
+    </div>
+  </div>
+
+  <svg class="steam" viewBox="0 0 180 280" aria-hidden="true">
+    <path class="s1" d="M20 260 Q 40 200 15 150 Q -10 100 25 40" />
+    <path class="s2" d="M70 270 Q 90 210 65 160 Q 40 110 75 50" />
+  </svg>
+</section>
+
+<div class="peel-divider">
+  <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,60 C300,10 900,110 1200,50 L1200,120 L0,120 Z" fill="#2B231D"/>
+  </svg>
+</div>
+
+<section class="menu-section" id="menu">
+  <div class="wrap">
+    <div class="menu-head">
+      <div class="eyebrow">On the Menu</div>
+      <h2>Four things people drive across town for.</h2>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="menu-grid">
+      <div class="menu-card">
+        <span class="num">01</span>
+        <h3>Specialty Pizzas</h3>
+        <p>Hand-stretched regular, thin, thick, or gluten-free crust — topped your way, from classic pepperoni to loaded meat-lovers.</p>
+      </div>
+      <div class="menu-card">
+        <span class="num">02</span>
+        <h3>Wings &amp; Sauces</h3>
+        <p>Mild to Suicide-hot, honey garlic, or Tito's own Crazy Sauce blend — always crispy, never stingy on the sauce.</p>
+      </div>
+      <div class="menu-card">
+        <span class="num">03</span>
+        <h3>Panzerotti</h3>
+        <p>The best in Guelph, according to our regulars — golden, never greasy, stuffed generously.</p>
+      </div>
+      <div class="menu-card">
+        <span class="num">04</span>
+        <h3>Sides &amp; Salads</h3>
+        <p>Garlic bread with cheese, Caesar salad, potato wedges — the stuff that finishes off the order right.</p>
+      </div>
+    </div>
+    <div class="photo-strip">
+      <div class="photo-slot">Photo: Fresh Pizza Out of the Oven</div>
+      <div class="photo-slot">Photo: Wings Plate</div>
+      <div class="photo-slot">Photo: Storefront / Signage</div>
+      <div class="photo-slot">Photo: The Team at Work</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Our Story</div>
+      <h2>Pizza with a history. We deliver happiness.</h2>
+      <p>We aren't like other pizza shops — we're a family business focused on value and quality. With great prices, real ingredients, and service that remembers your name, we believe everything you need is right here on Dovercliffe Road.</p>
+      <p>From regular dough to whole wheat to gluten-free, the possibilities are endless — and every pizza still gets Tito's personal touch.</p>
+      <div class="stat-row">
+        <div class="stat"><b>10+</b><span>Years in Guelph</span></div>
+        <div class="stat"><b>4.4</b><span>Average Rating</span></div>
+        <div class="stat"><b>200+</b><span>Happy Reviews</span></div>
+      </div>
+    </div>
+    <div class="photo-slot" style="aspect-ratio:4/5; font-size:13px;">Photo: Owner / Family Portrait</div>
+  </div>
+</section>
+
+<section class="info-section" id="info">
+  <div class="wrap" style="padding:0;">
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Hours</h3>
+        <div class="hours-row"><span>Sunday – Thursday</span><span>11:00 AM – 10:00 PM</span></div>
+        <div class="hours-row"><span>Friday – Saturday</span><span>11:00 AM – 12:00 AM</span></div>
+      </div>
+      <div class="info-card">
+        <h3>Find Us</h3>
+        <div class="contact-line"><span class="eyebrow">Address</span><span>50 Dovercliffe Rd, Guelph, ON N1G 3A6</span></div>
+        <div class="contact-line"><span class="eyebrow">Phone</span><span>(519) 780-0808</span></div>
+        <div class="contact-line"><span class="eyebrow">Order</span><span>Delivery &amp; Pickup Available</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Tito's Pizza, Guelph. Site by The Lazy Creator Co.</p>
+    <p>Mockup for portfolio purposes — photo slots to be replaced with client's own photography.</p>
+  </div>
+</footer>
+
+</body>
+</html>
