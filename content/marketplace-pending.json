@@ -1,3 +1,16 @@
 {
-    "entries": []
+  "entries": [
+    {
+      "id": "1787405623902-rgd3b3",
+      "submittedAt": "2026-08-22T13:33:43.902Z",
+      "creatorName": "Michael Bailie",
+      "creatorEmail": "michaelbailie31@gmail.com",
+      "creatorSocial": "https://thelazycreatorcompany.netlify.app/",
+      "productName": "The Lazy Creator Company",
+      "productDesc": "digital studio",
+      "productPrice": "12",
+      "productLink": "https://thelazycreatorcompany.netlify.app/",
+      "whyFits": "christian"
+    }
+  ]
 }
