@@ -1,28 +1,3 @@
 {
-  "entries": [
-    {
-      "id": "1787405623902-rgd3b3",
-      "submittedAt": "2026-08-22T13:33:43.902Z",
-      "creatorName": "Michael Bailie",
-      "creatorEmail": "michaelbailie31@gmail.com",
-      "creatorSocial": "https://thelazycreatorcompany.netlify.app/",
-      "productName": "The Lazy Creator Company",
-      "productDesc": "digital studio",
-      "productPrice": "12",
-      "productLink": "https://thelazycreatorcompany.netlify.app/",
-      "whyFits": "christian"
-    },
-    {
-      "id": "1787406333728-nqx7d1",
-      "submittedAt": "2026-08-22T13:45:33.728Z",
-      "creatorName": "Michael Bailie",
-      "creatorEmail": "michaelbailie88@icloud.com",
-      "creatorSocial": "https://thelazycreatorcompany.netlify.app/",
-      "productName": "The Lazy Creator Company",
-      "productDesc": "digital product studio",
-      "productPrice": "12",
-      "productLink": "https://thelazycreatorcompany.netlify.app/",
-      "whyFits": "christian"
-    }
-  ]
+  "entries": []
 }
