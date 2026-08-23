@@ -134,7 +134,13 @@
     background: linear-gradient(to top, rgba(46,31,38,0.75), transparent);
     color:#fff; font-size:12px; font-weight:700; letter-spacing:0.02em;
   }
+  .price-tag {
+    position:absolute; top:12px; right:12px; z-index:2;
+    background: var(--berry); color:#fff; font-size:11.5px; font-weight:700;
+    padding: 6px 12px; border-radius:100px; box-shadow: 0 4px 10px rgba(46,31,38,0.25);
+  }
   @media (max-width:820px){ .gallery-grid{ grid-template-columns:repeat(2,1fr); } }
+  .gallery-note { text-align:center; font-size:12.5px; color:var(--soft); margin-top:24px; max-width:520px; margin-left:auto; margin-right:auto; }
 
   /* ABOUT */
   .about { padding: 90px 0; background: var(--blush); }
@@ -168,17 +174,15 @@
 
   /* INFO / CONTACT */
   .info-section { padding: 0 0 100px; }
-  .info-card {
-    background: var(--plum); border-radius:20px; padding: 54px 50px;
-    display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center;
-  }
+  .info-card { display:block; background: var(--plum); border-radius:20px; padding: 54px 50px; }
+  .info-card-top { display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:start; }
   .info-card h2 { color:#fff; font-size:32px; margin-bottom:14px; }
   .info-card p { color: rgba(255,255,255,0.72); font-size:15px; margin-bottom: 26px; max-width:420px; }
   .info-contact-list { display:flex; flex-direction:column; gap:16px; }
   .info-contact-row { display:flex; gap:14px; align-items:baseline; }
   .info-contact-row .eyebrow { color: var(--gold-light); min-width:90px; }
   .info-contact-row span:last-child { color:#fff; font-size:14.5px; }
-  @media (max-width:820px){ .info-card{ grid-template-columns:1fr; padding:40px 28px; } }
+  @media (max-width:820px){ .info-card-top{ grid-template-columns:1fr; padding:0; } .info-card{ padding:40px 26px; } }
 
   /* PROPOSAL NOTE */
   .proposal-note { padding: 60px 0 100px; }
@@ -190,6 +194,34 @@
   .proposal-note p { color:var(--soft); font-size:15px; margin-bottom:14px; }
   .proposal-note ul { margin: 0 0 20px 20px; color:var(--soft); font-size:15px; }
   .proposal-note li { margin-bottom:6px; }
+
+  /* ORDER FORM */
+  .order-form { display:flex; flex-direction:column; gap:18px; margin-top:28px; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .form-field label {
+    display:block; font-size:12px; font-weight:700; letter-spacing:0.04em;
+    text-transform:uppercase; color: var(--gold-light); margin-bottom:8px;
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    width:100%; background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    border-radius:10px; padding:12px 14px; color:#fff; font-family:'Mulish',sans-serif;
+    font-size:14.5px;
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(255,255,255,0.4); }
+  .form-field select { appearance:auto; }
+  .form-field select option { color: var(--plum); }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    outline: none; border-color: var(--gold-light);
+  }
+  .form-honeypot { position:absolute; left:-5000px; }
+  .order-form .btn-primary { width:100%; justify-content:center; background: var(--gold); color:var(--plum); }
+  .order-form .btn-primary:hover { background: var(--gold-light); }
+  .form-note { font-size:12px; color: rgba(255,255,255,0.55); text-align:center; }
+  .form-success {
+    display:none; background: rgba(212,160,84,0.15); border:1px solid var(--gold);
+    border-radius:12px; padding:20px; text-align:center; color:#fff; font-weight:600;
+  }
+  @media (max-width:600px){ .form-row { grid-template-columns:1fr; } }
 
   /* FOOTER */
   footer { border-top:1px solid var(--line); padding:36px 0; }
@@ -277,27 +309,35 @@
 <section class="gallery-section" id="gallery">
   <div class="wrap">
     <div class="gallery-head">
-      <div class="eyebrow">Recent Orders</div>
-      <h2>A look at what leaves the kitchen.</h2>
+      <div class="eyebrow">The Menu</div>
+      <h2>Pick a style, see a starting price.</h2>
+      <p style="color:var(--soft); font-size:14px; margin-top:8px;">Starting prices below are
+      placeholders — swap in your real numbers and this becomes a real, browsable menu.</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-photo">
         <img src="/assets/mockups/larios-cake-co-real/paw-patrol-cake.jpg" alt="Custom Paw Patrol themed birthday cake">
+        <div class="price-tag">Starting at $XX</div>
         <div class="gallery-caption">Kids' Character Cake</div>
       </div>
       <div class="gallery-photo">
         <img src="/assets/mockups/larios-cake-co-real/rose-cupcakes.jpg" alt="Pink rose piped cupcakes">
+        <div class="price-tag">Starting at $XX / dozen</div>
         <div class="gallery-caption">Rose Cupcakes</div>
       </div>
       <div class="gallery-photo">
         <img src="/assets/mockups/larios-cake-co-real/cherry-cupcakes.jpg" alt="Chocolate cherry drip cupcakes">
+        <div class="price-tag">Starting at $XX / dozen</div>
         <div class="gallery-caption">Chocolate Cherry Cupcakes</div>
       </div>
       <div class="gallery-photo">
         <img src="/assets/mockups/larios-cake-co-real/sugar-cookies.jpg" alt="Floral iced sugar cookies">
+        <div class="price-tag">Starting at $XX / dozen</div>
         <div class="gallery-caption">Custom Sugar Cookies</div>
       </div>
     </div>
+    <p class="gallery-note">This grid can grow to any number of styles &mdash; send over photos and
+    pricing for anything you want listed, and each one becomes its own card like these.</p>
   </div>
 </section>
 
@@ -353,21 +393,96 @@
 <section class="info-section" id="info">
   <div class="wrap">
     <div class="info-card">
-      <div>
-        <h2>Let's design your cake.</h2>
-        <p>Custom orders book out — especially around weddings and holidays — so the earlier you
-        reach out, the more room there is to get the date and design exactly right.</p>
-        <a href="https://www.instagram.com/larioscakeco/" target="_blank" rel="noopener" class="btn btn-primary" style="background:var(--gold); color:var(--plum);">Message on Instagram</a>
+      <div class="info-card-top">
+        <div>
+          <h2>Let's design your cake.</h2>
+          <p>Fill this out and it comes straight through &mdash; no separate app, no missed DMs.
+          Custom orders book out, especially around weddings and holidays, so the earlier you
+          reach out, the more room there is to get the date and design exactly right.</p>
+        </div>
+        <div class="info-contact-list">
+          <div class="info-contact-row"><span class="eyebrow">Location</span><span>Guelph, Ontario</span></div>
+          <div class="info-contact-row"><span class="eyebrow">Orders</span><span>By custom order only</span></div>
+          <div class="info-contact-row"><span class="eyebrow">Lead Time</span><span>1&ndash;2 weeks minimum</span></div>
+          <div class="info-contact-row"><span class="eyebrow">Delivery</span><span>Guelph &amp; surrounding area</span></div>
+        </div>
       </div>
-      <div class="info-contact-list">
-        <div class="info-contact-row"><span class="eyebrow">Location</span><span>Guelph, Ontario</span></div>
-        <div class="info-contact-row"><span class="eyebrow">Orders</span><span>By custom order only</span></div>
-        <div class="info-contact-row"><span class="eyebrow">Lead Time</span><span>1&ndash;2 weeks minimum</span></div>
-        <div class="info-contact-row"><span class="eyebrow">Delivery</span><span>Guelph &amp; surrounding area</span></div>
-      </div>
+
+      <form name="larios-cake-order" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="order-form" id="orderForm">
+        <input type="hidden" name="form-name" value="larios-cake-order">
+        <p class="form-honeypot"><label>Leave this field blank: <input name="bot-field"></label></p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ord-name">Your Name</label>
+            <input type="text" id="ord-name" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="ord-email">Email</label>
+            <input type="email" id="ord-email" name="email" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="ord-date">Event Date</label>
+            <input type="date" id="ord-date" name="event_date">
+          </div>
+          <div class="form-field">
+            <label for="ord-type">What Are You Looking For?</label>
+            <select id="ord-type" name="cake_type">
+              <option value="">Select one&hellip;</option>
+              <option>Birthday / Milestone Cake</option>
+              <option>Custom Cupcakes</option>
+              <option>Custom Sugar Cookies</option>
+              <option>Kids' Character Cake</option>
+              <option>Something Else</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="ord-servings">Approximate Servings / Size</label>
+          <input type="text" id="ord-servings" name="servings" placeholder="e.g. 20 people, or 2 dozen cupcakes">
+        </div>
+
+        <div class="form-field">
+          <label for="ord-vision">Tell Us About Your Vision</label>
+          <textarea id="ord-vision" name="vision" rows="4" placeholder="Flavours, colours, theme, or a photo you're inspired by&hellip;"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send My Request</button>
+        <p class="form-note">Or if you'd rather just message directly &mdash;
+        <a href="https://www.instagram.com/larioscakeco/" target="_blank" rel="noopener" style="color:var(--gold-light); text-decoration:underline;">DM on Instagram</a> works too.</p>
+      </form>
+
+      <div class="form-success" id="formSuccess">Thank you &mdash; your request just came through. We'll be in touch to talk details and get your date locked in.</div>
     </div>
   </div>
 </section>
+
+<script>
+  const orderForm = document.getElementById('orderForm');
+  if (orderForm) {
+    orderForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(orderForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      })
+        .then(() => {
+          orderForm.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        })
+        .catch(() => {
+          orderForm.submit();
+        });
+    });
+  }
+</script>
+
 
 <section class="proposal-note" id="proposal">
   <div class="wrap">
