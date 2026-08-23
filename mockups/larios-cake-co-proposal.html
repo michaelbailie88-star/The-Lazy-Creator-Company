@@ -408,9 +408,25 @@
         </div>
       </div>
 
-      <form name="larios-cake-order" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="order-form" id="orderForm">
-        <input type="hidden" name="form-name" value="larios-cake-order">
-        <p class="form-honeypot"><label>Leave this field blank: <input name="bot-field"></label></p>
+      <!--
+        ACTIVATION NOTE (for Michael — not visible on the live page):
+        This form is wired to Formspree, a free third-party form-to-email service.
+        It works on ANY host (Netlify, Vercel, anywhere) since it's not tied to a
+        specific platform's build process — Larios never needs to know it exists.
+
+        To go live with her real email:
+          1. Go to formspree.io -> sign up free (her email, or yours to start)
+          2. Create a new form -> Formspree gives you a form ID like "abc1234"
+          3. Replace YOUR_FORM_ID_HERE below (one spot) with that real ID
+          4. Done — submissions land directly in that inbox, no code, no dashboard
+             for her to check, no rebuild needed.
+        Free tier covers 50 submissions/month, which is far more than a cake
+        intake form needs. If she ever outgrows that, Formspree's paid tier is
+        the only thing that changes — nothing on the site itself.
+      -->
+      <form class="order-form" id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+        <input type="hidden" name="_subject" value="New Cake Order Request — Larios Cake & Co.">
+        <p class="form-honeypot"><label>Leave this field blank: <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="form-row">
           <div class="form-field">
@@ -467,17 +483,25 @@
     orderForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const data = new FormData(orderForm);
-      fetch('/', {
+      fetch(orderForm.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString()
+        headers: { 'Accept': 'application/json' },
+        body: data
       })
-        .then(() => {
-          orderForm.style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
+        .then((response) => {
+          if (response.ok) {
+            orderForm.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+          } else {
+            response.json().then((data) => {
+              alert(data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong — please try again or message us directly on Instagram.');
+            }).catch(() => {
+              alert('Something went wrong — please try again or message us directly on Instagram.');
+            });
+          }
         })
         .catch(() => {
-          orderForm.submit();
+          alert('Something went wrong — please try again or message us directly on Instagram.');
         });
     });
   }
