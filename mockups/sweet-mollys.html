@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Molly's British Shop &amp; Bakery — Acton, Ontario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F6EFE0;
+    --cream-panel: #EFE4CC;
+    --parchment: #FBF6EA;
+    --ink: #2B2318;
+    --ink-soft: #5C5240;
+    --green: #234B3B;
+    --green-deep: #17352A;
+    --green-light: #3A6B55;
+    --gold: #C9A227;
+    --gold-bright: #E0BC46;
+    --brick: #A0402E;
+    --brick-light: #C15A44;
+    --line: rgba(43,35,24,0.12);
+    --line-cream: rgba(246,239,224,0.16);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; color: var(--green-deep); }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--brick); font-weight: 700;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top:0; z-index:50;
+    background: var(--parchment); border-bottom: 2px solid var(--green-deep);
+  }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:80px; }
+  .brand { font-family:'Fraunces',serif; font-weight:700; font-size:22px; color: var(--green-deep); display:flex; align-items:center; gap:10px; }
+  .brand-badge {
+    width:34px; height:34px; border-radius:50%; background: var(--green-deep);
+    color: var(--gold-bright); display:flex; align-items:center; justify-content:center;
+    font-size:15px; font-weight:700; font-family:'Fraunces',serif; flex-shrink:0;
+  }
+  nav ul.links { display:flex; gap:30px; list-style:none; font-size:14.5px; font-weight:600; color: var(--ink-soft); }
+  nav ul.links a:hover { color: var(--brick); }
+  .nav-cta {
+    background: var(--brick); color: var(--parchment); padding:11px 22px;
+    border-radius:2px; font-weight:700; font-size:13.5px; letter-spacing:0.02em;
+    white-space:nowrap;
+  }
+  .nav-cta:hover { background: var(--brick-light); }
+  .nav-toggle { display:none; background:none; border:none; font-size:22px; color:var(--green-deep); cursor:pointer; }
+  .nav-links-wrap { display:flex; align-items:center; gap:34px; }
+
+  @media (min-width:721px){
+    .nav-links-wrap { display:flex !important; opacity:1 !important; visibility:visible !important; pointer-events:auto !important; }
+  }
+  @media (max-width:720px){
+    .nav-links-wrap {
+      position:absolute; top:80px; left:0; right:0;
+      background: var(--parchment); border-bottom:2px solid var(--green-deep);
+      padding: 16px 28px 20px; flex-direction:row; flex-wrap:wrap; gap:14px 22px;
+      opacity:0; visibility:hidden; pointer-events:none; transition:opacity .15s ease;
+    }
+    .nav-links-wrap.open { opacity:1; visibility:visible; pointer-events:auto; }
+    ul.links { flex-direction:row; flex-wrap:wrap; gap:12px 20px; width:100%; }
+    .nav-toggle { display:block; }
+  }
+
+  /* HERO */
+  .hero {
+    position:relative; padding: 90px 0 70px; isolation:isolate;
+    background: var(--green-deep);
+  }
+  .hero::before {
+    content:""; position:absolute; inset:0; z-index:-1;
+    background-image: linear-gradient(100deg, rgba(23,53,42,0.93) 0%, rgba(23,53,42,0.86) 45%, rgba(23,53,42,0.62) 100%),
+      url('https://cdn.pixabay.com/photo/2017/04/25/01/06/cream-tea-2258336_1280.jpg');
+    background-size: cover; background-position: center 65%;
+  }
+  .hero-grid { display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 50px; align-items:center; }
+  .hero-eyebrow { color: var(--gold-bright); font-size:12px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700; }
+  .hero h1 { color: var(--parchment); font-size: clamp(36px, 4.6vw, 54px); line-height:1.1; margin: 16px 0 20px; }
+  .hero h1 em { font-style:normal; color: var(--gold-bright); }
+  .hero p.lede { font-size:17px; color: rgba(251,246,234,0.82); max-width:480px; margin-bottom:28px; }
+  .btn-row { display:flex; gap:14px; flex-wrap:wrap; margin-bottom: 30px; }
+  .btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:15px 26px; border-radius:2px; font-weight:700; font-size:14.5px;
+  }
+  .btn-primary { background:var(--brick); color:var(--parchment); }
+  .btn-primary:hover { background: var(--brick-light); }
+  .btn-ghost { border:1.5px solid rgba(251,246,234,0.35); color:var(--parchment); }
+  .btn-ghost:hover { border-color: var(--gold-bright); color:var(--gold-bright); }
+
+  .hero-info-card {
+    background: var(--parchment); border-radius:4px; padding:26px 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+  .hero-info-card h3 { font-size:17px; margin-bottom:14px; }
+  .info-row { display:flex; justify-content:space-between; gap:14px; padding:9px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .info-row:last-child { border-bottom:none; }
+  .info-row span:first-child { color: var(--ink-soft); font-weight:500; }
+  .info-row span:last-child { font-weight:700; text-align:right; }
+  .info-row.closed span:last-child { color: var(--brick); }
+  .info-row.open span:last-child { color: var(--green); }
+
+  /* IDENTITY STRIP */
+  .identity-strip { background: var(--gold); padding: 16px 0; }
+  .identity-strip .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+  .identity-item { display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:700; color: var(--green-deep); }
+  .identity-item .dot { width:7px; height:7px; border-radius:50%; background: var(--green-deep); flex-shrink:0; }
+
+  section { padding: 84px 0; }
+  .section-head { max-width:640px; margin-bottom:50px; }
+  .section-head h2 { font-size: clamp(28px, 3.4vw, 38px); margin: 12px 0 14px; }
+  .section-head p { color: var(--ink-soft); font-size:16px; }
+
+  /* THREE-IN-ONE */
+  .triple-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .triple-card {
+    background: var(--parchment); border: 1px solid var(--line); border-radius:6px;
+    padding: 32px 26px; position:relative;
+  }
+  .triple-card .num { font-family:'Fraunces',serif; font-size:13px; font-weight:700; color: var(--gold); letter-spacing:0.1em; text-transform:uppercase; }
+  .triple-card h3 { font-size:22px; margin: 12px 0 12px; }
+  .triple-card p { color: var(--ink-soft); font-size:14.5px; }
+
+  /* PRODUCTS */
+  .products-section { background: var(--green-deep); }
+  .products-section .section-head h2 { color: var(--parchment); }
+  .products-section .section-head p { color: rgba(251,246,234,0.72); }
+  .products-section .eyebrow { color: var(--gold-bright); }
+  .product-grid { display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; }
+  .product-photo-card {
+    border-radius: 6px; overflow:hidden; position:relative; min-height: 420px;
+    background-size:cover; background-position:center;
+  }
+  .product-photo-card::after {
+    content:""; position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(23,53,42,0) 40%, rgba(23,53,42,0.88) 100%);
+  }
+  .product-photo-card .cap { position:absolute; left:24px; right:24px; bottom:22px; z-index:2; }
+  .product-photo-card .cap h3 { color: var(--parchment); font-size:22px; margin-bottom:6px; }
+  .product-photo-card .cap p { color: rgba(251,246,234,0.8); font-size:13.5px; }
+  .product-list-col { display:flex; flex-direction:column; gap:20px; }
+  .plist-card {
+    background: rgba(251,246,234,0.06); border:1px solid var(--line-cream); border-radius:6px;
+    padding: 22px 24px;
+  }
+  .plist-card h4 { color: var(--gold-bright); font-family:'Fraunces',serif; font-size:16px; margin-bottom:8px; font-weight:600; }
+  .plist-card p { color: rgba(251,246,234,0.75); font-size:13.5px; }
+
+  /* MOLLY THE MOOSE */
+  .moose-section { background: var(--cream-panel); }
+  .moose-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px; align-items:center; }
+  .moose-photo {
+    aspect-ratio: 4/3; border-radius:6px; background-size:cover; background-position:center;
+    background-image: url('https://cdn.pixabay.com/photo/2016/11/23/15/14/jars-1853439_1280.jpg');
+    box-shadow: 0 20px 46px rgba(23,53,42,0.18);
+  }
+  .moose-badge {
+    display:inline-flex; align-items:center; gap:8px; background: var(--brick); color: var(--parchment);
+    font-size:11.5px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    padding: 7px 14px; border-radius:20px; margin-bottom:16px;
+  }
+  .moose-grid h2 { font-size: clamp(26px, 3.2vw, 34px); margin-bottom:16px; }
+  .moose-grid p { color: var(--ink-soft); font-size:15.5px; margin-bottom:14px; }
+
+  /* GALLERY STRIP */
+  .gallery-strip { display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .gallery-photo {
+    aspect-ratio: 16/10; border-radius:6px; background-size:cover; background-position:center;
+    position:relative; overflow:hidden;
+  }
+  .gallery-photo .lbl {
+    position:absolute; left:16px; bottom:14px; background: rgba(23,53,42,0.85); color:var(--parchment);
+    font-size:12px; font-weight:700; padding:6px 12px; border-radius:3px;
+  }
+
+  /* REVIEWS */
+  .review-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review-card { background: var(--parchment); border:1px solid var(--line); border-radius:6px; padding:26px; }
+  .stars { color: var(--gold); font-size:14px; margin-bottom:12px; letter-spacing:2px; }
+  .review-card p.quote { font-size:14.5px; color: var(--ink); margin-bottom:16px; font-style:italic; }
+  .review-card .who { font-size:13px; font-weight:700; color: var(--ink-soft); }
+
+  /* VISIT / CONTACT */
+  .visit-section { background: var(--green-deep); }
+  .visit-grid { display:grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+  .visit-section .section-head h2 { color: var(--parchment); }
+  .visit-section .eyebrow { color: var(--gold-bright); }
+  .hours-table { width:100%; border-collapse:collapse; margin-top:20px; }
+  .hours-table td { padding: 11px 0; border-bottom:1px solid var(--line-cream); font-size:14.5px; color: rgba(251,246,234,0.85); }
+  .hours-table td:last-child { text-align:right; font-weight:700; color: var(--parchment); }
+  .hours-table tr.today td { color: var(--gold-bright); font-weight:700; }
+  .contact-card { background: rgba(251,246,234,0.07); border:1px solid var(--line-cream); border-radius:6px; padding:30px; }
+  .contact-card h3 { color: var(--parchment); font-size:19px; margin-bottom:18px; }
+  .contact-row { display:flex; gap:14px; padding: 12px 0; border-bottom:1px solid var(--line-cream); font-size:14.5px; }
+  .contact-row:last-child { border-bottom:none; }
+  .contact-row .lbl2 { color: rgba(251,246,234,0.55); min-width:78px; flex-shrink:0; font-weight:600; }
+  .contact-row .val { color: var(--parchment); font-weight:600; }
+
+  footer { background: var(--green-deep); border-top:1px solid var(--line-cream); padding: 40px 0; }
+  footer .wrap { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer p { color: rgba(251,246,234,0.55); font-size:13px; }
+  .footer-tag { color: var(--gold-bright); font-weight:700; font-size:12.5px; }
+
+  @media (max-width: 900px) {
+    .hero-grid, .product-grid, .moose-grid, .visit-grid { grid-template-columns: 1fr; }
+    .triple-grid, .review-grid { grid-template-columns: 1fr; }
+    .gallery-strip { grid-template-columns: 1fr; }
+    section { padding: 56px 0; }
+    .hero { padding: 66px 0 46px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-badge">SM</span>Sweet Molly's</div>
+    <div class="nav-links-wrap" id="navWrap">
+      <ul class="links">
+        <li><a href="#shop">The Shop</a></li>
+        <li><a href="#products">What's Inside</a></li>
+        <li><a href="#molly">Molly the Moose</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#visit">Visit Us</a></li>
+      </ul>
+      <a class="nav-cta" href="#visit">Get Directions</a>
+    </div>
+    <button class="nav-toggle" onclick="document.getElementById('navWrap').classList.toggle('open')">&#9776;</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-eyebrow">Acton, Ontario &middot; Since Day One a Proper British Corner Shop</div>
+      <h1>A little taste of home for anyone <em>missing Britain</em></h1>
+      <p class="lede">British groceries, fresh-baked pies and pastries, and a proper cuppa — all under one roof on Queen Street. If you grew up on digestives and Sunday roasts, you'll feel right at home.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#visit">Plan Your Visit</a>
+        <a class="btn btn-ghost" href="#products">See What We Stock</a>
+      </div>
+    </div>
+    <div class="hero-info-card">
+      <h3>Sweet Molly's British Shop, Tea Room &amp; Bakery</h3>
+      <div class="info-row"><span>Address</span><span>352 Queen St E, Acton, ON</span></div>
+      <div class="info-row"><span>Phone</span><span>(519) 853-0100</span></div>
+      <div class="info-row closed"><span>Today</span><span>Check hours below</span></div>
+      <div class="info-row"><span>Rating</span><span>4.8 &#9733; on Google</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="identity-strip">
+  <div class="wrap">
+    <div class="identity-item"><span class="dot"></span>British Import Shop</div>
+    <div class="identity-item"><span class="dot"></span>Fresh-Daily Bakery</div>
+    <div class="identity-item"><span class="dot"></span>Cosy Tea Room</div>
+    <div class="identity-item"><span class="dot"></span>Newfoundland Favourites Too</div>
+  </div>
+</div>
+
+<section id="shop">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Three Shops in One</span>
+      <h2>Not just a bakery. Not just a grocer.</h2>
+      <p>Sweet Molly's is the rare kind of place that does all three well — the pantry staples you can't find anywhere else, the bakery case that smells like it should, and a spot to sit down with a proper pot of tea.</p>
+    </div>
+    <div class="triple-grid">
+      <div class="triple-card">
+        <span class="num">01 — The Shop</span>
+        <h3>British &amp; Newfoundland Imports</h3>
+        <p>Biscuits, jams, teas, cheeses, chocolate bars, and pantry goods you grew up on — plus a corner stocked for Newfoundland expats who miss home just as much.</p>
+      </div>
+      <div class="triple-card">
+        <span class="num">02 — The Bakery</span>
+        <h3>Baked Fresh, Every Day</h3>
+        <p>Meat pies, sausage rolls, scones, Victoria sponge, and shortbread — made the way it's supposed to be made, not shipped in from somewhere else.</p>
+      </div>
+      <div class="triple-card">
+        <span class="num">03 — The Tea Room</span>
+        <h3>A Proper Sit-Down Cuppa</h3>
+        <p>Pull up a chair, order a pot of tea and a scone with clotted cream, and take your time. No rushing you out the door here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="products-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What's Inside</span>
+      <h2>The shelves you'll actually want to browse</h2>
+      <p>Every corner of the shop has something you can't find at the regular grocery store.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-photo-card" style="background-image:url('https://cdn.pixabay.com/photo/2014/11/02/19/35/meat-pie-514416_1280.jpg');">
+        <div class="cap">
+          <h3>Fresh-Baked Savouries</h3>
+          <p>Meat pies, sausage rolls, and pasties made in-house daily.</p>
+        </div>
+      </div>
+      <div class="product-list-col">
+        <div class="plist-card">
+          <h4>Biscuits &amp; Sweets</h4>
+          <p>Shortbread, digestives, chocolate bars, and the tins you remember from back home.</p>
+        </div>
+        <div class="plist-card">
+          <h4>Tea &amp; Pantry</h4>
+          <p>Proper British tea, jams, curds, sauces, and the grocery staples every British kitchen needs.</p>
+        </div>
+        <div class="plist-card">
+          <h4>The Newfie Corner</h4>
+          <p>A stocked section for Newfoundland expats — because a lot of the same cravings cross the pond both ways.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="molly" class="moose-section">
+  <div class="wrap moose-grid">
+    <div class="moose-photo"></div>
+    <div>
+      <span class="moose-badge">A Local Landmark</span>
+      <h2>Meet Molly — the moose out front everyone in Acton knows</h2>
+      <p>Sweet Molly's isn't just named after its owner. Out front stands a big white moose statue that's become a genuine piece of local history — she's been part of the neighbourhood, been through a rough patch, and the town rallied to bring her back.</p>
+      <p>It's the kind of small-town detail that makes people stop, take a photo, and remember exactly where the shop is. Come say hello to Molly, then come inside for the tea.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">A Peek Inside</span>
+      <h2>What a visit looks like</h2>
+      <p>Warm, welcoming, and stocked floor to ceiling with things you won't find anywhere else in town.</p>
+    </div>
+    <div class="gallery-strip">
+      <div class="gallery-photo" style="background-image:url('https://cdn.pixabay.com/photo/2017/03/12/03/07/baking-2136360_1280.jpg');">
+        <div class="lbl">Fresh from the oven</div>
+      </div>
+      <div class="gallery-photo" style="background-image:url('https://cdn.pixabay.com/photo/2017/04/25/01/06/cream-tea-2258336_1280.jpg');">
+        <div class="lbl">Tea, scones &amp; clotted cream</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" style="background: var(--cream-panel);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What Locals Say</span>
+      <h2>4.8 stars, and it shows</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote">"Finally a place that actually stocks the biscuits I grew up on. The pies are the real thing too — not the frozen stuff."</p>
+        <div class="who">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote">"Such a cute little shop. Sat down for tea and a scone and didn't want to leave. The moose out front is a fun bonus."</p>
+        <div class="who">— Google Review</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="quote">"My Newfoundland mother-in-law was thrilled to find her favourite brands here. Didn't expect that in Acton."</p>
+        <div class="who">— Google Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visit" class="visit-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Come See Us</span>
+      <h2>Plan your visit</h2>
+    </div>
+    <div class="visit-grid">
+      <div>
+        <table class="hours-table">
+          <tr><td>Monday</td><td>Closed</td></tr>
+          <tr><td>Tuesday</td><td>10:00 AM – 7:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>10:00 AM – 7:00 PM</td></tr>
+          <tr><td>Thursday</td><td>10:00 AM – 7:00 PM</td></tr>
+          <tr><td>Friday</td><td>10:00 AM – 7:00 PM</td></tr>
+          <tr><td>Saturday</td><td>10:00 AM – 5:00 PM</td></tr>
+          <tr><td>Sunday</td><td>Closed</td></tr>
+        </table>
+      </div>
+      <div class="contact-card">
+        <h3>Sweet Molly's British Shop &amp; Bakery</h3>
+        <div class="contact-row"><span class="lbl2">Address</span><span class="val">352 Queen St E, Acton, ON L7J 1R2</span></div>
+        <div class="contact-row"><span class="lbl2">Phone</span><span class="val">(519) 853-0100</span></div>
+        <div class="contact-row"><span class="lbl2">Email</span><span class="val">sweetmollys2010@hotmail.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; Sweet Molly's British Shop &amp; Bakery — Concept mockup by The Lazy Creator Co.</p>
+    <span class="footer-tag">thelazycreatorcompany.netlify.app</span>
+  </div>
+</footer>
+
+</body>
+</html>
