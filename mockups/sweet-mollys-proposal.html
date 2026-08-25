@@ -46,30 +46,30 @@
     position: sticky; top:0; z-index:50;
     background: var(--parchment); border-bottom: 2px solid var(--green-deep);
   }
-  nav .wrap { display:flex; align-items:center; justify-content:space-between; height:80px; }
-  .brand { font-family:'Fraunces',serif; font-weight:700; font-size:22px; color: var(--green-deep); display:flex; align-items:center; gap:10px; }
+  nav .wrap { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; min-height:80px; gap:10px 20px; padding-top:10px; padding-bottom:10px; }
+  .brand { font-family:'Fraunces',serif; font-weight:700; font-size:clamp(15px, 1.7vw, 20px); color: var(--green-deep); display:flex; align-items:center; gap:10px; min-width:0; flex-shrink:1; }
   .brand-badge {
     width:34px; height:34px; border-radius:50%; background: var(--green-deep);
     color: var(--gold-bright); display:flex; align-items:center; justify-content:center;
     font-size:15px; font-weight:700; font-family:'Fraunces',serif; flex-shrink:0;
   }
-  nav ul.links { display:flex; gap:30px; list-style:none; font-size:14.5px; font-weight:600; color: var(--ink-soft); }
+  nav ul.links { display:flex; gap:22px; list-style:none; font-size:14px; font-weight:600; color: var(--ink-soft); }
   nav ul.links a:hover { color: var(--brick); }
   .nav-cta {
-    background: var(--brick); color: var(--parchment); padding:11px 22px;
-    border-radius:2px; font-weight:700; font-size:13.5px; letter-spacing:0.02em;
+    background: var(--brick); color: var(--parchment); padding:11px 20px;
+    border-radius:2px; font-weight:700; font-size:13px; letter-spacing:0.02em;
     white-space:nowrap;
   }
   .nav-cta:hover { background: var(--brick-light); }
   .nav-toggle { display:none; background:none; border:none; font-size:22px; color:var(--green-deep); cursor:pointer; }
-  .nav-links-wrap { display:flex; align-items:center; gap:34px; }
+  .nav-links-wrap { display:flex; align-items:center; gap:24px; flex-shrink:0; }
 
   @media (min-width:721px){
     .nav-links-wrap { display:flex !important; opacity:1 !important; visibility:visible !important; pointer-events:auto !important; }
   }
   @media (max-width:720px){
     .nav-links-wrap {
-      position:absolute; top:80px; left:0; right:0;
+      position:absolute; top:100%; left:0; right:0;
       background: var(--parchment); border-bottom:2px solid var(--green-deep);
       padding: 16px 28px 20px; flex-direction:row; flex-wrap:wrap; gap:14px 22px;
       opacity:0; visibility:hidden; pointer-events:none; transition:opacity .15s ease;
@@ -255,7 +255,7 @@
 
 <nav>
   <div class="wrap">
-    <div class="brand"><span class="brand-badge">SM</span>Sweet Molly's</div>
+    <div class="brand"><span class="brand-badge">SM</span>Sweet Molly's British Shop &amp; Bakery</div>
     <div class="nav-links-wrap" id="navWrap">
       <ul class="links">
         <li><a href="#shop">The Shop</a></li>
