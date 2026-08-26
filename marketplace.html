@@ -8,6 +8,17 @@
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+  .type-section { margin-top: 46px; }
+  .type-section:first-of-type { margin-top: 24px; }
+  .type-section > h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; margin-bottom: 4px; }
+  .type-section > .type-sub { font-size: 0.85rem; color: var(--ms-ink-soft, var(--text-muted)); margin-bottom: 18px; }
+  .niche-block { margin-top: 28px; }
+  .niche-block:first-of-type { margin-top: 18px; }
+  .niche-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom: 4px; }
+  .niche-head h4 { font-size: 1.05rem; margin:0; font-weight: 700; color: var(--text); }
+  .mkt-price { font-weight: 700; font-size: 0.95rem; margin: 4px 0 12px; }
+</style>
 
 </head>
 <body class="manuscript-page tone-marketplace">
@@ -44,7 +55,7 @@
   <div class="wrap">
     <div class="section-label label-gold">Live Listings</div>
     <h2 class="section-title">What's live right now</h2>
-    <div id="marketplace-listings-grid" class="grid" style="margin-top:24px;">
+    <div id="marketplace-listings-grid" style="margin-top:24px;">
       <p style="color:var(--ms-ink-soft);">Loading listings&hellip;</p>
     </div>
   </div>
@@ -136,30 +147,103 @@
     return div.innerHTML;
   }
 
+  function cardHtml(e) {
+    const safeLink = /^https?:\/\//i.test(e.productLink || '') ? e.productLink : '#';
+    return '<div class="product-card">' +
+      '<span class="product-badge live">Live</span>' +
+      '<div class="product-title">' + esc(e.productName) + '</div>' +
+      '<p class="product-desc">' + esc(e.productDesc) + '</p>' +
+      '<p class="mkt-price">' + esc(e.productPrice) + '</p>' +
+      '<p style="color:var(--ms-ink-soft);font-size:0.8rem;margin:-8px 0 12px;">by ' + esc(e.creatorName) + '</p>' +
+      '<a class="btn btn-outline" href="' + esc(safeLink) + '" target="_blank" rel="noopener nofollow ugc">View product &rarr;</a>' +
+      '</div>';
+  }
+
+  // Classify a listing by product type based on its name pattern.
+  // Anything that doesn't match a known pattern falls into "other" —
+  // this is where future outside-creator submissions will land.
+  const PACK_SUFFIXES = [' Hook Pack', ' Caption Pack', ' 30-Day Content Calendar'];
+  const PACK_ORDER = { 'Hook Pack': 0, 'Caption Pack': 1, '30-Day Content Calendar': 2 };
+
+  function classify(e) {
+    const name = e.productName || '';
+    for (const suf of PACK_SUFFIXES) {
+      if (name.endsWith(suf)) {
+        return { type: 'pack', niche: name.slice(0, -suf.length), sub: suf.trim() };
+      }
+    }
+    if (name.startsWith('Grow & Convert')) {
+      const niche = name.replace(/^Grow & Convert\s*[\u2014-]\s*/, '');
+      return { type: 'course', niche: niche };
+    }
+    if (name.endsWith(' Complete Bundle')) {
+      return { type: 'bundle', niche: name.slice(0, -' Complete Bundle'.length) };
+    }
+    return { type: 'other', niche: null };
+  }
+
+  function renderTypeSection(title, sub, bodyHtml) {
+    return '<div class="type-section"><h3>' + esc(title) + '</h3>' +
+      '<p class="type-sub">' + esc(sub) + '</p>' + bodyHtml + '</div>';
+  }
+
+  function renderFlatGrid(entries) {
+    entries.sort(function (a, b) { return (a.niche || '').localeCompare(b.niche || ''); });
+    return '<div class="product-grid">' + entries.map(function (x) { return cardHtml(x.entry); }).join('') + '</div>';
+  }
+
+  function renderPacksGrouped(entries) {
+    const byNiche = {};
+    entries.forEach(function (x) {
+      (byNiche[x.niche] = byNiche[x.niche] || []).push(x);
+    });
+    const niches = Object.keys(byNiche).sort();
+    return niches.map(function (niche) {
+      const items = byNiche[niche].slice().sort(function (a, b) {
+        return (PACK_ORDER[a.sub] ?? 9) - (PACK_ORDER[b.sub] ?? 9);
+      });
+      return '<div class="niche-block"><div class="niche-head"><h4>' + esc(niche) + '</h4></div>' +
+        '<div class="product-grid">' + items.map(function (x) { return cardHtml(x.entry); }).join('') + '</div></div>';
+    }).join('');
+  }
+
   try {
     const res = await fetch('/content/marketplace-listings.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load listings (' + res.status + ')');
     const data = await res.json();
-    const entries = (data.entries || []).slice().sort(function (a, b) {
-      return new Date(b.subscribedAt || 0) - new Date(a.subscribedAt || 0);
-    });
+    const entries = data.entries || [];
 
     if (entries.length === 0) {
       gridEl.innerHTML = '<p style="color:var(--ms-ink-soft);">No creator listings yet &mdash; be the first.</p>';
       return;
     }
 
-    gridEl.innerHTML = entries.map(function (e) {
-      const safeLink = /^https?:\/\//i.test(e.productLink || '') ? e.productLink : '#';
-      return '<div class="product-card">' +
-        '<span class="product-badge live">Live</span>' +
-        '<h3 class="product-title">' + esc(e.productName) + '</h3>' +
-        '<p>' + esc(e.productDesc) + '</p>' +
-        '<p style="font-weight:700;margin-top:6px;">' + esc(e.productPrice) + '</p>' +
-        '<p style="color:var(--ms-ink-soft);font-size:0.85rem;margin-top:6px;">by ' + esc(e.creatorName) + '</p>' +
-        '<a class="btn btn-outline" href="' + esc(safeLink) + '" target="_blank" rel="noopener nofollow ugc" style="margin-top:14px;display:inline-flex;">View product &rarr;</a>' +
-        '</div>';
-    }).join('');
+    const packs = [], courses = [], bundles = [], other = [];
+    entries.forEach(function (e) {
+      const c = classify(e);
+      const x = { entry: e, niche: c.niche, sub: c.sub };
+      if (c.type === 'pack') packs.push(x);
+      else if (c.type === 'course') courses.push(x);
+      else if (c.type === 'bundle') bundles.push(x);
+      else other.push(x);
+    });
+
+    let html = '';
+    if (packs.length) {
+      html += renderTypeSection('Content Packs', 'Hooks, captions, and 30-day calendars, by niche.', renderPacksGrouped(packs));
+    }
+    if (courses.length) {
+      html += renderTypeSection('Courses', 'The 5-module Grow & Convert course, by niche.', renderFlatGrid(courses));
+    }
+    if (bundles.length) {
+      html += renderTypeSection('Bundles', 'The full content system for one niche, at a better price.', renderFlatGrid(bundles));
+    }
+    if (other.length) {
+      html += renderTypeSection('More From Creators', 'Submitted by other creators on the marketplace.',
+        '<div class="product-grid">' + other.map(function (x) { return cardHtml(x.entry); }).join('') + '</div>');
+    }
+
+    gridEl.innerHTML = html;
   } catch (err) {
     gridEl.innerHTML = '<p style="color:var(--ms-ink-soft);">Couldn\'t load listings right now. Try refreshing.</p>';
     console.error('Marketplace listings load error:', err);
