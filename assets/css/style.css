@@ -1335,9 +1335,22 @@ section p {
 .manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title,
 .manuscript-page .product-title, .manuscript-page .project-card-title,
 .manuscript-page .roadmap-title, .manuscript-page .tool-name { color: var(--ms-ink); }
-.manuscript-page .site-footer { color: var(--ms-ink-soft); border-top-color: rgba(90,70,40,0.25); }
-.manuscript-page .site-footer a { color: var(--ms-ink); }
-.manuscript-page .site-footer a:hover { color: var(--ms-vermillion); }
+/* Footer sits at the bottom of every page, exactly where the fixed mountainscape
+   background's darkest tree/foreground band is anchored (background-position:
+   bottom center) -- the dark ink colors that read fine on light parchment cards
+   higher up the page are unreadable here. Light/cream tones instead, verified
+   against real rendered background samples (contrast 6.2-8.3, WCAG AA-safe). */
+.manuscript-page .site-footer { color: var(--cream); border-top-color: rgba(250,245,236,0.2); }
+.manuscript-page .site-footer a { color: #FFD37A; }
+.manuscript-page .site-footer a:hover { color: var(--cream); }
+
+/* Quote blocks also sit directly on the mountainscape background (no card behind
+   them), which now ranges from mid to dark across most of the page. The generic
+   ".manuscript-page section p" rule below unintentionally wins specificity over
+   .quote-text's base --cream color via the "section p" part of that selector --
+   restoring it here (contrast 4.75-8.6 across sampled positions, WCAG AA-safe). */
+.manuscript-page .quote-text,
+.manuscript-page .quote-attr { color: var(--cream); }
 .manuscript-page { --gold-bright: #8c5a0f; --gold: #9c6a1f; --teal-bright: #0d6b5f; }
 .manuscript-page .form-fieldset legend,
 .manuscript-page .form-row label,
