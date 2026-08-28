@@ -87,6 +87,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.92rem;
   color: var(--text-muted);
 }
+.nav-links a { white-space: nowrap; }
 .nav-links a:hover { color: var(--gold-bright); }
 .nav-toggle { display: none; }
 
