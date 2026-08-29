@@ -1364,7 +1364,13 @@ section p {
   backdrop-filter: blur(6px);
 }
 .manuscript-page .site-nav .brand { color: var(--gold-bright); }
-.manuscript-page .site-footer .brand { color: var(--ms-vermillion); }
+.manuscript-page .site-footer .brand {
+  color: #ffffff;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.manuscript-page .site-footer .brand .brand-lazy { color: #b69f72; }
 
 .manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title,
 .manuscript-page .product-title, .manuscript-page .project-card-title,
@@ -1374,7 +1380,13 @@ section p {
    bottom center) -- the dark ink colors that read fine on light parchment cards
    higher up the page are unreadable here. Light/cream tones instead, verified
    against real rendered background samples (contrast 6.2-8.3, WCAG AA-safe). */
-.manuscript-page .site-footer { color: var(--cream); border-top-color: rgba(250,245,236,0.2); }
+.manuscript-page .site-footer {
+  color: var(--cream);
+  border-top-color: rgba(250,245,236,0.2);
+  background-image: url('/assets/images/site-banner.jpg');
+  background-size: 2600px auto;
+  background-position: center top;
+}
 .manuscript-page .site-footer a { color: #FFD37A; }
 .manuscript-page .site-footer a:hover { color: var(--cream); }
 
