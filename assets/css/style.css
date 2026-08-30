@@ -1370,7 +1370,14 @@ section p {
 }
 .manuscript-page .site-nav .brand {
   color: var(--ns-white);
-  text-shadow: 0 0 10px rgba(79,171,229,0.8), 0 0 22px rgba(79,171,229,0.4);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 10px rgba(79,171,229,0.7), 0 0 22px rgba(79,171,229,0.35);
+}
+.manuscript-page .site-nav .brand .brand-lazy {
+  color: var(--ns-cyan);
+  text-shadow: 0 0 12px rgba(127,212,245,0.9), 0 0 26px rgba(127,212,245,0.5);
 }
 .manuscript-page .nav-links a {
   background: rgba(10,20,32,0.55);
