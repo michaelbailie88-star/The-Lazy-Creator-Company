@@ -1398,6 +1398,24 @@ section p {
   text-shadow: 0 0 12px rgba(127,212,245,0.9), 0 0 26px rgba(127,212,245,0.5);
 }
 
+/* Home page hero title: same neon wordmark treatment as the footer brand line
+   (bold uppercase, white with blue glow, "Lazy" broken out in cyan with its
+   own brighter glow), sized up slightly to read as the hero's logo/title. */
+.manuscript-page .hero-brand-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ns-white);
+  text-shadow: 0 0 10px rgba(79,171,229,0.7), 0 0 22px rgba(79,171,229,0.35);
+  margin-bottom: 14px;
+}
+.manuscript-page .hero-brand-title .brand-lazy {
+  color: var(--ns-cyan);
+  text-shadow: 0 0 12px rgba(127,212,245,0.9), 0 0 26px rgba(127,212,245,0.5);
+}
+
 .manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title,
 .manuscript-page .product-title, .manuscript-page .project-card-title,
 .manuscript-page .roadmap-title, .manuscript-page .tool-name {
