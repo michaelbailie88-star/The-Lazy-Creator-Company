@@ -1301,7 +1301,7 @@ section p {
   background-color: var(--ns-void);
   background-image: url('/assets/images/studio-bg-desktop.jpg');
   background-repeat: no-repeat;
-  background-position: bottom center;
+  background-position: center center;
   background-size: cover;
 }
 
@@ -1320,7 +1320,7 @@ section p {
 @media (max-width: 720px) {
   .manuscript-page::before {
     background-image: url('/assets/images/studio-bg-mobile.jpg');
-    background-position: bottom center;
+    background-position: center center;
     background-size: cover;
   }
 }
