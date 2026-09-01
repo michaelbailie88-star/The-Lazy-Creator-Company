@@ -1302,7 +1302,7 @@ section p {
 :root {
   --ms-parchment: #ece0c6;
   --ms-ink: #2e2313;
-  --ms-ink-soft: #5a4a30;
+  --ms-ink-soft: var(--text-muted);
   --ms-gold: #b8862e;
   --ms-gold-bright: #d4af37;
   --ms-ultramarine: #24466e;

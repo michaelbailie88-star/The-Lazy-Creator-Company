@@ -26,14 +26,53 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
 <style>
-  .type-section { margin-top: 46px; }
-  .type-section:first-of-type { margin-top: 24px; }
-  .type-section > h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; margin-bottom: 4px; }
-  .type-section > .type-sub { font-size: 0.85rem; color: var(--ms-ink-soft, var(--text-muted)); margin-bottom: 18px; }
-  .niche-block { margin-top: 28px; }
-  .niche-block:first-of-type { margin-top: 18px; }
-  .niche-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom: 4px; }
-  .niche-head h4 { font-size: 1.05rem; margin:0; font-weight: 700; color: var(--text); }
+  /* Three big toggle tabs: Products I Sell / Creator Marketplace / Apply to List */
+  .mkt-tabs { display: flex; gap: 12px; flex-wrap: wrap; margin: 28px 0 8px; }
+  .mkt-tab-btn {
+    flex: 1 1 200px;
+    padding: 18px 20px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: center;
+    color: var(--ns-cyan);
+    background: rgba(10, 37, 64, 0.45);
+    border: 1px solid rgba(226,251,253,0.28);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .mkt-tab-btn:hover { border-color: rgba(226,251,253,0.5); }
+  .mkt-tab-btn.active {
+    color: var(--ns-white);
+    background: rgba(10, 37, 64, 0.72);
+    border-color: var(--ns-cyan);
+    box-shadow: 0 0 24px rgba(84,172,191,0.35);
+  }
+  .mkt-tab-panel { margin-top: 30px; }
+
+  /* Category dropdown + reveal area, Products I Sell tab */
+  .mkt-category-select {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin-top: 22px;
+    padding: 14px 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--ns-white);
+    background: rgba(10, 37, 64, 0.72);
+    border: 1px solid rgba(226,251,253,0.4);
+    border-radius: var(--radius);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23A7EBF2'%3E%3Cpath d='M5.5 7.5l4.5 4.5 4.5-4.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
+    cursor: pointer;
+  }
+  .mkt-category-select option { background: var(--ns-navy); color: var(--ns-white); }
   .mkt-price { font-weight: 700; font-size: 0.95rem; margin: 4px 0 12px; }
 </style>
 
@@ -67,62 +106,60 @@
   <div class="wrap">
     <div class="glass-frame">
       <div class="section-label label-gold">Marketplace</div>
-      <h1>Where this is headed</h1>
-      <p class="lede">Right now, everything on this site is built by one person. That's the honest
-      starting point &mdash; here's the actual plan for what comes after it.</p>
+      <h1>The Marketplace</h1>
+      <p class="lede">Everything built here, in one place &mdash; or apply to list your own
+      product for other creators to find. Right now it's all one person's work; that's the
+      honest starting point.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="section-label label-gold">Live Listings</div>
-    <h2 class="section-title">What's live right now</h2>
-    <div id="marketplace-listings-grid" style="margin-top:24px;">
-      <p style="color:var(--ms-ink-soft);">Loading listings&hellip;</p>
+    <div class="mkt-tabs" role="tablist">
+      <button class="mkt-tab-btn active" type="button" id="mkt-tab-sell" data-panel="sell">Products I Sell</button>
+      <button class="mkt-tab-btn" type="button" id="mkt-tab-listed" data-panel="listed">Creator Marketplace</button>
+      <button class="mkt-tab-btn" type="button" id="mkt-tab-apply" data-panel="apply">Apply to List</button>
     </div>
-  </div>
-</section>
 
-<section>
-  <div class="wrap">
-    <div class="roadmap-list">
-
-      <div class="roadmap-phase">
-        <div class="roadmap-num">01</div>
-        <div class="roadmap-body">
-          <span class="roadmap-status now">Now</span>
-          <div class="roadmap-title">My Own Products</div>
-          <p class="roadmap-desc">Everything currently live &mdash; the Faith Library, Activity
-          Vault, Safe Passage, Kingdom Radar, and website builds &mdash; all built and sold
-          directly by The Lazy Creator Company. This is where things stand today.</p>
-        </div>
+    <div class="mkt-tab-panel" data-panel="sell">
+      <div class="section-label label-gold">Products I Sell</div>
+      <h2 class="section-title">Pick a category</h2>
+      <p class="section-intro">50 products across 10 niches &mdash; content packs, a course,
+      and a bundle for each. Choose a category to see what's built for it.</p>
+      <select class="mkt-category-select" id="mkt-category-select">
+        <option value="">Choose a category&hellip;</option>
+      </select>
+      <div id="mkt-category-reveal">
+        <p style="color:var(--text-muted);margin-top:22px;">Select a category above to see its content packs, course, and bundle.</p>
       </div>
+    </div>
 
-      <div class="roadmap-phase">
-        <div class="roadmap-num">02</div>
-        <div class="roadmap-body">
-          <span class="roadmap-status now">Open</span>
-          <div class="roadmap-title">Creator Submissions</div>
-          <p class="roadmap-desc">Open for real submissions &mdash; $12/mo or $99/yr flat listing
-          fee, no revenue split. Listings publish automatically the moment payment is
-          confirmed, no review queue, removable after the fact if something doesn't fit.
-          Full terms and the application are on the submission page.</p>
-          <a class="btn btn-outline" href="/marketplace/apply.html" style="margin-top:14px;display:inline-flex;">Apply to sell &rarr;</a>
-        </div>
+    <div class="mkt-tab-panel" data-panel="listed" hidden>
+      <div class="section-label label-gold">Creator Marketplace</div>
+      <h2 class="section-title">Listed by other creators</h2>
+      <p class="section-intro">Real submissions from outside creators &mdash; not built by
+      The Lazy Creator Company. $12/mo or $99/yr flat listing fee, no revenue split.</p>
+      <div id="mkt-listed-grid" style="margin-top:24px;">
+        <p style="color:var(--text-muted);">Loading&hellip;</p>
       </div>
+    </div>
 
-      <div class="roadmap-phase">
-        <div class="roadmap-num">03</div>
-        <div class="roadmap-body">
-          <span class="roadmap-status later">Later</span>
-          <div class="roadmap-title">Full Marketplace</div>
-          <p class="roadmap-desc">A real multi-creator marketplace &mdash; self-serve listings,
-          creator storefronts, and a shared audience. The long-term vision, not a near-term
-          promise.</p>
-        </div>
+    <div class="mkt-tab-panel" data-panel="apply" hidden>
+      <div class="section-label label-gold">Apply to List</div>
+      <h2 class="section-title">Sell your own product here</h2>
+      <p class="section-intro">Open for real submissions, no review queue &mdash; the first
+      step toward the long-term vision of a real multi-creator marketplace with self-serve
+      listings and a shared audience.</p>
+      <div class="surface" style="padding:26px 28px;margin-top:18px;max-width:640px;">
+        <p><strong>Flat listing fee, no revenue split.</strong> $12/month or $99/year to have
+        your product listed here &mdash; that's it. Every sale happens on your own store and
+        every dollar of it is yours.</p>
+        <p style="margin-top:14px;"><strong>Listing goes live on payment.</strong> No waiting
+        period or manual review queue &mdash; your listing publishes automatically the moment
+        payment is confirmed.</p>
+        <a class="btn btn-gold" href="/marketplace/apply.html" style="margin-top:16px;display:inline-flex;">Start your application &rarr;</a>
       </div>
-
     </div>
   </div>
 </section>
@@ -159,12 +196,24 @@
 </footer>
 
 <script>
-(async function () {
-  const gridEl = document.getElementById('marketplace-listings-grid');
+(function () {
+  // ---------- Tab switching ----------
+  const tabBtns = document.querySelectorAll('.mkt-tab-btn');
+  const panels = document.querySelectorAll('.mkt-tab-panel');
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      tabBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      const target = btn.getAttribute('data-panel');
+      panels.forEach(function (p) {
+        p.hidden = p.getAttribute('data-panel') !== target;
+      });
+    });
+  });
 
-  // Untrusted content — these listings come from public creator submissions
-  // with zero manual review before publishing. Everything gets escaped
-  // before it touches innerHTML.
+  // ---------- Untrusted content — listings come from public creator
+  // submissions with zero manual review before publishing. Everything
+  // gets escaped before it touches innerHTML. ----------
   function esc(str) {
     const div = document.createElement('div');
     div.textContent = str == null ? '' : String(str);
@@ -178,100 +227,133 @@
       '<div class="product-title">' + esc(e.productName) + '</div>' +
       '<p class="product-desc">' + esc(e.productDesc) + '</p>' +
       '<p class="mkt-price">' + esc(e.productPrice) + '</p>' +
-      '<p style="color:var(--ms-ink-soft);font-size:0.8rem;margin:-8px 0 12px;">by ' + esc(e.creatorName) + '</p>' +
+      '<p style="color:var(--text-muted);font-size:0.8rem;margin:-8px 0 12px;">by ' + esc(e.creatorName) + '</p>' +
       '<a class="btn btn-outline" href="' + esc(safeLink) + '" target="_blank" rel="noopener nofollow ugc">View product &rarr;</a>' +
       '</div>';
   }
 
-  // Classify a listing by product type based on its name pattern.
-  // Anything that doesn't match a known pattern falls into "other" —
-  // this is where future outside-creator submissions will land.
+  // ---------- Niche normalization ----------
+  // Packs, courses, and bundles were named independently and don't all use
+  // the same niche string (e.g. packs say "Realtors", courses say "Real
+  // Estate Agents", bundles say "Realtors" -- all one real niche). Map
+  // every variant to the same canonical name already used as page headings
+  // on content-packs.html, so one category groups all 5 products for it.
+  const NICHE_MAP = {
+    'Churches': 'Churches & Ministries',
+    'Coaches': 'Coaches & Consultants',
+    'Coaches & Consultants': 'Coaches & Consultants',
+    'Contractors': 'Contractors & Trades',
+    'Contractors & Trades': 'Contractors & Trades',
+    'Creators': 'Content Creators',
+    'Content Creators': 'Content Creators',
+    'Ecommerce': 'Ecommerce Brands',
+    'Ecommerce Brands': 'Ecommerce Brands',
+    'Education': 'Tutors, Teachers & Education',
+    'Fitness': 'Fitness Coaches & Gyms',
+    'Fitness Coaches & Trainers': 'Fitness Coaches & Gyms',
+    'Home Services': 'Home Services',
+    'Realtors': 'Real Estate Agents',
+    'Real Estate Agents': 'Real Estate Agents',
+    'Restaurants': 'Restaurants & Food',
+    'Restaurants & Cafes': 'Restaurants & Food'
+  };
+  const NICHE_ORDER = ['Content Creators', 'Real Estate Agents', 'Contractors & Trades',
+    'Churches & Ministries', 'Coaches & Consultants', 'Ecommerce Brands',
+    'Restaurants & Food', 'Fitness Coaches & Gyms', 'Tutors, Teachers & Education', 'Home Services'];
   const PACK_SUFFIXES = [' Hook Pack', ' Caption Pack', ' 30-Day Content Calendar'];
-  const PACK_ORDER = { 'Hook Pack': 0, 'Caption Pack': 1, '30-Day Content Calendar': 2 };
+  const SUB_ORDER = { 'Hook Pack': 0, 'Caption Pack': 1, '30-Day Content Calendar': 2, 'Course': 3, 'Bundle': 4 };
+  const OWNER_NAME = 'The Lazy Creator Co.';
 
   function classify(e) {
     const name = e.productName || '';
     for (const suf of PACK_SUFFIXES) {
       if (name.endsWith(suf)) {
-        return { type: 'pack', niche: name.slice(0, -suf.length), sub: suf.trim() };
+        const raw = name.slice(0, -suf.length);
+        return { niche: NICHE_MAP[raw] || raw, sub: suf.trim() };
       }
     }
     if (name.startsWith('Grow & Convert')) {
-      const niche = name.replace(/^Grow & Convert\s*[\u2014-]\s*/, '');
-      return { type: 'course', niche: niche };
+      const raw = name.replace(/^Grow & Convert\s*[\u2014-]\s*/, '');
+      return { niche: NICHE_MAP[raw] || raw, sub: 'Course' };
     }
     if (name.endsWith(' Complete Bundle')) {
-      return { type: 'bundle', niche: name.slice(0, -' Complete Bundle'.length) };
+      const raw = name.slice(0, -' Complete Bundle'.length);
+      return { niche: NICHE_MAP[raw] || raw, sub: 'Bundle' };
     }
-    return { type: 'other', niche: null };
+    return { niche: null, sub: null };
   }
 
-  function renderTypeSection(title, sub, bodyHtml) {
-    return '<div class="type-section"><h3>' + esc(title) + '</h3>' +
-      '<p class="type-sub">' + esc(sub) + '</p>' + bodyHtml + '</div>';
-  }
+  const catSelect = document.getElementById('mkt-category-select');
+  const catReveal = document.getElementById('mkt-category-reveal');
+  const listedGrid = document.getElementById('mkt-listed-grid');
+  const EMPTY_PROMPT = '<p style="color:var(--text-muted);margin-top:22px;">Select a category above to see its content packs, course, and bundle.</p>';
 
-  function renderFlatGrid(entries) {
-    entries.sort(function (a, b) { return (a.niche || '').localeCompare(b.niche || ''); });
-    return '<div class="product-grid">' + entries.map(function (x) { return cardHtml(x.entry); }).join('') + '</div>';
-  }
-
-  function renderPacksGrouped(entries) {
-    const byNiche = {};
-    entries.forEach(function (x) {
-      (byNiche[x.niche] = byNiche[x.niche] || []).push(x);
-    });
-    const niches = Object.keys(byNiche).sort();
-    return niches.map(function (niche) {
-      const items = byNiche[niche].slice().sort(function (a, b) {
-        return (PACK_ORDER[a.sub] ?? 9) - (PACK_ORDER[b.sub] ?? 9);
-      });
-      return '<div class="niche-block"><div class="niche-head"><h4>' + esc(niche) + '</h4></div>' +
-        '<div class="product-grid">' + items.map(function (x) { return cardHtml(x.entry); }).join('') + '</div></div>';
-    }).join('');
-  }
-
-  try {
+  async function loadMarketplace() {
     const res = await fetch('/content/marketplace-listings.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to load listings (' + res.status + ')');
     const data = await res.json();
     const entries = data.entries || [];
 
-    if (entries.length === 0) {
-      gridEl.innerHTML = '<p style="color:var(--ms-ink-soft);">No creator listings yet &mdash; be the first.</p>';
-      return;
-    }
-
-    const packs = [], courses = [], bundles = [], other = [];
+    // Split by ownership: mine (this tab) vs. other creators (the
+    // Creator Marketplace tab) — identity-based, not a name-pattern guess.
+    const mine = [], others = [];
     entries.forEach(function (e) {
-      const c = classify(e);
-      const x = { entry: e, niche: c.niche, sub: c.sub };
-      if (c.type === 'pack') packs.push(x);
-      else if (c.type === 'course') courses.push(x);
-      else if (c.type === 'bundle') bundles.push(x);
-      else other.push(x);
+      if ((e.creatorName || '').trim() === OWNER_NAME) mine.push(e); else others.push(e);
     });
 
-    let html = '';
-    if (packs.length) {
-      html += renderTypeSection('Content Packs', 'Hooks, captions, and 30-day calendars, by niche.', renderPacksGrouped(packs));
-    }
-    if (courses.length) {
-      html += renderTypeSection('Courses', 'The 5-module Grow & Convert course, by niche.', renderFlatGrid(courses));
-    }
-    if (bundles.length) {
-      html += renderTypeSection('Bundles', 'The full content system for one niche, at a better price.', renderFlatGrid(bundles));
-    }
-    if (other.length) {
-      html += renderTypeSection('More From Creators', 'Submitted by other creators on the marketplace.',
-        '<div class="product-grid">' + other.map(function (x) { return cardHtml(x.entry); }).join('') + '</div>');
-    }
+    // Group my own products by canonical niche.
+    const byNiche = {};
+    mine.forEach(function (e) {
+      const c = classify(e);
+      if (!c.niche) return;
+      (byNiche[c.niche] = byNiche[c.niche] || []).push({ entry: e, sub: c.sub });
+    });
 
-    gridEl.innerHTML = html;
-  } catch (err) {
-    gridEl.innerHTML = '<p style="color:var(--ms-ink-soft);">Couldn\'t load listings right now. Try refreshing.</p>';
-    console.error('Marketplace listings load error:', err);
+    const nichesPresent = NICHE_ORDER.filter(function (n) { return byNiche[n] && byNiche[n].length; });
+    Object.keys(byNiche).forEach(function (n) {
+      if (nichesPresent.indexOf(n) === -1) nichesPresent.push(n);
+    });
+    nichesPresent.forEach(function (n) {
+      const opt = document.createElement('option');
+      opt.value = n;
+      opt.textContent = n + ' (' + byNiche[n].length + ')';
+      catSelect.appendChild(opt);
+    });
+
+    catSelect.addEventListener('change', function () {
+      const n = catSelect.value;
+      if (!n || !byNiche[n]) { catReveal.innerHTML = EMPTY_PROMPT; return; }
+      const items = byNiche[n].slice().sort(function (a, b) {
+        return (SUB_ORDER[a.sub] ?? 9) - (SUB_ORDER[b.sub] ?? 9);
+      });
+      catReveal.innerHTML = '<div class="product-grid" style="margin-top:24px;">' +
+        items.map(function (x) { return cardHtml(x.entry); }).join('') + '</div>';
+    });
+
+    // Creator Marketplace tab: only real outside-creator submissions.
+    if (others.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'surface';
+      empty.style.cssText = 'padding:28px;text-align:center;max-width:520px;';
+      empty.innerHTML = '<p style="margin-bottom:16px;">No outside creator listings yet &mdash; be the first.</p>';
+      const applyBtn = document.createElement('button');
+      applyBtn.className = 'btn btn-gold';
+      applyBtn.type = 'button';
+      applyBtn.textContent = 'Apply to list \u2192';
+      applyBtn.addEventListener('click', function () { document.getElementById('mkt-tab-apply').click(); });
+      empty.appendChild(applyBtn);
+      listedGrid.innerHTML = '';
+      listedGrid.appendChild(empty);
+    } else {
+      listedGrid.innerHTML = '<div class="product-grid">' + others.map(cardHtml).join('') + '</div>';
+    }
   }
+
+  loadMarketplace().catch(function (err) {
+    catReveal.innerHTML = '<p style="color:var(--text-muted);margin-top:12px;">Couldn\'t load products right now. Try refreshing.</p>';
+    listedGrid.innerHTML = '<p style="color:var(--text-muted);">Couldn\'t load listings right now. Try refreshing.</p>';
+    console.error('Marketplace load error:', err);
+  });
 })();
 </script>
 
