@@ -225,6 +225,26 @@ a { color: inherit; text-decoration: none; }
   max-width: 560px;
   margin: 0 auto 34px;
 }
+/* Homepage hero: smaller banner, tighter frame around the now-short description.
+   Scoped to .section-glow-gold, which is unique to index.html, so the 8 other
+   pages sharing .hero/.glass-frame keep their existing size. */
+.hero.section-glow-gold {
+  padding: 44px 0 36px;
+}
+.hero.section-glow-gold .glass-frame {
+  padding: 32px 38px;
+}
+.hero.section-glow-gold .hero-brand-title {
+  margin-bottom: 8px;
+}
+.hero.section-glow-gold h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 12px;
+}
+.hero.section-glow-gold p.lede {
+  font-size: 1.02rem;
+  margin: 0 auto 22px;
+}
 .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
 /* ---------- Sections ---------- */
