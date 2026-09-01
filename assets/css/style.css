@@ -590,6 +590,9 @@ section p {
 .av-module-card .av-pill { display: inline-block; margin-bottom: 12px; }
 .av-module-card .av-count { font-family: var(--font-display); font-size: 1.6rem; color: var(--text); margin-bottom: 6px; }
 .av-module-card .av-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+.av-module-card .av-desc-list { list-style: none; padding: 0; margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+.av-module-card .av-desc-list li { position: relative; padding-left: 15px; margin-bottom: 3px; }
+.av-module-card .av-desc-list li::before { content: "\2022"; position: absolute; left: 0; color: #3b82f6; }
 
 /* ---------- Electric blue: the real Activity Vault homepage's signature accent (#3b82f6) ---------- */
 .av-electric {
@@ -1710,7 +1713,8 @@ section p {
 .manuscript-page .roadmap-phase,
 .manuscript-page .tool-card,
 .manuscript-page .scripture-block,
-.manuscript-page .blog-post {
+.manuscript-page .blog-post,
+.manuscript-page .nav-destination-card {
   background:
     linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.16) 34%, rgba(255,255,255,0.03) 44%, transparent 60%),
     radial-gradient(circle at 0% 0%, rgba(226,251,253,0.4), transparent 56%),
@@ -1723,6 +1727,47 @@ section p {
   -webkit-backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(226,251,253,0.42);
   box-shadow: 0 0 34px rgba(84,172,191,0.28), 0 8px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(226,251,253,0.22);
+}
+
+/* Homepage-only 3-way navigation grid, right below the hero -- lets a
+   visitor jump straight to the business line they care about instead of
+   reading the whole page first. Cards inherit the master glass background
+   above; this just adds layout, typography, and the hover lift. */
+.nav-destination-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin: 28px 0 8px;
+}
+.nav-destination-card {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.nav-destination-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 40px rgba(84,172,191,0.4), 0 12px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(226,251,253,0.28);
+}
+.nav-destination-card .nav-dest-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ns-white);
+  margin-bottom: 8px;
+}
+.nav-destination-card .nav-dest-desc {
+  font-size: 0.88rem;
+  color: var(--ns-cyan);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+.nav-destination-card .nav-dest-arrow {
+  margin-top: auto;
+  font-weight: 700;
+  color: var(--ns-cyan-bright);
+  font-size: 0.9rem;
 }
 
 /* Book-shelf row (homepage only, via .manuscript-page scoping -- the book
