@@ -1355,10 +1355,9 @@ section p {
   z-index: -1;
   pointer-events: none;
   background-image:
-    url('/assets/images/ice-crack-tile.png'),
     linear-gradient(160deg, rgba(167,235,242,0.1) 0%, rgba(84,172,191,0.14) 45%, rgba(2,15,34,0.35) 100%);
-  background-repeat: repeat, no-repeat;
-  background-size: 340px 340px, cover;
+  background-repeat: no-repeat;
+  background-size: cover;
   mix-blend-mode: overlay;
 }
 
@@ -1400,12 +1399,12 @@ section p {
   align-items: center;
   padding: 9px 22px;
   border-radius: 999px;
-  border: 1px solid rgba(226,251,253,0.5);
+  border: 1px solid rgba(226,251,253,0.65);
   background:
-    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.3) 34%, rgba(255,255,255,0.06) 44%, transparent 60%),
-    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.34), transparent 55%),
-    radial-gradient(circle at 100% 100%, rgba(226,251,253,0.28), transparent 55%),
-    rgba(10,32,52,0.55);
+    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.38) 34%, rgba(255,255,255,0.08) 44%, transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.55), transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(226,251,253,0.45), transparent 60%),
+    rgba(84,172,191,0.5);
   backdrop-filter: blur(14px) saturate(170%);
   -webkit-backdrop-filter: blur(14px) saturate(170%);
   color: var(--ns-white);
@@ -1413,14 +1412,14 @@ section p {
   font-weight: 700;
   font-size: 0.92rem;
   text-decoration: none;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 18px rgba(84,172,191,0.3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 0 18px rgba(84,172,191,0.4);
   transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
 }
 .ms-pill:hover {
   background:
-    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.4) 34%, rgba(255,255,255,0.1) 44%, transparent 60%),
-    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.42), transparent 55%),
-    rgba(167,235,242,0.2);
+    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.46) 34%, rgba(255,255,255,0.12) 44%, transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.6), transparent 60%),
+    rgba(84,172,191,0.65);
   border-color: var(--ns-cyan-bright);
   transform: translateY(-2px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 10px 1px rgba(226,251,253,0.75), 0 0 34px rgba(167,235,242,0.7), 0 0 64px rgba(84,172,191,0.45);
@@ -1452,24 +1451,24 @@ section p {
 }
 .manuscript-page .nav-links a {
   background:
-    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.32) 34%, rgba(255,255,255,0.06) 44%, transparent 60%),
-    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.3), transparent 55%),
-    radial-gradient(circle at 100% 100%, rgba(226,251,253,0.24), transparent 55%),
-    rgba(10,32,52,0.6);
+    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.4) 34%, rgba(255,255,255,0.08) 44%, transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.55), transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(226,251,253,0.4), transparent 60%),
+    rgba(84,172,191,0.55);
   color: var(--ns-white);
-  border: 1px solid rgba(226,251,253,0.5);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 0 14px rgba(84,172,191,0.3);
+  border: 1px solid rgba(226,251,253,0.65);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 0 16px rgba(84,172,191,0.4);
   backdrop-filter: blur(12px) saturate(170%);
   -webkit-backdrop-filter: blur(12px) saturate(170%);
 }
 .manuscript-page .nav-links a:hover,
 .manuscript-page .nav-links a.active-preview {
   background:
-    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.4) 34%, rgba(255,255,255,0.1) 44%, transparent 60%),
-    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.4), transparent 55%),
-    rgba(84,172,191,0.22);
+    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.48) 34%, rgba(255,255,255,0.12) 44%, transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.6), transparent 60%),
+    rgba(84,172,191,0.68);
   border-color: var(--ns-cyan-bright);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 0 10px 1px rgba(226,251,253,0.7), 0 0 30px rgba(167,235,242,0.65), 0 0 60px rgba(84,172,191,0.4);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 10px 1px rgba(226,251,253,0.7), 0 0 30px rgba(167,235,242,0.65), 0 0 60px rgba(84,172,191,0.4);
   color: #ffffff;
 }
 .manuscript-page .site-footer .brand {
