@@ -940,6 +940,31 @@ section p {
   border-top: 1px solid var(--border);
 }
 
+/* Icy analog to .sunrise-bg, for the "Build" free-resource landing pages
+   (website building / digital products / Activity Vault case study) --
+   uses the site's own --ns-* icy palette instead of the warm sunrise gradient. */
+.frost-bg {
+  background-color: var(--ns-void);
+  background-image:
+    radial-gradient(ellipse 700px 500px at 50% 8%, rgba(167,235,242,0.35) 0%, rgba(84,172,191,0.18) 35%, transparent 68%),
+    linear-gradient(180deg,
+      #020f22 0%,
+      #051a30 20%,
+      #0a2540 42%,
+      #0d2f52 62%,
+      #123a5e 80%,
+      #175577 100%
+    );
+}
+.frost-bg .site-footer {
+  background: var(--surface);
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.frost-bg .eyebrow { color: var(--ns-blue); }
+.frost-bg .scripture-block { border-color: var(--ns-blue); }
+.frost-bg .scripture-ref { color: var(--ns-cyan); }
+
 /* ---------- Contact page: faded iMessage thread background ---------- */
 .imessage-page { position: relative; background: #1c1e24; }
 .imessage-bg {
