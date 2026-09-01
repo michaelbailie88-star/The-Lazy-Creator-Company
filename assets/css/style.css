@@ -1533,7 +1533,7 @@ section p {
    restoring it here (contrast 4.75-8.6 across sampled positions, WCAG AA-safe). */
 .manuscript-page .quote-text,
 .manuscript-page .quote-attr { color: var(--ns-white); }
-.manuscript-page { --gold-bright: var(--ns-cyan); --gold: var(--ns-blue); --teal-bright: var(--ns-cyan); }
+.manuscript-page { --gold-bright: var(--ns-cyan); --gold: var(--ns-blue); --teal-bright: var(--ns-cyan); --text-muted: var(--ns-cyan); }
 .manuscript-page .form-fieldset legend,
 .manuscript-page .form-row label,
 .manuscript-page .form-fieldset .fieldset-note,
@@ -1718,11 +1718,31 @@ section p {
     radial-gradient(circle at 0% 100%, rgba(226,251,253,0.3), transparent 50%),
     radial-gradient(circle at 100% 100%, rgba(226,251,253,0.36), transparent 53%),
     linear-gradient(rgba(226,251,253,0.06), rgba(226,251,253,0.06)),
-    rgba(10, 20, 34, 0.5);
+    rgba(10, 37, 64, 0.72);
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(226,251,253,0.42);
   box-shadow: 0 0 34px rgba(84,172,191,0.28), 0 8px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(226,251,253,0.22);
+}
+
+/* Book-shelf row (homepage only, via .manuscript-page scoping -- the book
+   pages reuse the bare .shelf class for their own "you might also like"
+   carousel on a completely different, non-icy visual system, so this must
+   not leak there). Same glass language as the master rule above, wrapping
+   the whole scrollable row in one continuous panel so the captions read
+   against something other than the raw background photo. */
+.manuscript-page .shelf {
+  background:
+    linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.14) 34%, rgba(255,255,255,0.03) 44%, transparent 60%),
+    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.32), transparent 56%),
+    radial-gradient(circle at 100% 100%, rgba(226,251,253,0.28), transparent 53%),
+    rgba(10, 37, 64, 0.62);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(226,251,253,0.4);
+  border-radius: var(--radius);
+  box-shadow: 0 0 28px rgba(84,172,191,0.24), 0 8px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(226,251,253,0.2);
+  padding: 22px 20px 26px;
 }
 
 /* ==================================================================
