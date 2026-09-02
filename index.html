@@ -364,17 +364,40 @@
 (function() {
   var form = document.querySelector('form[name="newsletter-home"]');
   if (!form) return;
-  form.addEventListener('submit', function() {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
     var emailInput = form.querySelector('input[name="email"]');
     if (!emailInput || !emailInput.value) return;
+    var email = emailInput.value;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Subscribing...'; }
+
+    // Still record in Netlify's Forms dashboard, now done manually since
+    // preventDefault() stops the browser's automatic submission.
+    var formData = new URLSearchParams();
+    formData.append('form-name', 'newsletter-home');
+    formData.append('email', email);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
+    }).catch(function(err) { console.error('Netlify form record failed:', err); });
+
+    // The real subscription -- properly awaited now, no more racing a
+    // keepalive fetch against page navigation (unreliable on Safari/iOS).
     fetch('/.netlify/functions/subscribe-newsletter', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: emailInput.value, source: 'home' }),
-      keepalive: true
-    }).catch(function(err) { console.error('Newsletter subscribe failed:', err); });
-    // Intentionally not calling preventDefault() -- the native Netlify Forms
-    // submission proceeds as normal.
+      body: JSON.stringify({ email: email, source: 'home' })
+    })
+      .then(function() {
+        form.innerHTML = '<p style="color:#B08A2E;font-weight:bold;">You\'re in \u2014 check your inbox for a welcome email.</p>';
+      })
+      .catch(function(err) {
+        console.error('Newsletter subscribe failed:', err);
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Subscribe \u2192'; }
+        form.insertAdjacentHTML('afterend', '<p style="color:#c0392b;margin-top:8px;">Something went wrong \u2014 please try again.</p>');
+      });
   });
 })();
 </script>
