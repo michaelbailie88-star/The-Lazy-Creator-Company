@@ -359,5 +359,24 @@
   <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Company. All rights reserved.</div>
 </footer>
 
+
+<script>
+(function() {
+  var form = document.querySelector('form[name="newsletter-home"]');
+  if (!form) return;
+  form.addEventListener('submit', function() {
+    var emailInput = form.querySelector('input[name="email"]');
+    if (!emailInput || !emailInput.value) return;
+    fetch('/.netlify/functions/subscribe-newsletter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: emailInput.value, source: 'home' }),
+      keepalive: true
+    }).catch(function(err) { console.error('Newsletter subscribe failed:', err); });
+    // Intentionally not calling preventDefault() -- the native Netlify Forms
+    // submission proceeds as normal.
+  });
+})();
+</script>
 </body>
 </html>
