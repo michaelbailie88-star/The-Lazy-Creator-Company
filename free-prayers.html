@@ -109,5 +109,24 @@
   <div class="wrap" style="margin-top:24px;font-size:0.8rem;">&copy; 2026 The Lazy Creator Company. All rights reserved.</div>
 </footer>
 
+
+<script>
+(function() {
+  var form = document.querySelector('form[name="lead-magnet"]');
+  if (!form) return;
+  form.addEventListener('submit', function() {
+    var emailInput = form.querySelector('input[name="email"]');
+    if (!emailInput || !emailInput.value) return;
+    fetch('/.netlify/functions/send-lead-magnet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: emailInput.value, resource: 'morning-prayers' }),
+      keepalive: true
+    }).catch(function(err) { console.error('Lead magnet email send failed:', err); });
+    // Intentionally not calling preventDefault() -- the native Netlify Forms
+    // submission and redirect to the thank-you page proceed as normal.
+  });
+})();
+</script>
 </body>
 </html>
