@@ -22,8 +22,6 @@ const SENDER = { name: 'The Lazy Creator Co', email: 'thelazycreatorco@gmail.com
 const SITE = 'https://thelazycreatorcompany.com';
 const GOLD = '#B08A2E';
 
-const SOURCES = new Set(['home', 'blog']);
-
 function welcomeEmailHtml() {
   return `<!DOCTYPE html>
 <html>
@@ -89,12 +87,11 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
   }
 
-  const { email, source } = data;
+  const { email } = data;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email || !emailPattern.test(email)) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid or missing email' }) };
   }
-  const signupSource = SOURCES.has(source) ? source : 'unknown';
 
   const listId = parseInt(process.env.BREVO_NEWSLETTER_LIST_ID, 10);
   const trimmedEmail = email.trim();
@@ -112,7 +109,6 @@ exports.handler = async (event) => {
         email: trimmedEmail,
         listIds: [listId],
         updateEnabled: true,
-        attributes: { SIGNUP_SOURCE: signupSource },
       }),
     });
 
