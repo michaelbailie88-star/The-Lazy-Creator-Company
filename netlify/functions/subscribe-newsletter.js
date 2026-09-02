@@ -22,7 +22,18 @@ const SENDER = { name: 'The Lazy Creator Co', email: 'thelazycreatorco@gmail.com
 const SITE = 'https://thelazycreatorcompany.com';
 const GOLD = '#B08A2E';
 
-function welcomeEmailHtml() {
+function welcomeEmailHtml(source) {
+  const isBlog = source === 'blog';
+
+  const heading = isBlog ? "You're subscribed to the blog" : 'Welcome to the list';
+  const bodyHtml = isBlog
+    ? `<p>You'll get an email the moment a new post goes up on the blog &mdash; that's it, nothing else.</p>
+                <p>While you're here, there are six free resources you can grab right now &mdash; prayers, guides, and a case study, no strings attached.</p>`
+    : `<p>No spam, no daily emails &mdash; just launches and new posts as they happen, same as it says on the site.</p>
+                <p>While you're here, there are six free resources you can grab right now &mdash; prayers, guides, and a case study, no strings attached.</p>`;
+  const ctaHref = isBlog ? `${SITE}/blog.html` : `${SITE}/resources.html`;
+  const ctaText = isBlog ? 'Read the Blog &rarr;' : 'Browse Free Resources &rarr;';
+
   return `<!DOCTYPE html>
 <html>
 <body style="margin:0;padding:0;background-color:#f4f4f4;font-family:Georgia,'Times New Roman',serif;">
@@ -38,15 +49,14 @@ function welcomeEmailHtml() {
           <tr>
             <td style="padding:36px 40px 8px 40px;">
               <p style="margin:0 0 6px 0;color:${GOLD};font-size:12px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase;">You're In</p>
-              <h1 style="margin:0 0 18px 0;color:#1a1a1a;font-size:26px;line-height:1.3;">Welcome to the list</h1>
+              <h1 style="margin:0 0 18px 0;color:#1a1a1a;font-size:26px;line-height:1.3;">${heading}</h1>
               <div style="color:#333333;font-size:15px;line-height:1.6;">
-                <p>No spam, no daily emails &mdash; just launches and new posts as they happen, same as it says on the site.</p>
-                <p>While you're here, there are six free resources you can grab right now &mdash; prayers, guides, and a case study, no strings attached.</p>
+                ${bodyHtml}
               </div>
               <table role="presentation" cellpadding="0" cellspacing="0" style="margin:26px 0 8px 0;">
                 <tr>
                   <td style="background-color:${GOLD};border-radius:8px;">
-                    <a href="${SITE}/resources.html" style="display:inline-block;padding:14px 28px;color:#111318;font-size:15px;font-weight:bold;text-decoration:none;">Browse Free Resources &rarr;</a>
+                    <a href="${ctaHref}" style="display:inline-block;padding:14px 28px;color:#111318;font-size:15px;font-weight:bold;text-decoration:none;">${ctaText}</a>
                   </td>
                 </tr>
               </table>
@@ -150,8 +160,10 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         sender: SENDER,
         to: [{ email: trimmedEmail }],
-        subject: "You're in — welcome to The Lazy Creator Company",
-        htmlContent: welcomeEmailHtml(),
+        subject: source === 'blog'
+          ? "You're subscribed — new posts land in your inbox"
+          : "You're in — welcome to The Lazy Creator Company",
+        htmlContent: welcomeEmailHtml(source),
       }),
     });
     if (!res.ok) {
