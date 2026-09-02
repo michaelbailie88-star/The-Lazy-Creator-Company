@@ -79,6 +79,10 @@ exports.handler = async (event) => {
     console.error('subscribe-newsletter: missing BREVO_NEWSLETTER_LIST_ID');
     return { statusCode: 500, body: JSON.stringify({ error: 'Server not configured (missing BREVO_NEWSLETTER_LIST_ID)' }) };
   }
+  if (!process.env.BREVO_BLOG_LIST_ID) {
+    console.error('subscribe-newsletter: missing BREVO_BLOG_LIST_ID');
+    return { statusCode: 500, body: JSON.stringify({ error: 'Server not configured (missing BREVO_BLOG_LIST_ID)' }) };
+  }
 
   let data;
   try {
@@ -87,13 +91,19 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
   }
 
-  const { email } = data;
+  const { email, source } = data;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email || !emailPattern.test(email)) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid or missing email' }) };
   }
 
-  const listId = parseInt(process.env.BREVO_NEWSLETTER_LIST_ID, 10);
+  // Blog signups go to the blog-specific list (real "new post" notifications
+  // go out to this list via a GitHub Action, separate from this function).
+  // Everything else (home, or an unrecognized/missing source) goes to the
+  // general list.
+  const listId = source === 'blog'
+    ? parseInt(process.env.BREVO_BLOG_LIST_ID, 10)
+    : parseInt(process.env.BREVO_NEWSLETTER_LIST_ID, 10);
   const trimmedEmail = email.trim();
 
   // Step 1: add (or update) the contact and put them on the real list.

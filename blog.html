@@ -128,7 +128,7 @@
       const dateObj = new Date(post.date + 'T00:00:00');
       const dateLabel = isNaN(dateObj) ? post.date : dateObj.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
       const bodyHtml = window.marked ? marked.parse(post.body || '') : '<p>' + (post.body || '') + '</p>';
-      return '<article class="blog-post">' +
+      return '<article class="blog-post" id="post-' + post.slug + '">' +
         '<div class="blog-post-date">' + dateLabel + '</div>' +
         '<h2 class="blog-post-title">' + post.title + '</h2>' +
         '<div class="blog-post-body">' + bodyHtml + '</div>' +

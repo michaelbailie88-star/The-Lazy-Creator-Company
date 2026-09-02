@@ -1,31 +1,37 @@
 {
   "posts": [
     {
+      "slug": "why-every-product-starts-with-one-question",
       "title": "Why Every Product Starts With One Question",
       "date": "2026-01-15",
       "body": "Before anything gets built here, it gets asked one question: does this point to God, or just to a checkout page? That's not a slogan for the About page — it's the actual filter. Some ideas fail it and get shelved. Some pass it and become the Faith Library or the Activity Vault.\n\nIt's a strange way to run a business, and it's slower than just chasing whatever's trending. But it's the only version of this that's sustainable long-term, because it's the only version that's actually true to why it started."
     },
     {
+      "slug": "building-the-faith-library-one-book-at-a-time",
       "title": "Building the Faith Library, One Book at a Time",
       "date": "2026-01-08",
       "body": "Thirty illustrated Bible story books didn't happen as one big push — they happened one book at a time, each one starting with the scripture first and the story second, never the other way around.\n\nThe goal was never to talk down to a young reader. Kids can handle honest stories told simply — a boy sharing his lunch, a kid who wouldn't run away, a friend who stayed. The hard part wasn't writing the stories. It was staying disciplined enough not to over-explain them."
     },
     {
+      "slug": "what-activity-vault-actually-took",
       "title": "What Activity Vault Actually Took",
       "date": "2026-01-01",
       "body": "5,330 activities across five modules didn't come from guessing what educators might want. It came from working closely with a Senior Childhood Educator with 20 years in early-childhood development — someone who's actually run these programs, not just designed them from the outside.\n\nEvery activity got tested against one real standard: does it work with real kids, on a real day, not just on paper. That's the difference between a resource that looks good and one that actually gets used."
     },
     {
+      "slug": "the-tools-behind-everything-here",
       "title": "The Tools Behind Everything Here",
       "date": "2025-12-20",
       "body": "None of this runs on a big team or a big budget — it runs on a specific stack of tools used consistently: Claude for building, Netlify and Vercel for hosting, Gumroad for selling, Canva for design.\n\nThe full breakdown — what each tool does, why it's the one used here, and what the alternatives are — lives on the [Toolbox page](/toolbox.html). Worth a look if you're building something similar yourself."
     },
     {
+      "slug": "who-is-the-lazy-creator",
       "title": "Who is The Lazy Creator?",
       "date": "2026-08-20",
       "body": "**THE LAZY CREATOR**\\\n\\\nA started from scratch individual who became tired of the long drawn out process of life and its mechanics. The Lazy Creator is a faith forward creator who focuses on one key point in every single thing he builds...Does this point toward God or is this another worldly project with zero substance? The Lazy Creator is not just an individual, or a digital creator...The Lazy Creator is an identity, a way of life a way of building! Instead of believing something cant be done because it will take too much time, or effort or skill - The \"Lazy\" in the name is actually a reverse psychological mentality. Lazy doesn't mean you cant or wont do it, it means that you have found a way to do it that is far different than how others would do it. While doing it differently, the \"Lazy\" way actually means you work smarter, not harder. I am The Lazy Creator and I build ideas, i don't just think of them"
     },
     {
+      "slug": "whats-next-for-the-lazy-creator-company",
       "body": "# What’s Next for The Lazy Creator Company\n\nThe Lazy Creator Company started with a simple idea:\n\n**Creating shouldn’t have to be complicated.**\n\nWhat began as an experiment in building digital products, testing ideas, and figuring out how to turn creativity into something useful is becoming something much bigger.\n\nThe next chapter is about turning The Lazy Creator Company from a collection of ideas and products into a **real digital product studio and creative ecosystem.**\n\n### So, what’s next?\n\n**More products.**\n\nWe’re continuing to build practical digital products, resources, templates, activity packs, and tools designed to help creators, parents, entrepreneurs, and everyday people get more done without making everything harder than it needs to be.\n\n**More experiments.**\n\nNot every idea will become a business. That’s okay.\n\nThe Lazy Creator Company is built around testing ideas quickly, learning what works, improving what doesn’t, and sharing the journey along the way.\n\n**More creators.**\n\nThe long-term vision goes beyond what we can build ourselves. We want to create an ecosystem where other creators can bring their ideas to life, distribute their products, and build alongside us.\n\n**And eventually, a marketplace.**\n\nA place where great digital products can be discovered, creators can be supported, and customers can find useful things without having to search through thousands of pages of noise.\n\n### We’re still building.\n\nThat’s the exciting part.\n\nThere is no massive team behind the curtain. No giant office. No endless development budget.\n\nJust ideas, technology, experimentation, and the willingness to keep building.\n\nThe Lazy Creator Company isn't finished.\n\n**It’s just getting started.**\n\nAnd the next chapter is going to be built in public.\n\n**Create less complicated. Build more. Stay lazy.**",
       "title": "What’s Next for The Lazy Creator Company",
       "date": "2026-08-28"
