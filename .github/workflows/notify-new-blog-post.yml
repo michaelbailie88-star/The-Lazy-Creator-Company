@@ -1,0 +1,22 @@
+name: Notify new blog post
+
+"on":
+  push:
+    branches: [main]
+    paths:
+      - "content/blog-posts.json"
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout with history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Send Brevo campaign for any new post
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_BLOG_LIST_ID: ${{ vars.BREVO_BLOG_LIST_ID }}
+        run: node .github/scripts/notify-new-post.js
