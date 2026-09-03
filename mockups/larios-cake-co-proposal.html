@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Larios Cake &amp; Co. — A Site Concept</title>
+<title>Larios Cake &amp; Co. - A Site Concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -252,7 +252,7 @@
       <div class="eyebrow">Guelph, Ontario &middot; Custom Cakes by Order</div>
       <h1>Every cake, made to <em>celebrate you.</em></h1>
       <p class="lede">Custom cakes, cupcakes, and desserts for birthdays, milestones, and every
-      occasion worth a slice — designed around your vision, baked from scratch, and finished by
+      occasion worth a slice, designed around your vision, baked from scratch, and finished by
       hand in Guelph.</p>
       <div class="btn-row">
         <a href="#gallery" class="btn btn-primary">See the Work</a>
@@ -279,7 +279,7 @@
     <div class="menu-head">
       <div class="eyebrow">What We Bake</div>
       <h2>A cake for every kind of celebration.</h2>
-      <p>Every design starts with a conversation — flavour, size, and story all built around your event.</p>
+      <p>Every design starts with a conversation, flavour, size, and story all built around your event.</p>
     </div>
     <div class="menu-grid">
       <div class="menu-card">
@@ -312,7 +312,7 @@
       <div class="eyebrow">The Menu</div>
       <h2>Pick a style, see a starting price.</h2>
       <p style="color:var(--soft); font-size:14px; margin-top:8px;">Starting prices below are
-      placeholders — swap in your real numbers and this becomes a real, browsable menu.</p>
+      placeholders, swap in your real numbers and this becomes a real, browsable menu.</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-photo">
@@ -336,7 +336,7 @@
         <div class="gallery-caption">Custom Sugar Cookies</div>
       </div>
     </div>
-    <p class="gallery-note">This grid can grow to any number of styles &mdash; send over photos and
+    <p class="gallery-note">This grid can grow to any number of styles, send over photos and
     pricing for anything you want listed, and each one becomes its own card like these.</p>
   </div>
 </section>
@@ -351,9 +351,9 @@
       <h2>A home kitchen, held to a real standard.</h2>
       <p>Larios Cake &amp; Co. is a Guelph-based custom cake business built around one idea: every
       cake should feel personal, not picked off a shelf. Every order starts with a conversation
-      about your event, your flavours, and what you're picturing — then it's baked from scratch
+      about your event, your flavours, and what you're picturing, then it's baked from scratch
       and finished by hand.</p>
-      <p>No walk-in counter, no pre-made display case — just cakes built to order, one celebration
+      <p>No walk-in counter, no pre-made display case, just cakes built to order, one celebration
       at a time.</p>
       <div class="stat-row">
         <div class="stat"><b>Guelph</b><span>Local Pickup &amp; Delivery</span></div>
@@ -396,7 +396,7 @@
       <div class="info-card-top">
         <div>
           <h2>Let's design your cake.</h2>
-          <p>Fill this out and it comes straight through &mdash; no separate app, no missed DMs.
+          <p>Fill this out and it comes straight through, no separate app, no missed DMs.
           Custom orders book out, especially around weddings and holidays, so the earlier you
           reach out, the more room there is to get the date and design exactly right.</p>
         </div>
@@ -425,7 +425,7 @@
         the only thing that changes — nothing on the site itself.
       -->
       <form class="order-form" id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-        <input type="hidden" name="_subject" value="New Cake Order Request — Larios Cake & Co.">
+        <input type="hidden" name="_subject" value="New Cake Order Request, Larios Cake & Co.">
         <p class="form-honeypot"><label>Leave this field blank: <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
 
         <div class="form-row">
@@ -468,11 +468,11 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Send My Request</button>
-        <p class="form-note">Or if you'd rather just message directly &mdash;
+        <p class="form-note">Or if you'd rather just message directly ,
         <a href="https://www.instagram.com/larioscakeco/" target="_blank" rel="noopener" style="color:var(--gold-light); text-decoration:underline;">DM on Instagram</a> works too.</p>
       </form>
 
-      <div class="form-success" id="formSuccess">Thank you &mdash; your request just came through. We'll be in touch to talk details and get your date locked in.</div>
+      <div class="form-success" id="formSuccess">Thank you, your request just came through. We'll be in touch to talk details and get your date locked in.</div>
     </div>
   </div>
 </section>
@@ -494,14 +494,14 @@
             document.getElementById('formSuccess').style.display = 'block';
           } else {
             response.json().then((data) => {
-              alert(data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong — please try again or message us directly on Instagram.');
+              alert(data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong, please try again or message us directly on Instagram.');
             }).catch(() => {
-              alert('Something went wrong — please try again or message us directly on Instagram.');
+              alert('Something went wrong, please try again or message us directly on Instagram.');
             });
           }
         })
         .catch(() => {
-          alert('Something went wrong — please try again or message us directly on Instagram.');
+          alert('Something went wrong, please try again or message us directly on Instagram.');
         });
     });
   }
@@ -511,24 +511,24 @@
 <section class="proposal-note" id="proposal">
   <div class="wrap">
     <div class="eyebrow" style="margin-bottom:10px;">About This Concept</div>
-    <h2>Hi — this is a concept, built specifically for you.</h2>
+    <h2>Hi, this is a concept, built specifically for you.</h2>
     <p>I put this together using photos from your own Instagram (@larioscakeco) to show what a
-    real site could look like — not a template, not a generic bakery layout, just your actual
+    real site could look like, not a template, not a generic bakery layout, just your actual
     work presented the way it deserves to be seen.</p>
     <p>What this gives you that Instagram alone can't:</p>
     <ul>
-      <li>A place people can land on and immediately see your range — cakes, cupcakes, cookies — without scrolling a grid</li>
+      <li>A place people can land on and immediately see your range (cakes, cupcakes, cookies) without scrolling a grid</li>
       <li>A clear, honest ordering process so new customers know exactly how to reach you and what to expect</li>
       <li>Something you can link in your bio, share in a story, or send directly to someone asking "do you have a website?"</li>
     </ul>
-    <p>This is a working concept, not a finished, hosted site yet — happy to talk through pricing,
+    <p>This is a working concept, not a finished, hosted site yet, happy to talk through pricing,
     timeline, and what's involved in making this real if it's something you'd want.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>Concept design by The Lazy Creator Company &mdash; thelazycreatorco@gmail.com</p>
+    <p>Concept design by The Lazy Creator Company, thelazycreatorco@gmail.com</p>
     <p>Built using your own photography, shared with your permission in mind.</p>
   </div>
 </footer>
