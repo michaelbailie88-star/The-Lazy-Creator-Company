@@ -871,16 +871,15 @@ section p {
 
 /* ---------- Homepage hero: glassmorphism frame ---------- */
 .glass-frame {
-  background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  border: 1px solid rgba(255,255,255,0.22);
+  background: linear-gradient(160deg, #1d4ed8 0%, #0a1b4d 100%);
+  border: 1px solid rgba(96,165,250,0.5);
   border-radius: 20px;
   padding: 52px 56px;
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.25);
-  transition: box-shadow 0.25s ease, background 0.25s ease;
+    0 30px 70px -15px rgba(37,99,235,0.65),
+    0 15px 40px -10px rgba(59,130,246,0.5),
+    inset 0 1px 0 rgba(147,197,253,0.35);
+  transition: box-shadow 0.25s ease;
   position: relative;
   z-index: 1;
 }
@@ -888,12 +887,10 @@ section p {
   .glass-frame { padding: 32px 24px; }
 }
 .glass-frame:hover {
-  background: rgba(255,255,255,0.11);
   box-shadow:
-    0 8px 32px rgba(0,0,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.3),
-    0 0 24px rgba(0,20,168,0.45),
-    0 0 60px rgba(0,20,168,0.25);
+    0 34px 80px -15px rgba(37,99,235,0.8),
+    0 18px 46px -10px rgba(59,130,246,0.65),
+    inset 0 1px 0 rgba(147,197,253,0.45);
 }
 
 /* ---------- Faith Library: shelf-break dividers within the book grid ---------- */
@@ -1680,8 +1677,6 @@ section p {
    L-shaped brackets at opposite corners of every glass panel/card, echoing
    sci-fi interface framing. Pure CSS (no images), so it scales with any
    card size and never needs updating when content changes. */
-.manuscript-page .glass-frame::before,
-.manuscript-page .glass-frame::after,
 .manuscript-page .surface::before,
 .manuscript-page .surface::after,
 .manuscript-page .split-card::before,
@@ -1708,7 +1703,6 @@ section p {
   z-index: 2;
   filter: drop-shadow(0 0 4px rgba(167,235,242,0.8));
 }
-.manuscript-page .glass-frame::before,
 .manuscript-page .surface::before,
 .manuscript-page .split-card::before,
 .manuscript-page .web-card::before,
@@ -1722,7 +1716,6 @@ section p {
   border-top: 2px solid var(--ns-cyan);
   border-left: 2px solid var(--ns-cyan);
 }
-.manuscript-page .glass-frame::after,
 .manuscript-page .surface::after,
 .manuscript-page .split-card::after,
 .manuscript-page .web-card::after,
@@ -1744,7 +1737,6 @@ section p {
    to clip thumbnail images (web-card, project-card) keep that behavior. */
 
 /* Glassmorphism — frosted-glass panels, preserved and applied to every card + the hero frame */
-.manuscript-page .glass-frame,
 .manuscript-page .surface,
 .manuscript-page .split-card,
 .manuscript-page .web-card,
@@ -1978,8 +1970,7 @@ section p {
 .metallic-glass .product-card,
 .metallic-glass .roadmap-phase,
 .metallic-glass .scripture-block,
-.metallic-glass .quote-block,
-.metallic-glass .glass-frame {
+.metallic-glass .quote-block {
   position: relative;
   overflow: hidden;
   background:
