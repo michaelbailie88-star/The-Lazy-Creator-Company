@@ -1921,6 +1921,44 @@ section p {
 .pc-kingdomradar .product-badge.live { background: rgba(139,111,214,0.16); color: #b8a3ec; border-color: rgba(139,111,214,0.4); }
 .pc-kingdomradar .btn { background: #8b6fd6; color: #f6f3ff; border-color: #8b6fd6; box-shadow: 0 0 14px rgba(139,111,214,0.5); }
 
+.pc-contentpacks { border-left-color: var(--teal); box-shadow: 0 0 16px rgba(62,207,192,0.22); }
+.pc-contentpacks:hover { box-shadow: 0 0 28px rgba(62,207,192,0.4); }
+.pc-contentpacks .product-badge.live { background: rgba(62,207,192,0.16); color: var(--teal-bright); border-color: rgba(62,207,192,0.4); }
+
+.cp-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: auto;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cp-toggle:hover { border-color: var(--teal); box-shadow: 0 0 10px rgba(62,207,192,0.35); }
+.cp-toggle-arrow { transition: transform 0.25s ease; }
+.pc-contentpacks.cp-open .cp-toggle-arrow { transform: rotate(180deg); }
+.cp-panel {
+  display: none;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.pc-contentpacks.cp-open .cp-panel { display: flex; }
+.cp-panel-item { display: flex; flex-direction: column; gap: 6px; }
+.cp-panel-title { font-weight: 700; color: var(--text); }
+.cp-panel-desc { font-size: 0.88rem; color: var(--text-muted); margin: 0; }
+
 /* ==================================================================
    NEON CHROME — scoped to .metallic-glass only (About page).
    Polished neon-cyan gradient text for headings/titles, and a
