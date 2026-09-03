@@ -22,6 +22,11 @@
   --teal-bright: #6EE8DB;
   --cream: #FAF5EC;
 
+  /* Chrome / orange card system — sitewide unified card frame (Sept 2026) */
+  --chrome-orange: #FF8C00;
+  --chrome-orange-bright: #FFA733;
+  --chrome-orange-dark: #663c00;
+
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
@@ -368,15 +373,20 @@ section { padding: 64px 0; }
 }
 @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
 .split-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   padding: 32px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: box-shadow 0.25s ease;
 }
+.split-card:hover { box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
 .split-card h3 {
   font-family: var(--font-display);
   font-size: 1.5rem;
   margin: 0 0 10px;
+  color: var(--chrome-orange-bright);
 }
 .split-card p { color: var(--text-muted); margin-bottom: 22px; }
 
@@ -520,13 +530,17 @@ section p {
 .muted { color: var(--text-muted); }
 .mt-0 { margin-top: 0; }
 .card-note {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   padding: 18px 22px;
   font-size: 0.9rem;
   color: var(--text-muted);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: box-shadow 0.25s ease;
 }
+.card-note:hover { box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
 
 /* ---------- Web Design portfolio grid ---------- */
 .web-grid {
@@ -535,13 +549,15 @@ section p {
   gap: 26px;
 }
 .web-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
-.web-card:hover { transform: translateY(-4px); border-color: var(--teal); }
+.web-card:hover { transform: translateY(-4px); box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
 .web-card .thumb-wrap { position: relative; aspect-ratio: 700 / 450; overflow: hidden; }
 .web-card .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .web-badge {
@@ -550,9 +566,9 @@ section p {
   padding: 4px 10px; border-radius: 100px; backdrop-filter: blur(4px);
 }
 .web-badge.mock { background: rgba(62,207,192,0.16); color: var(--teal-bright); border: 1px solid rgba(62,207,192,0.4); }
-.web-badge.live { background: rgba(232,184,75,0.16); color: var(--gold-bright); border: 1px solid rgba(232,184,75,0.4); }
+.web-badge.live { background: rgba(255,140,0,0.16); color: var(--chrome-orange-bright); border: 1px solid rgba(255,140,0,0.4); }
 .web-card .web-body { padding: 16px 18px 20px; }
-.web-card .web-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+.web-card .web-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; color: var(--chrome-orange-bright); }
 .web-card .web-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
 .web-card-empty {
   border: 1px dashed var(--border);
@@ -588,12 +604,15 @@ section p {
   margin-top: 30px;
 }
 .av-module-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   padding: 20px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: box-shadow 0.25s ease;
 }
+.av-module-card:hover { box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
 .av-module-card .av-pill { display: inline-block; margin-bottom: 12px; }
 .av-module-card .av-count { font-family: var(--font-display); font-size: 1.6rem; color: var(--text); margin-bottom: 6px; }
 .av-module-card .av-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
@@ -614,8 +633,7 @@ section p {
 .av-electric .btn-teal:hover { box-shadow: 0 4px 24px rgba(59,130,246,0.45); }
 .av-electric .btn-outline:hover { border-color: #3b82f6; color: #93c5fd; }
 .av-electric .av-count { color: #60a5fa; }
-.av-electric .av-module-card { background: rgba(30,41,59,0.4); border-color: rgba(59,130,246,0.25); backdrop-filter: blur(6px); }
-.av-electric .av-module-card:hover { border-color: #3b82f6; box-shadow: 0 0 0 1px rgba(59,130,246,0.35), 0 10px 26px rgba(59,130,246,0.18); }
+/* Card frame now inherits the unified chrome/orange .av-module-card rule above on every page, including Activity Vault. */
 .av-electric h1 { text-shadow: 0 0 40px rgba(59,130,246,0.45); }
 .av-electric .quote-block { border-left: 3px solid #3b82f6; }
 
@@ -1123,21 +1141,25 @@ section p {
   margin-top: 22px;
 }
 .tool-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   padding: 20px 22px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: box-shadow 0.25s ease;
 }
+.tool-card:hover { box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
 .tool-card-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
-.tool-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+.tool-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--chrome-orange-bright); }
 .tool-tag {
   font-size: 0.66rem;
   text-transform: uppercase;
@@ -1165,12 +1187,18 @@ section p {
 .product-grid-soon { margin-top: 18px; }
 .product-card {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   padding: 22px 22px 24px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: box-shadow 0.25s ease;
+}
+.product-card:hover {
+  box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
 }
 .product-card-soon { opacity: 0.72; }
 .product-badge {
@@ -1183,9 +1211,9 @@ section p {
   border-radius: 100px;
   margin-bottom: 14px;
 }
-.product-badge.live { background: rgba(232,184,75,0.16); color: var(--gold-bright); border: 1px solid rgba(232,184,75,0.4); }
+.product-badge.live { background: rgba(255,140,0,0.16); color: var(--chrome-orange-bright); border: 1px solid rgba(255,140,0,0.4); }
 .product-badge.soon { background: rgba(154,148,136,0.14); color: var(--text-muted); border: 1px solid var(--border); }
-.product-title { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; }
+.product-title { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin-bottom: 8px; color: var(--chrome-orange-bright); }
 .product-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
 .product-card-soon .product-desc { margin-bottom: 0; }
 
@@ -1214,22 +1242,24 @@ section p {
   margin-top: 22px;
 }
 .project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
   border-radius: var(--radius);
   overflow: hidden;
   text-decoration: none;
   color: var(--text);
   display: block;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
-.project-card:hover { transform: translateY(-4px); border-color: var(--teal); }
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25); }
 .project-card .thumb-wrap { position: relative; aspect-ratio: 700 / 450; overflow: hidden; }
 .project-card .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .project-card-body { padding: 16px 18px 20px; }
-.project-card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
+.project-card-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; color: var(--chrome-orange-bright); }
 .project-card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px; }
-.project-card-cta { font-size: 0.82rem; font-weight: 600; color: var(--teal-bright); }
+.project-card-cta { font-size: 0.82rem; font-weight: 600; color: var(--chrome-orange-bright); }
 
 .cs-badge {
   display: inline-block;
@@ -1536,8 +1566,7 @@ section p {
 }
 
 .manuscript-page h1, .manuscript-page h2, .manuscript-page h3, .manuscript-page .build-list-title,
-.manuscript-page .product-title, .manuscript-page .project-card-title,
-.manuscript-page .roadmap-title, .manuscript-page .tool-name {
+.manuscript-page .roadmap-title {
   color: var(--ns-white);
   text-shadow: 0 0 14px rgba(84,172,191,0.55), 0 0 32px rgba(84,172,191,0.25);
 }
@@ -1615,7 +1644,6 @@ section p {
 .manuscript-page .label-gold { color: var(--ns-cyan); text-shadow: 0 0 8px rgba(167,235,242,0.5); }
 .manuscript-page .blog-post-date { color: var(--ns-muted); }
 .manuscript-page .label-teal { color: var(--ns-blue); text-shadow: 0 0 8px rgba(84,172,191,0.5); }
-.manuscript-page .web-title { color: var(--ns-white); }
 .manuscript-page .btn-outline {
   color: var(--ns-white);
   background:
@@ -1649,23 +1677,7 @@ section p {
   .manuscript-page .btn-teal, .manuscript-page .btn-gold { animation: none; box-shadow: 0 0 0 2px rgba(226,251,253,0.8), 0 0 26px rgba(167,235,242,0.7), 0 0 55px rgba(84,172,191,0.55); }
 }
 .manuscript-page .build-list li { border-bottom: 1px solid rgba(84,172,191,0.28); }
-.manuscript-page .card-note {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(226,251,253,0.34), transparent 56%),
-    radial-gradient(circle at 100% 100%, rgba(226,251,253,0.26), transparent 55%),
-    rgba(226,251,253,0.10);
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  border: 1px solid rgba(226,251,253,0.45);
-  box-shadow: 0 0 26px rgba(84,172,191,0.25), 0 8px 20px rgba(0,0,0,0.4);
-  color: var(--ns-white);
-  position: relative;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
-}
-.manuscript-page .card-note:hover {
-  border-color: rgba(0,20,168,0.6);
-  box-shadow: 0 0 24px rgba(0,20,168,0.5), 0 0 55px rgba(0,20,168,0.3), 0 8px 20px rgba(0,0,0,0.4);
-}
+/* .card-note now uses the unified chrome/orange card frame sitewide (see base rule). */
 .manuscript-page .free-gift-thumb, .manuscript-page .split-card-thumb {
   border: 2px solid rgba(84,172,191,0.6);
   box-shadow: 0 0 20px rgba(84,172,191,0.35), 0 6px 16px rgba(0,0,0,0.4);
@@ -1684,18 +1696,8 @@ section p {
 .manuscript-page .glass-frame::after,
 .manuscript-page .surface::before,
 .manuscript-page .surface::after,
-.manuscript-page .split-card::before,
-.manuscript-page .split-card::after,
-.manuscript-page .web-card::before,
-.manuscript-page .web-card::after,
-.manuscript-page .product-card::before,
-.manuscript-page .product-card::after,
-.manuscript-page .project-card::before,
-.manuscript-page .project-card::after,
 .manuscript-page .roadmap-phase::before,
 .manuscript-page .roadmap-phase::after,
-.manuscript-page .tool-card::before,
-.manuscript-page .tool-card::after,
 .manuscript-page .scripture-block::before,
 .manuscript-page .scripture-block::after,
 .manuscript-page .blog-post::before,
@@ -1710,12 +1712,7 @@ section p {
 }
 .manuscript-page .glass-frame::before,
 .manuscript-page .surface::before,
-.manuscript-page .split-card::before,
-.manuscript-page .web-card::before,
-.manuscript-page .product-card::before,
-.manuscript-page .project-card::before,
 .manuscript-page .roadmap-phase::before,
-.manuscript-page .tool-card::before,
 .manuscript-page .scripture-block::before,
 .manuscript-page .blog-post::before {
   top: 6px; left: 6px;
@@ -1724,12 +1721,7 @@ section p {
 }
 .manuscript-page .glass-frame::after,
 .manuscript-page .surface::after,
-.manuscript-page .split-card::after,
-.manuscript-page .web-card::after,
-.manuscript-page .product-card::after,
-.manuscript-page .project-card::after,
 .manuscript-page .roadmap-phase::after,
-.manuscript-page .tool-card::after,
 .manuscript-page .scripture-block::after,
 .manuscript-page .blog-post::after {
   bottom: 6px; right: 6px;
@@ -1746,16 +1738,9 @@ section p {
 /* Glassmorphism — frosted-glass panels, preserved and applied to every card + the hero frame */
 .manuscript-page .glass-frame,
 .manuscript-page .surface,
-.manuscript-page .split-card,
-.manuscript-page .web-card,
-.manuscript-page .av-module-card,
-.manuscript-page .product-card,
-.manuscript-page .project-card,
 .manuscript-page .roadmap-phase,
-.manuscript-page .tool-card,
 .manuscript-page .scripture-block,
-.manuscript-page .blog-post,
-.manuscript-page .nav-destination-card {
+.manuscript-page .blog-post {
   background:
     linear-gradient(115deg, transparent 15%, rgba(255,255,255,0.16) 34%, rgba(255,255,255,0.03) 44%, transparent 60%),
     radial-gradient(circle at 0% 0%, rgba(226,251,253,0.4), transparent 56%),
@@ -1781,33 +1766,38 @@ section p {
   margin: 28px 0 8px;
 }
 .nav-destination-card {
+  background: linear-gradient(160deg, #2a2a2a, #101010 60%);
+  border: 1px solid transparent;
+  border-image: linear-gradient(135deg, var(--chrome-orange-bright), var(--chrome-orange-dark), var(--chrome-orange)) 1;
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   padding: 26px 24px;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
 .nav-destination-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 40px rgba(84,172,191,0.4), 0 12px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(226,251,253,0.28);
+  box-shadow: 0 0 24px rgba(255,140,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
 }
 .nav-destination-card .nav-dest-label {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--ns-white);
+  color: var(--chrome-orange-bright);
   margin-bottom: 8px;
 }
 .nav-destination-card .nav-dest-desc {
   font-size: 0.88rem;
-  color: var(--ns-cyan);
+  color: #f0e6d2;
   line-height: 1.4;
   margin-bottom: 14px;
 }
 .nav-destination-card .nav-dest-arrow {
   margin-top: auto;
   font-weight: 700;
-  color: var(--ns-cyan-bright);
+  color: var(--chrome-orange-bright);
   font-size: 0.9rem;
 }
 
@@ -1882,41 +1872,29 @@ section p {
    faith imagery) — not sampled from actual brand pixels, since
    external live sites can't be screenshotted from here.
    ================================================================== */
-.product-card { border-left: 3px solid transparent; box-shadow: 0 0 16px rgba(84,172,191,0.15); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+/* Legacy per-category left-border accent system replaced by the unified chrome/orange frame above (Sept 2026). */
 
 /* Faith Library — warm wood/oak brown, from shop.html's real wood-bg theme */
-.pc-faithlib { border-left-color: #a85c3a; box-shadow: 0 0 16px rgba(168,92,58,0.22); }
-.pc-faithlib:hover { box-shadow: 0 0 28px rgba(168,92,58,0.4); }
-.pc-faithlib .product-badge.live { background: rgba(168,92,58,0.16); color: #d99a7a; border-color: rgba(168,92,58,0.4); }
+/* Card frame is now unified chrome/orange (see .product-card above). Button below keeps its product-specific color. */
 .pc-faithlib .btn { background: #a85c3a; color: #fff5eb; border-color: #a85c3a; box-shadow: 0 0 14px rgba(168,92,58,0.45); }
 
 /* Activity Vault — electric blue, from activity-vault.html's real av-electric theme */
-.pc-activityvault { border-left-color: #3b82f6; box-shadow: 0 0 16px rgba(59,130,246,0.25); }
-.pc-activityvault:hover { box-shadow: 0 0 30px rgba(59,130,246,0.45); }
-.pc-activityvault .product-badge.live { background: rgba(59,130,246,0.16); color: #7fb4ff; border-color: rgba(59,130,246,0.4); }
+/* Card frame is now unified chrome/orange (see .product-card above). Button below keeps its product-specific color. */
 .pc-activityvault .btn { background: #3b82f6; color: #f4f8ff; border-color: #3b82f6; box-shadow: 0 0 14px rgba(59,130,246,0.5); }
 
 /* Website Builds — terminal green, from websites.html's real browser-chrome tab-dot accent */
-.pc-websites { border-left-color: #39ff14; box-shadow: 0 0 16px rgba(57,255,20,0.2); }
-.pc-websites:hover { box-shadow: 0 0 28px rgba(57,255,20,0.4); }
-.pc-websites .product-badge.live { background: rgba(57,255,20,0.14); color: #6dff4e; border-color: rgba(57,255,20,0.4); }
+/* Card frame is now unified chrome/orange (see .product-card above). Button below keeps its product-specific color. */
 .pc-websites .btn { background: #39ff14; color: #08210a; border-color: #39ff14; box-shadow: 0 0 14px rgba(57,255,20,0.5); }
 
 /* Safe Passage — navy + amber beacon, from the site's own "lighthouse for men navigating storms" framing */
-.pc-safepassage { border-left-color: #d99a3f; box-shadow: 0 0 16px rgba(217,154,63,0.22); }
-.pc-safepassage:hover { box-shadow: 0 0 28px rgba(217,154,63,0.4), inset 0 0 0 1px rgba(84,172,191,0.2); }
-.pc-safepassage .product-badge.live { background: rgba(217,154,63,0.16); color: #f0c078; border-color: rgba(217,154,63,0.4); }
+/* Card frame is now unified chrome/orange (see .product-card above). Button below keeps its product-specific color. */
 .pc-safepassage .btn { background: #d99a3f; color: #2a1a05; border-color: #d99a3f; box-shadow: 0 0 14px rgba(217,154,63,0.5); }
 
 /* Kingdom Radar — indigo + gold, from the site's "radar / intelligence" + faith-content framing */
-.pc-kingdomradar { border-left-color: #8b6fd6; box-shadow: 0 0 16px rgba(139,111,214,0.22); }
-.pc-kingdomradar:hover { box-shadow: 0 0 28px rgba(139,111,214,0.4); }
-.pc-kingdomradar .product-badge.live { background: rgba(139,111,214,0.16); color: #b8a3ec; border-color: rgba(139,111,214,0.4); }
+/* Card frame is now unified chrome/orange (see .product-card above). Button below keeps its product-specific color. */
 .pc-kingdomradar .btn { background: #8b6fd6; color: #f6f3ff; border-color: #8b6fd6; box-shadow: 0 0 14px rgba(139,111,214,0.5); }
 
-.pc-contentpacks { border-left-color: var(--teal); box-shadow: 0 0 16px rgba(62,207,192,0.22); }
-.pc-contentpacks:hover { box-shadow: 0 0 28px rgba(62,207,192,0.4); }
-.pc-contentpacks .product-badge.live { background: rgba(62,207,192,0.16); color: var(--teal-bright); border-color: rgba(62,207,192,0.4); }
+/* Card frame is now unified chrome/orange (see .product-card above). Toggle button below keeps its teal accent. */
 
 .cp-toggle {
   display: flex;
