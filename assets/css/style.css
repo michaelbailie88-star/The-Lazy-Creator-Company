@@ -1679,10 +1679,6 @@ section p {
    card size and never needs updating when content changes. */
 .manuscript-page .surface::before,
 .manuscript-page .surface::after,
-.manuscript-page .split-card::before,
-.manuscript-page .split-card::after,
-.manuscript-page .web-card::before,
-.manuscript-page .web-card::after,
 .manuscript-page .product-card::before,
 .manuscript-page .product-card::after,
 .manuscript-page .project-card::before,
@@ -1704,8 +1700,6 @@ section p {
   filter: drop-shadow(0 0 4px rgba(167,235,242,0.8));
 }
 .manuscript-page .surface::before,
-.manuscript-page .split-card::before,
-.manuscript-page .web-card::before,
 .manuscript-page .product-card::before,
 .manuscript-page .project-card::before,
 .manuscript-page .roadmap-phase::before,
@@ -1717,8 +1711,6 @@ section p {
   border-left: 2px solid var(--ns-cyan);
 }
 .manuscript-page .surface::after,
-.manuscript-page .split-card::after,
-.manuscript-page .web-card::after,
 .manuscript-page .product-card::after,
 .manuscript-page .project-card::after,
 .manuscript-page .roadmap-phase::after,
