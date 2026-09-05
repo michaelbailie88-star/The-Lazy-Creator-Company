@@ -223,36 +223,41 @@
   window.addEventListener('tlc:comet', function () {
     if (!ready()) return;
     var now = actx.currentTime;
-    var dur = 2.2;
+    var dur = 3.6;
 
-    /* airy noise whoosh */
+    /* rushing approach: steady noise through a slowly opening filter,
+       faint at first, swelling as the comet nears, fading past */
     var len = Math.floor(actx.sampleRate * dur);
     var buf = actx.createBuffer(1, len, actx.sampleRate);
     var data = buf.getChannelData(0);
-    for (var i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    for (var i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
     var src = actx.createBufferSource();
     src.buffer = buf;
     var filt = actx.createBiquadFilter();
-    filt.type = 'bandpass';
-    filt.Q.value = 0.9;
-    filt.frequency.setValueAtTime(320, now);
-    filt.frequency.exponentialRampToValueAtTime(2600, now + dur * 0.4);
-    filt.frequency.exponentialRampToValueAtTime(200, now + dur);
+    filt.type = 'lowpass';
+    filt.Q.value = 0.7;
+    filt.frequency.setValueAtTime(340, now);
+    filt.frequency.exponentialRampToValueAtTime(3900, now + dur * 0.68);
+    filt.frequency.exponentialRampToValueAtTime(420, now + dur);
     var gain = actx.createGain();
     gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(0.26, now + dur * 0.25);
+    gain.gain.setValueAtTime(0.0001, now + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.02, now + dur * 0.3);
+    gain.gain.exponentialRampToValueAtTime(0.3, now + dur * 0.68);
     gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
     src.connect(filt); filt.connect(gain); gain.connect(actx.destination);
     src.start();
 
-    /* deep body sweep underneath, so it reads as a passing object */
+    /* deep body swell underneath, rising with the rush */
     var osc = actx.createOscillator();
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(110, now);
-    osc.frequency.exponentialRampToValueAtTime(46, now + dur);
+    osc.frequency.setValueAtTime(64, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + dur * 0.68);
+    osc.frequency.exponentialRampToValueAtTime(40, now + dur);
     var og = actx.createGain();
     og.gain.setValueAtTime(0.0001, now);
-    og.gain.exponentialRampToValueAtTime(0.1, now + dur * 0.3);
+    og.gain.exponentialRampToValueAtTime(0.03, now + dur * 0.3);
+    og.gain.exponentialRampToValueAtTime(0.12, now + dur * 0.68);
     og.gain.exponentialRampToValueAtTime(0.0001, now + dur);
     osc.connect(og); og.connect(actx.destination);
     osc.start(now); osc.stop(now + dur);
