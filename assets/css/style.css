@@ -1948,3 +1948,209 @@ section p { color: var(--muted); max-width: 680px; }
   50% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.85), inset 6px 6px 18px rgba(160, 200, 255, 0.25), 0 0 34px rgba(46, 125, 255, 0.35); }
 }
 @media (prefers-reduced-motion: reduce) { .dist-moon-orbit { animation: none; } }
+
+/* ==========================================================================
+   PER-PAGE COSMIC MOTIFS — one unique live detail per page
+   ========================================================================== */
+.cosmos-motif {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* --- Products: three moons on separate orbits --- */
+.motif-products .mo-orbit {
+  position: absolute;
+  left: 76%; top: 20%;
+  border: 1px solid rgba(94, 162, 255, 0.14);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.motif-products .mo-o1 { width: 190px; height: 190px; animation: mo-spin 18s linear infinite; }
+.motif-products .mo-o2 { width: 300px; height: 300px; animation: mo-spin 32s linear infinite reverse; border-color: rgba(247, 151, 63, 0.14); }
+.motif-products .mo-o3 { width: 420px; height: 420px; animation: mo-spin 50s linear infinite; }
+.motif-products .mo-dot {
+  position: absolute;
+  left: 50%; top: -4px;
+  width: 8px; height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+}
+.mo-blue { background: #BFD9FF; box-shadow: 0 0 14px 4px rgba(94, 162, 255, 0.7); }
+.mo-amber { background: #FFD9AE; box-shadow: 0 0 14px 4px rgba(247, 151, 63, 0.7); width: 10px !important; height: 10px !important; }
+.mo-white { background: #FFFFFF; box-shadow: 0 0 12px 3px rgba(255, 255, 255, 0.7); }
+@keyframes mo-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* --- Websites: a satellite crossing the sky --- */
+.motif-websites .mo-sat {
+  position: absolute;
+  top: 16vh; left: -6vw;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #EAF2FF;
+  box-shadow: 0 0 10px 3px rgba(191, 217, 255, 0.8);
+  animation: mo-sat 24s linear infinite;
+}
+.motif-websites .mo-sat::before {
+  content: "";
+  position: absolute;
+  right: 6px; top: 2px;
+  width: 46px; height: 1px;
+  background: linear-gradient(270deg, rgba(191, 217, 255, 0.5), transparent);
+}
+@keyframes mo-sat {
+  0% { transform: translate(0, 0); opacity: 0; }
+  6% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translate(118vw, 34vh); opacity: 0; }
+}
+
+/* --- Blog: slow falling star streaks --- */
+.motif-blog .mo-fall {
+  position: absolute;
+  top: -12vh;
+  width: 1.5px; height: 74px;
+  background: linear-gradient(180deg, rgba(191, 217, 255, 0.85), transparent);
+  border-radius: 2px;
+  animation: mo-fall 9s linear infinite;
+  opacity: 0;
+}
+.motif-blog .f1 { left: 12%; animation-delay: 0s; }
+.motif-blog .f2 { left: 28%; animation-delay: 2.4s; height: 52px; }
+.motif-blog .f3 { left: 47%; animation-delay: 4.8s; }
+.motif-blog .f4 { left: 63%; animation-delay: 1.2s; height: 60px; }
+.motif-blog .f5 { left: 79%; animation-delay: 6.1s; }
+.motif-blog .f6 { left: 91%; animation-delay: 3.6s; height: 46px; }
+@keyframes mo-fall {
+  0% { transform: translateY(0) rotate(12deg); opacity: 0; }
+  8% { opacity: 0.9; }
+  70% { opacity: 0.5; }
+  100% { transform: translateY(125vh) rotate(12deg); opacity: 0; }
+}
+
+/* --- Resources: expanding ripple rings --- */
+.motif-resources .mo-ripple {
+  position: absolute;
+  left: 50%; top: 26%;
+  width: 120px; height: 120px;
+  border: 1px solid rgba(94, 162, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0.2);
+  animation: mo-ripple 9s ease-out infinite;
+  opacity: 0;
+}
+.motif-resources .r2 { animation-delay: 3s; border-color: rgba(247, 151, 63, 0.4); }
+.motif-resources .r3 { animation-delay: 6s; }
+@keyframes mo-ripple {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(4.2); opacity: 0; }
+}
+
+/* --- Toolbox: drifting asteroid belt --- */
+.motif-toolbox .mo-belt {
+  position: absolute;
+  left: -12vw; top: 58%;
+  width: 130vw; height: 130px;
+  transform: rotate(-6deg);
+  background-image:
+    radial-gradient(circle, rgba(191, 217, 255, 0.55) 1.2px, transparent 1.6px),
+    radial-gradient(circle, rgba(247, 180, 120, 0.4) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.35) 0.8px, transparent 1.2px);
+  background-size: 210px 90px, 150px 70px, 110px 60px;
+  animation: mo-belt 60s linear infinite;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+@keyframes mo-belt { to { background-position: 840px 20px, -600px -14px, 440px 10px; } }
+
+/* --- About: slow aurora ribbons --- */
+.motif-about .mo-aurora {
+  position: absolute;
+  left: -15vw; top: -6vh;
+  width: 130vw; height: 34vh;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+.motif-about .au-a {
+  background: linear-gradient(100deg, transparent 15%, rgba(46, 125, 255, 0.16) 45%, rgba(111, 171, 255, 0.12) 60%, transparent 85%);
+  animation: mo-aurora-a 26s ease-in-out infinite alternate;
+}
+.motif-about .au-b {
+  background: linear-gradient(100deg, transparent 25%, rgba(224, 129, 47, 0.1) 52%, transparent 80%);
+  animation: mo-aurora-b 34s ease-in-out infinite alternate;
+}
+@keyframes mo-aurora-a { to { transform: translateX(7vw) skewX(-6deg) translateY(3vh); } }
+@keyframes mo-aurora-b { to { transform: translateX(-6vw) skewX(5deg) translateY(-2vh); } }
+
+/* --- Contact: signal pings rising from below --- */
+.motif-contact .mo-ping {
+  position: absolute;
+  left: 50%; bottom: 6vh;
+  width: 90px; height: 90px;
+  border: 1px solid rgba(247, 151, 63, 0.55);
+  border-radius: 50%;
+  transform: translate(-50%, 0) scale(0.3);
+  animation: mo-ping 7s ease-out infinite;
+  opacity: 0;
+}
+.motif-contact .p2 { animation-delay: 2.3s; border-color: rgba(94, 162, 255, 0.5); }
+.motif-contact .p3 { animation-delay: 4.6s; }
+@keyframes mo-ping {
+  0% { transform: translate(-50%, 0) scale(0.3); opacity: 0.8; }
+  100% { transform: translate(-50%, -46vh) scale(2.6); opacity: 0; }
+}
+
+/* --- Shop: warm embers rising like prayer candles --- */
+.motif-shop .mo-ember {
+  position: absolute;
+  bottom: -4vh;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #F7B478;
+  box-shadow: 0 0 10px 3px rgba(247, 151, 63, 0.6);
+  animation: mo-ember 11s ease-in infinite;
+  opacity: 0;
+}
+.motif-shop .e1 { left: 8%; animation-delay: 0s; }
+.motif-shop .e2 { left: 19%; animation-delay: 3.2s; }
+.motif-shop .e3 { left: 33%; animation-delay: 6.4s; width: 3px; height: 3px; }
+.motif-shop .e4 { left: 47%; animation-delay: 1.6s; }
+.motif-shop .e5 { left: 58%; animation-delay: 8s; width: 5px; height: 5px; }
+.motif-shop .e6 { left: 70%; animation-delay: 4.4s; }
+.motif-shop .e7 { left: 82%; animation-delay: 2.2s; width: 3px; height: 3px; }
+.motif-shop .e8 { left: 93%; animation-delay: 6.9s; }
+@keyframes mo-ember {
+  0% { transform: translate(0, 0); opacity: 0; }
+  10% { opacity: 0.9; }
+  50% { transform: translate(2.5vw, -52vh); opacity: 0.6; }
+  100% { transform: translate(-1.5vw, -108vh); opacity: 0; }
+}
+
+/* --- Activity Vault: particle swarm --- */
+.motif-vault .mo-swarm {
+  position: absolute;
+  left: 82%; top: 24%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.motif-vault .mo-swarm i {
+  position: absolute;
+  left: 50%; top: -3px;
+  width: 6px; height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: #8FC3FF;
+  box-shadow: 0 0 12px 3px rgba(94, 162, 255, 0.7);
+  display: block;
+}
+.motif-vault .s1 { width: 130px; height: 130px; animation: mo-spin 11s linear infinite; }
+.motif-vault .s2 { width: 210px; height: 210px; animation: mo-spin 17s linear infinite reverse; }
+.motif-vault .s3 { width: 300px; height: 300px; animation: mo-spin 25s linear infinite; }
+.motif-vault .s4 { width: 390px; height: 390px; animation: mo-spin 36s linear infinite reverse; }
+.motif-vault .s4 i { background: #FFD9AE; box-shadow: 0 0 12px 3px rgba(247, 151, 63, 0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmos-motif, .cosmos-motif * { animation: none !important; }
+}

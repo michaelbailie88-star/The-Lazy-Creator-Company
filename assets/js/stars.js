@@ -58,6 +58,27 @@
   }
   document.body.appendChild(nebulae);
 
+  /* Per-page cosmic motif (each page gets its own live detail) */
+  var MOTIFS = {
+    products: '<span class="mo-orbit mo-o1"><i class="mo-dot mo-blue"></i></span><span class="mo-orbit mo-o2"><i class="mo-dot mo-amber"></i></span><span class="mo-orbit mo-o3"><i class="mo-dot mo-white"></i></span>',
+    websites: '<span class="mo-sat"></span>',
+    blog: '<span class="mo-fall f1"></span><span class="mo-fall f2"></span><span class="mo-fall f3"></span><span class="mo-fall f4"></span><span class="mo-fall f5"></span><span class="mo-fall f6"></span>',
+    resources: '<span class="mo-ripple r1"></span><span class="mo-ripple r2"></span><span class="mo-ripple r3"></span>',
+    toolbox: '<div class="mo-belt"></div>',
+    about: '<div class="mo-aurora au-a"></div><div class="mo-aurora au-b"></div>',
+    contact: '<span class="mo-ping p1"></span><span class="mo-ping p2"></span><span class="mo-ping p3"></span>',
+    shop: '<span class="mo-ember e1"></span><span class="mo-ember e2"></span><span class="mo-ember e3"></span><span class="mo-ember e4"></span><span class="mo-ember e5"></span><span class="mo-ember e6"></span><span class="mo-ember e7"></span><span class="mo-ember e8"></span>',
+    vault: '<span class="mo-swarm s1"><i></i></span><span class="mo-swarm s2"><i></i></span><span class="mo-swarm s3"><i></i></span><span class="mo-swarm s4"><i></i></span>'
+  };
+  var motifName = document.body.getAttribute('data-cosmos');
+  if (motifName && MOTIFS[motifName]) {
+    var motif = document.createElement('div');
+    motif.className = 'cosmos-motif motif-' + motifName;
+    motif.setAttribute('aria-hidden', 'true');
+    motif.innerHTML = MOTIFS[motifName];
+    document.body.appendChild(motif);
+  }
+
   var canvas = document.createElement('canvas');
   canvas.className = 'cosmos';
   canvas.setAttribute('aria-hidden', 'true');
