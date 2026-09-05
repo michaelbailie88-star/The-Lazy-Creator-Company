@@ -20,7 +20,7 @@
 
   var ctx = canvas.getContext('2d');
   var W = 0, H = 0, DPR = 1;
-  var stars = [], flares = [], meteors = [], constellations = [];
+  var stars = [], flares = [], meteors = [], constellations = [], dust = [];
   var comet = null;
   var t0 = performance.now();
   var scrollY = 0;
@@ -140,7 +140,7 @@
 
   var nextMeteor = t0 + 1200;
   var nextShower = t0 + 9000 + Math.random() * 8000;
-  var nextComet = t0 + 22000 + Math.random() * 20000;
+  var nextComet = t0 + 9000 + Math.random() * 8000;
 
   function drawStar(s, t, par) {
     var y = ((s.y - par) % (H * 1.4) + H * 1.4) % (H * 1.4) - H * 0.2;
@@ -246,6 +246,76 @@
     ctx.restore();
   }
 
+  /* Stardust burst + meteor catching (Easter egg: click a shooting star) */
+  function burst(x, y, warm) {
+    for (var i = 0; i < 42; i++) {
+      var ang = Math.random() * Math.PI * 2;
+      var sp = 0.6 + Math.random() * 4.4;
+      dust.push({
+        x: x, y: y,
+        vx: Math.cos(ang) * sp,
+        vy: Math.sin(ang) * sp - 0.6,
+        life: 1,
+        decay: 0.012 + Math.random() * 0.02,
+        r: 0.8 + Math.random() * 1.8,
+        c: warm ? (Math.random() < 0.5 ? '247,180,120' : '255,255,255')
+                : (Math.random() < 0.6 ? '191,217,255' : '255,255,255')
+      });
+    }
+  }
+
+  function tryCatch(x, y) {
+    var i, m, dx, dy;
+    for (i = meteors.length - 1; i >= 0; i--) {
+      m = meteors[i];
+      dx = m.x - x; dy = m.y - y;
+      if (dx * dx + dy * dy < 55 * 55) {
+        burst(m.x, m.y, m.warm);
+        meteors.splice(i, 1);
+        window.dispatchEvent(new CustomEvent('tlc:catch'));
+        return true;
+      }
+    }
+    if (comet) {
+      dx = comet.x - x; dy = comet.y - y;
+      if (dx * dx + dy * dy < 75 * 75) {
+        burst(comet.x, comet.y, true);
+        burst(comet.x, comet.y, false);
+        comet = null;
+        window.dispatchEvent(new CustomEvent('tlc:catch'));
+        return true;
+      }
+    }
+    return false;
+  }
+
+  window.addEventListener('pointerdown', function (e) {
+    tryCatch(e.clientX, e.clientY);
+  }, { passive: true });
+
+  /* tiny public hook (also used by automated tests) */
+  window.tlcCosmos = {
+    burst: burst,
+    meteorCount: function () { return meteors.length; }
+  };
+
+  function drawDust() {
+    for (var i = dust.length - 1; i >= 0; i--) {
+      var p = dust[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.035;
+      p.vx *= 0.985; p.vy *= 0.985;
+      p.life -= p.decay;
+      if (p.life <= 0) { dust.splice(i, 1); continue; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(' + p.c + ',' + (p.life * 0.9).toFixed(3) + ')';
+      ctx.shadowColor = 'rgba(' + p.c + ',' + (p.life * 0.8).toFixed(3) + ')';
+      ctx.shadowBlur = 8;
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+  }
+
   function frame(now) {
     var t = (now - t0) / 1000;
     var par = scrollY * 0.08;
@@ -269,7 +339,7 @@
     }
     if (now > nextComet) {
       spawnComet();
-      nextComet = now + 38000 + Math.random() * 30000;
+      nextComet = now + 24000 + Math.random() * 16000;
     }
     for (i = meteors.length - 1; i >= 0; i--) {
       var m = meteors[i];
@@ -281,6 +351,7 @@
       comet.x += comet.vx; comet.y += comet.vy;
       if (comet.x > W + 260) { comet = null; } else { drawComet(comet); }
     }
+    drawDust();
     requestAnimationFrame(frame);
   }
 

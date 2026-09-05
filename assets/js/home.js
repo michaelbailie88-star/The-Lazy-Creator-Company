@@ -214,9 +214,18 @@
     paint();
   });
 
+  function ready() {
+    if (!enabled || !actx) return false;
+    if (actx.state === 'suspended') actx.resume();
+    return true;
+  }
+
   window.addEventListener('tlc:comet', function () {
-    if (!enabled || !actx) return;
-    var dur = 1.6;
+    if (!ready()) return;
+    var now = actx.currentTime;
+    var dur = 2.2;
+
+    /* airy noise whoosh */
     var len = Math.floor(actx.sampleRate * dur);
     var buf = actx.createBuffer(1, len, actx.sampleRate);
     var data = buf.getChannelData(0);
@@ -225,15 +234,43 @@
     src.buffer = buf;
     var filt = actx.createBiquadFilter();
     filt.type = 'bandpass';
-    filt.Q.value = 1.4;
-    filt.frequency.setValueAtTime(280, actx.currentTime);
-    filt.frequency.exponentialRampToValueAtTime(2100, actx.currentTime + dur * 0.45);
-    filt.frequency.exponentialRampToValueAtTime(240, actx.currentTime + dur);
+    filt.Q.value = 0.9;
+    filt.frequency.setValueAtTime(320, now);
+    filt.frequency.exponentialRampToValueAtTime(2600, now + dur * 0.4);
+    filt.frequency.exponentialRampToValueAtTime(200, now + dur);
     var gain = actx.createGain();
-    gain.gain.setValueAtTime(0.0001, actx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.09, actx.currentTime + dur * 0.3);
-    gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + dur);
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.26, now + dur * 0.25);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
     src.connect(filt); filt.connect(gain); gain.connect(actx.destination);
     src.start();
+
+    /* deep body sweep underneath, so it reads as a passing object */
+    var osc = actx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(110, now);
+    osc.frequency.exponentialRampToValueAtTime(46, now + dur);
+    var og = actx.createGain();
+    og.gain.setValueAtTime(0.0001, now);
+    og.gain.exponentialRampToValueAtTime(0.1, now + dur * 0.3);
+    og.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    osc.connect(og); og.connect(actx.destination);
+    osc.start(now); osc.stop(now + dur);
+  });
+
+  /* tiny chime when a visitor catches a shooting star */
+  window.addEventListener('tlc:catch', function () {
+    if (!ready()) return;
+    var now = actx.currentTime;
+    var osc = actx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(1900, now);
+    osc.frequency.exponentialRampToValueAtTime(950, now + 0.22);
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(0.14, now + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+    osc.connect(g); g.connect(actx.destination);
+    osc.start(now); osc.stop(now + 0.32);
   });
 })();
