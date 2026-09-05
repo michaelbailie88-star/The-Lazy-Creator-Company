@@ -11,6 +11,27 @@
   nebulae.className = 'nebulae';
   nebulae.setAttribute('aria-hidden', 'true');
   nebulae.innerHTML = '<div class="nebula nebula-a"></div><div class="nebula nebula-b"></div><div class="nebula nebula-c"></div><div class="nebula nebula-d"></div>';
+  nebulae.insertAdjacentHTML('beforeend', '<div class="dist-planet"><span class="dist-planet-ring"></span></div>');
+
+  /* tiny "stars caught" tally, persists between visits */
+  var caught = 0;
+  try { caught = parseInt(localStorage.getItem('tlc-caught') || '0', 10) || 0; } catch (e) {}
+  var counter = document.createElement('div');
+  counter.className = 'star-counter';
+  counter.setAttribute('data-testid', 'star-counter');
+  document.body.appendChild(counter);
+  function paintCounter() {
+    counter.innerHTML = '\u2726 <b>' + caught + '</b> caught';
+  }
+  paintCounter();
+  function bumpCounter() {
+    caught++;
+    try { localStorage.setItem('tlc-caught', String(caught)); } catch (e) {}
+    paintCounter();
+    counter.classList.remove('pop');
+    void counter.offsetWidth;
+    counter.classList.add('pop');
+  }
   document.body.appendChild(nebulae);
 
   var canvas = document.createElement('canvas');
@@ -272,6 +293,7 @@
       if (dx * dx + dy * dy < 55 * 55) {
         burst(m.x, m.y, m.warm);
         meteors.splice(i, 1);
+        bumpCounter();
         window.dispatchEvent(new CustomEvent('tlc:catch'));
         return true;
       }
@@ -282,6 +304,8 @@
         burst(comet.x, comet.y, true);
         burst(comet.x, comet.y, false);
         comet = null;
+        bumpCounter();
+        bumpCounter();
         window.dispatchEvent(new CustomEvent('tlc:catch'));
         return true;
       }

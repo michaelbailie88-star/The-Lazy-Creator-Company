@@ -1824,3 +1824,64 @@ section p { color: var(--muted); max-width: 680px; }
 @media (prefers-reduced-motion: reduce) {
   .grid-card img, .cover-shelf, .grid-card::before, .shelf-item img { animation: none; }
 }
+
+/* ---------- Distant ringed planet in the background sky ---------- */
+.dist-planet {
+  position: absolute;
+  top: 13vh;
+  right: 8vw;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #35599e 0%, #16294f 48%, #060D1F 82%);
+  box-shadow:
+    inset -14px -12px 26px rgba(4, 6, 12, 0.85),
+    inset 6px 6px 18px rgba(160, 200, 255, 0.25),
+    0 0 34px rgba(46, 125, 255, 0.35);
+  animation: dist-planet-drift 110s ease-in-out infinite alternate;
+}
+.dist-planet-ring {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 168%;
+  height: 40%;
+  transform: translate(-50%, -50%) rotate(-16deg);
+  border-radius: 50%;
+  border: 2px solid rgba(160, 200, 255, 0.28);
+  border-bottom-color: rgba(247, 151, 63, 0.3);
+  box-shadow: 0 0 12px rgba(160, 200, 255, 0.18);
+}
+@keyframes dist-planet-drift {
+  to { transform: translate(-2.5vw, 3vh); }
+}
+
+/* ---------- Tiny stars-caught tally ---------- */
+.star-counter {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 60;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--faint);
+  background: rgba(13, 20, 36, 0.55);
+  border: 1px solid rgba(94, 162, 255, 0.22);
+  border-radius: 999px;
+  padding: 7px 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+.star-counter b { color: var(--amber-bright); font-weight: 500; }
+.star-counter.pop { animation: counter-pop 0.5s var(--ease-out); }
+@keyframes counter-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); box-shadow: 0 0 18px rgba(247, 151, 63, 0.5); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dist-planet { animation: none; }
+  .star-counter.pop { animation: none; }
+}
