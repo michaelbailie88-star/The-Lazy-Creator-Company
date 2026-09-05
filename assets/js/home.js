@@ -240,6 +240,16 @@
     var dur = (e.detail && e.detail.duration) || 14;
     var peak = now + dur * 0.62;   /* closest approach */
 
+    /* stereo field: the comet always travels left -> right, and the sound follows */
+    var pan = actx.createStereoPanner ? actx.createStereoPanner() : null;
+    var out = actx.destination;
+    if (pan) {
+      pan.pan.setValueAtTime(-0.85, now);
+      pan.pan.linearRampToValueAtTime(0.85, now + dur);
+      pan.connect(out);
+      out = pan;
+    }
+
     /* engine drone: two detuned saws beating against each other, doppler pitch
        rising as it nears, dropping away as it passes */
     [0, 0.9].forEach(function (detune) {
@@ -259,7 +269,7 @@
       g.gain.exponentialRampToValueAtTime(0.012, now + dur * 0.3);
       g.gain.exponentialRampToValueAtTime(0.075, peak);
       g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
-      osc.connect(lp); lp.connect(g); g.connect(actx.destination);
+      osc.connect(lp); lp.connect(g); g.connect(out);
       osc.start(now); osc.stop(now + dur);
     });
 
@@ -283,7 +293,7 @@
     gain.gain.exponentialRampToValueAtTime(0.015, now + dur * 0.32);
     gain.gain.exponentialRampToValueAtTime(0.22, peak);
     gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
-    src.connect(filt); filt.connect(gain); gain.connect(actx.destination);
+    src.connect(filt); filt.connect(gain); gain.connect(out);
     src.start();
 
     /* sub rumble that only really arrives when it's close */
@@ -297,7 +307,7 @@
     sg.gain.exponentialRampToValueAtTime(0.008, now + dur * 0.4);
     sg.gain.exponentialRampToValueAtTime(0.11, peak);
     sg.gain.exponentialRampToValueAtTime(0.0001, now + dur);
-    sub.connect(sg); sg.connect(actx.destination);
+    sub.connect(sg); sg.connect(out);
     sub.start(now); sub.stop(now + dur);
   });
 

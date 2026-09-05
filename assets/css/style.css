@@ -2154,3 +2154,24 @@ section p { color: var(--muted); max-width: 680px; }
 @media (prefers-reduced-motion: reduce) {
   .cosmos-motif, .cosmos-motif * { animation: none !important; }
 }
+
+/* ---------- Hero banner polish: editorial left-align + star watermark ---------- */
+.hero .glass-frame { text-align: left; }
+.hero .glass-frame .lede { margin-left: 0; margin-right: auto; }
+.hero .glass-frame .hl-row { justify-content: flex-start; }
+.hero .glass-frame .hero-actions { justify-content: flex-start; }
+.hero .glass-frame::after {
+  content: "\2726";
+  position: absolute;
+  right: 34px; top: 6px;
+  font-size: 4.6rem;
+  line-height: 1;
+  color: rgba(94, 162, 255, 0.12);
+  text-shadow: 0 0 40px rgba(46, 125, 255, 0.3);
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .hero .glass-frame { text-align: center; }
+  .hero .glass-frame .hl-row, .hero .glass-frame .hero-actions { justify-content: center; }
+  .hero .glass-frame::after { font-size: 2.6rem; right: 20px; top: 12px; }
+}
