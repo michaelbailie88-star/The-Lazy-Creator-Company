@@ -1759,3 +1759,68 @@ section p { color: var(--muted); max-width: 680px; }
   background: rgba(217, 119, 43, 0.1);
   box-shadow: 0 0 16px rgba(217, 119, 43, 0.2);
 }
+
+/* ---------- Planet Shop: covers float like moons over the starfield ---------- */
+.grid-card { position: relative; transition: transform 0.5s var(--ease-out); }
+.grid-card::before {
+  content: "";
+  position: absolute;
+  inset: -8% -16% 32%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46, 125, 255, 0.2), transparent 62%);
+  filter: blur(22px);
+  z-index: 0;
+  animation: moon-halo 7s ease-in-out infinite;
+}
+.grid-card:nth-child(3n)::before {
+  background: radial-gradient(circle, rgba(224, 129, 47, 0.16), transparent 62%);
+}
+.grid-card img {
+  position: relative;
+  z-index: 1;
+  animation: moon-float 7s ease-in-out infinite;
+  box-shadow: 0 0 28px rgba(94, 162, 255, 0.32), 0 24px 36px rgba(0, 0, 0, 0.6);
+}
+.grid-card:nth-child(3n + 2) img, .grid-card:nth-child(3n + 2)::before { animation-delay: -2.3s; }
+.grid-card:nth-child(3n) img, .grid-card:nth-child(3n)::before { animation-delay: -4.6s; }
+.grid-card:hover { transform: translateY(-6px); }
+.grid-card:hover img, .grid-card:hover .cover-shelf { transform: none; }
+
+/* The old wooden shelf bar becomes the moon's soft landing shadow */
+.cover-shelf, .manuscript-page .cover-shelf {
+  height: 18px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.6), rgba(46, 125, 255, 0.14) 55%, transparent 75%);
+  box-shadow: none;
+  filter: blur(5px);
+  animation: moon-shadow 7s ease-in-out infinite;
+}
+.grid-card:nth-child(3n + 2) .cover-shelf { animation-delay: -2.3s; }
+.grid-card:nth-child(3n) .cover-shelf { animation-delay: -4.6s; }
+
+/* Shelf carousels (book pages) get the same levitation */
+.shelf-item img {
+  animation: moon-float 8s ease-in-out infinite;
+  box-shadow: 0 0 22px rgba(94, 162, 255, 0.3), 0 16px 28px rgba(0, 0, 0, 0.55);
+}
+.shelf-item:nth-child(2n) img { animation-delay: -2.7s; }
+.shelf-item:nth-child(3n) img { animation-delay: -5.1s; }
+.shelf-item:hover img { animation-play-state: paused; }
+
+@keyframes moon-float {
+  0%, 100% { transform: translateY(0) rotate(-0.6deg); }
+  50% { transform: translateY(-10px) rotate(0.6deg); }
+}
+@keyframes moon-shadow {
+  0%, 100% { transform: scaleX(1); opacity: 0.85; }
+  50% { transform: scaleX(0.8); opacity: 0.45; }
+}
+@keyframes moon-halo {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grid-card img, .cover-shelf, .grid-card::before, .shelf-item img { animation: none; }
+}

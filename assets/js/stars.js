@@ -135,6 +135,7 @@
       vy: 0.35 + Math.random() * 0.25,
       r: 2.6
     };
+    window.dispatchEvent(new CustomEvent('tlc:comet'));
   }
 
   var nextMeteor = t0 + 1200;

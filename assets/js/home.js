@@ -186,3 +186,54 @@
     requestAnimationFrame(tick);
   })();
 })();
+
+/* ---------- Comet whoosh: optional, off by default, toggle in the hero ---------- */
+(function () {
+  var btn = document.querySelector('[data-testid="sound-toggle"]');
+  if (!btn || !window.AudioContext && !window.webkitAudioContext) return;
+
+  var enabled = false;
+  try { enabled = localStorage.getItem('tlc-sound') === 'on'; } catch (e) {}
+  var actx = null;
+
+  function paint() {
+    btn.textContent = enabled ? 'Sound On' : 'Sound Off';
+    btn.classList.toggle('on', enabled);
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+  }
+  paint();
+
+  btn.addEventListener('click', function () {
+    enabled = !enabled;
+    try { localStorage.setItem('tlc-sound', enabled ? 'on' : 'off'); } catch (e) {}
+    if (enabled && !actx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      actx = new AC();
+    }
+    if (actx && actx.state === 'suspended') actx.resume();
+    paint();
+  });
+
+  window.addEventListener('tlc:comet', function () {
+    if (!enabled || !actx) return;
+    var dur = 1.6;
+    var len = Math.floor(actx.sampleRate * dur);
+    var buf = actx.createBuffer(1, len, actx.sampleRate);
+    var data = buf.getChannelData(0);
+    for (var i = 0; i < len; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+    var src = actx.createBufferSource();
+    src.buffer = buf;
+    var filt = actx.createBiquadFilter();
+    filt.type = 'bandpass';
+    filt.Q.value = 1.4;
+    filt.frequency.setValueAtTime(280, actx.currentTime);
+    filt.frequency.exponentialRampToValueAtTime(2100, actx.currentTime + dur * 0.45);
+    filt.frequency.exponentialRampToValueAtTime(240, actx.currentTime + dur);
+    var gain = actx.createGain();
+    gain.gain.setValueAtTime(0.0001, actx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.09, actx.currentTime + dur * 0.3);
+    gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + dur);
+    src.connect(filt); filt.connect(gain); gain.connect(actx.destination);
+    src.start();
+  });
+})();
