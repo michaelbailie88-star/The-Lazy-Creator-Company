@@ -223,10 +223,34 @@
   window.addEventListener('tlc:comet', function () {
     if (!ready()) return;
     var now = actx.currentTime;
-    var dur = 3.6;
+    var dur = 7.5;
+    var peak = now + dur * 0.72;   /* closest approach */
 
-    /* rushing approach: steady noise through a slowly opening filter,
-       faint at first, swelling as the comet nears, fading past */
+    /* engine drone: two detuned saws beating against each other, doppler pitch
+       rising as it nears, dropping away as it passes */
+    [0, 0.9].forEach(function (detune) {
+      var osc = actx.createOscillator();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(38 + detune, now);
+      osc.frequency.linearRampToValueAtTime(92 + detune, peak);
+      osc.frequency.exponentialRampToValueAtTime(30 + detune, now + dur);
+      var lp = actx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(120, now);
+      lp.frequency.exponentialRampToValueAtTime(700, peak);
+      lp.frequency.exponentialRampToValueAtTime(140, now + dur);
+      var g = actx.createGain();
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.setValueAtTime(0.0001, now + 0.1);
+      g.gain.exponentialRampToValueAtTime(0.012, now + dur * 0.3);
+      g.gain.exponentialRampToValueAtTime(0.075, peak);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      osc.connect(lp); lp.connect(g); g.connect(actx.destination);
+      osc.start(now); osc.stop(now + dur);
+    });
+
+    /* rushing air layer: noise through a slowly opening filter, dragging on
+       and swelling with the approach */
     var len = Math.floor(actx.sampleRate * dur);
     var buf = actx.createBuffer(1, len, actx.sampleRate);
     var data = buf.getChannelData(0);
@@ -235,32 +259,32 @@
     src.buffer = buf;
     var filt = actx.createBiquadFilter();
     filt.type = 'lowpass';
-    filt.Q.value = 0.7;
-    filt.frequency.setValueAtTime(340, now);
-    filt.frequency.exponentialRampToValueAtTime(3900, now + dur * 0.68);
-    filt.frequency.exponentialRampToValueAtTime(420, now + dur);
+    filt.Q.value = 0.6;
+    filt.frequency.setValueAtTime(220, now);
+    filt.frequency.exponentialRampToValueAtTime(3400, peak);
+    filt.frequency.exponentialRampToValueAtTime(300, now + dur);
     var gain = actx.createGain();
     gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.setValueAtTime(0.0001, now + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.02, now + dur * 0.3);
-    gain.gain.exponentialRampToValueAtTime(0.3, now + dur * 0.68);
+    gain.gain.setValueAtTime(0.0001, now + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.015, now + dur * 0.32);
+    gain.gain.exponentialRampToValueAtTime(0.22, peak);
     gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
     src.connect(filt); filt.connect(gain); gain.connect(actx.destination);
     src.start();
 
-    /* deep body swell underneath, rising with the rush */
-    var osc = actx.createOscillator();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(64, now);
-    osc.frequency.exponentialRampToValueAtTime(120, now + dur * 0.68);
-    osc.frequency.exponentialRampToValueAtTime(40, now + dur);
-    var og = actx.createGain();
-    og.gain.setValueAtTime(0.0001, now);
-    og.gain.exponentialRampToValueAtTime(0.03, now + dur * 0.3);
-    og.gain.exponentialRampToValueAtTime(0.12, now + dur * 0.68);
-    og.gain.exponentialRampToValueAtTime(0.0001, now + dur);
-    osc.connect(og); og.connect(actx.destination);
-    osc.start(now); osc.stop(now + dur);
+    /* sub rumble that only really arrives when it's close */
+    var sub = actx.createOscillator();
+    sub.type = 'sine';
+    sub.frequency.setValueAtTime(30, now);
+    sub.frequency.linearRampToValueAtTime(52, peak);
+    sub.frequency.exponentialRampToValueAtTime(24, now + dur);
+    var sg = actx.createGain();
+    sg.gain.setValueAtTime(0.0001, now);
+    sg.gain.exponentialRampToValueAtTime(0.008, now + dur * 0.4);
+    sg.gain.exponentialRampToValueAtTime(0.11, peak);
+    sg.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    sub.connect(sg); sg.connect(actx.destination);
+    sub.start(now); sub.stop(now + dur);
   });
 
   /* tiny chime when a visitor catches a shooting star */
