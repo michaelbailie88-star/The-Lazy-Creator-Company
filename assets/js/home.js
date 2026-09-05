@@ -233,11 +233,12 @@
   }
 
 
-  window.addEventListener('tlc:comet', function () {
+  window.addEventListener('tlc:comet', function (e) {
     if (!ready()) return;
     var now = actx.currentTime;
-    var dur = 7.5;
-    var peak = now + dur * 0.72;   /* closest approach */
+    /* persist for the comet's full crossing of the page */
+    var dur = (e.detail && e.detail.duration) || 14;
+    var peak = now + dur * 0.62;   /* closest approach */
 
     /* engine drone: two detuned saws beating against each other, doppler pitch
        rising as it nears, dropping away as it passes */

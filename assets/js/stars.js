@@ -173,19 +173,22 @@
   }
 
   function spawnComet() {
+    var vx = 1.5 + Math.random() * 0.7;
     comet = {
       x: -160,
       y: H * (0.12 + Math.random() * 0.2),
-      vx: 1.5 + Math.random() * 0.7,
+      vx: vx,
       vy: 0.35 + Math.random() * 0.25,
       r: 2.6
     };
-    window.dispatchEvent(new CustomEvent('tlc:comet'));
+    /* how long the comet actually takes to cross the whole viewport */
+    var crossing = (W + 420) / (vx * 60);
+    window.dispatchEvent(new CustomEvent('tlc:comet', { detail: { duration: crossing } }));
   }
 
   var nextMeteor = t0 + 1200;
   var nextShower = t0 + 9000 + Math.random() * 8000;
-  var nextComet = t0 + 10000 + Math.random() * 2000;
+  var nextComet = t0 + 7000;
 
   function drawStar(s, t, par) {
     var y = ((s.y - par) % (H * 1.4) + H * 1.4) % (H * 1.4) - H * 0.2;
@@ -389,7 +392,7 @@
     }
     if (now > nextComet) {
       spawnComet();
-      nextComet = now + 10000 + Math.random() * 2000;
+      nextComet = now + 23000 + Math.random() * 4000;
     }
     for (i = meteors.length - 1; i >= 0; i--) {
       var m = meteors[i];
