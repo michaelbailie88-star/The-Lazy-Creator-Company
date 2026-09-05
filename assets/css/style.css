@@ -1730,3 +1730,32 @@ section p { color: var(--muted); max-width: 680px; }
 /* Hotter core nebulae site-wide */
 .nebula-a { background: radial-gradient(circle, rgba(46, 125, 255, 0.27), transparent 62%); }
 .nebula-c { background: radial-gradient(circle, rgba(224, 129, 47, 0.15), transparent 62%); }
+
+/* ---------- Highlight chips (hero stat strips) ---------- */
+.hl-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 26px;
+}
+.hl-chip {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 162, 255, 0.4);
+  color: var(--blue-bright);
+  background: rgba(46, 125, 255, 0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 16px rgba(46, 125, 255, 0.18);
+}
+.hl-chip:nth-child(even) {
+  border-color: rgba(240, 138, 60, 0.45);
+  color: var(--amber-bright);
+  background: rgba(217, 119, 43, 0.1);
+  box-shadow: 0 0 16px rgba(217, 119, 43, 0.2);
+}

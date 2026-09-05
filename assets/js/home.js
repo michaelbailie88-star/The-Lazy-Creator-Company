@@ -141,3 +141,48 @@
     boot();
   }
 })();
+
+/* ---------- Cursor comet: soft glowing tail follows the pointer in the hero ---------- */
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  var wrap = document.createElement('div');
+  wrap.className = 'cursor-comet';
+  wrap.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(wrap);
+
+  var N = 7, dots = [];
+  for (var i = 0; i < N; i++) {
+    var s = document.createElement('span');
+    var size = 30 - i * 3.4;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    wrap.appendChild(s);
+    dots.push({ el: s, x: -100, y: -100, size: size });
+  }
+
+  var mx = -100, my = -100, active = false;
+  window.addEventListener('mousemove', function (e) {
+    mx = e.clientX; my = e.clientY; active = true;
+    var hot = e.target && e.target.closest && e.target.closest('.btn-amber, .btn-ghost');
+    wrap.classList.toggle('hot', !!hot);
+  }, { passive: true });
+  document.documentElement.addEventListener('mouseleave', function () { active = false; });
+
+  (function tick() {
+    var px = mx, py = my;
+    for (var i = 0; i < N; i++) {
+      var d = dots[i];
+      d.x += (px - d.x) * 0.38;
+      d.y += (py - d.y) * 0.38;
+      d.el.style.transform = 'translate(' + (d.x - d.size / 2) + 'px,' + (d.y - d.size / 2) + 'px)';
+      px = d.x; py = d.y;
+    }
+    var inHero = window.scrollY < hero.offsetHeight * 0.85;
+    wrap.classList.toggle('on', active && inHero);
+    requestAnimationFrame(tick);
+  })();
+})();
