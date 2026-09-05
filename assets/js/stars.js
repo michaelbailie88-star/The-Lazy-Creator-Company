@@ -11,11 +11,23 @@
   nebulae.className = 'nebulae';
   nebulae.setAttribute('aria-hidden', 'true');
   nebulae.innerHTML = '<div class="nebula nebula-a"></div><div class="nebula nebula-b"></div><div class="nebula nebula-c"></div><div class="nebula nebula-d"></div>';
-  nebulae.insertAdjacentHTML('beforeend', '<div class="dist-planet"><span class="dist-planet-ring"></span></div>');
+  nebulae.insertAdjacentHTML('beforeend', '<div class="dist-planet"><span class="dist-planet-ring"></span><span class="dist-moon-orbit"><span class="dist-moon"></span></span></div>');
 
   /* tiny "stars caught" tally, persists between visits */
   var caught = 0;
   try { caught = parseInt(localStorage.getItem('tlc-caught') || '0', 10) || 0; } catch (e) {}
+  /* Constellation reward: unlocked forever at 10 caught stars */
+  var reward = null;
+  var unlocked = false;
+  try { unlocked = localStorage.getItem('tlc-constellation') === 'the-builders-dipper'; } catch (e) {}
+  function buildReward() {
+    reward = {
+      pts: [[0.16, 0.30], [0.20, 0.22], [0.25, 0.18], [0.30, 0.24], [0.28, 0.33], [0.22, 0.38], [0.17, 0.35]],
+      name: "THE BUILDER'S DIPPER"
+    };
+  }
+  if (unlocked) buildReward();
+
   var counter = document.createElement('div');
   counter.className = 'star-counter';
   counter.setAttribute('data-testid', 'star-counter');
@@ -26,6 +38,18 @@
   paintCounter();
   function bumpCounter() {
     caught++;
+    if (caught >= 10 && !unlocked) {
+      unlocked = true;
+      try { localStorage.setItem('tlc-constellation', 'the-builders-dipper'); } catch (e) {}
+      buildReward();
+      var toast = document.createElement('div');
+      toast.className = 'constellation-toast';
+      toast.setAttribute('data-testid', 'constellation-toast');
+      toast.innerHTML = '\u2726 Constellation unlocked: <b>The Builder\'s Dipper</b>';
+      document.body.appendChild(toast);
+      setTimeout(function () { toast.classList.add('show'); }, 30);
+      setTimeout(function () { toast.classList.remove('show'); }, 5200);
+    }
     try { localStorage.setItem('tlc-caught', String(caught)); } catch (e) {}
     paintCounter();
     counter.classList.remove('pop');
@@ -320,7 +344,9 @@
   /* tiny public hook (also used by automated tests) */
   window.tlcCosmos = {
     burst: burst,
-    meteorCount: function () { return meteors.length; }
+    meteorCount: function () { return meteors.length; },
+    firstMeteor: function () { return meteors.length ? { x: meteors[0].x, y: meteors[0].y } : null; },
+    caught: function () { return caught; }
   };
 
   function drawDust() {
@@ -374,6 +400,31 @@
     if (comet) {
       comet.x += comet.vx; comet.y += comet.vy;
       if (comet.x > W + 260) { comet = null; } else { drawComet(comet); }
+    }
+    if (reward) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(247, 180, 120, 0.3)';
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      var rp = reward.pts.map(function (q) { return [q[0] * W, q[1] * H]; });
+      for (var ri = 0; ri < rp.length; ri++) {
+        if (ri === 0) ctx.moveTo(rp[0][0], rp[0][1]); else ctx.lineTo(rp[ri][0], rp[ri][1]);
+      }
+      ctx.stroke();
+      for (ri = 0; ri < rp.length; ri++) {
+        var twk = 0.7 + 0.3 * Math.sin(t * 0.9 + ri);
+        ctx.beginPath();
+        ctx.arc(rp[ri][0], rp[ri][1], 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 226, 190,' + (0.85 * twk).toFixed(3) + ')';
+        ctx.shadowColor = 'rgba(247, 180, 120, 0.9)';
+        ctx.shadowBlur = 12;
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+      ctx.font = '10px "IBM Plex Mono", monospace';
+      ctx.fillStyle = 'rgba(247, 180, 120, 0.55)';
+      ctx.fillText(reward.name, rp[0][0], rp[0][1] + 26);
+      ctx.restore();
     }
     drawDust();
     requestAnimationFrame(frame);

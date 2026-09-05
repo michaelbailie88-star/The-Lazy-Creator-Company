@@ -1191,3 +1191,103 @@ a { color: inherit; text-decoration: none; }
   .dist-planet { animation: none; }
   .star-counter.pop { animation: none; }
 }
+
+/* ---------- Constellation reward toast ---------- */
+.constellation-toast {
+  position: fixed;
+  left: 50%; bottom: 70px;
+  transform: translate(-50%, 24px);
+  z-index: 80;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber-bright);
+  background: rgba(13, 20, 36, 0.85);
+  border: 1px solid rgba(247, 151, 63, 0.5);
+  border-radius: 999px;
+  padding: 12px 26px;
+  box-shadow: 0 0 30px rgba(224, 129, 47, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.constellation-toast.show { opacity: 1; transform: translate(-50%, 0); }
+.constellation-toast b { color: #FFD9AE; }
+
+/* ---------- Distant planet: orbiting moon + synced glow ---------- */
+.dist-planet { animation: dist-planet-drift 110s ease-in-out infinite alternate, dist-planet-glow 26s linear infinite; }
+.dist-moon-orbit {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 210%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  animation: dist-moon-spin 26s linear infinite;
+  pointer-events: none;
+}
+.dist-moon {
+  position: absolute;
+  left: 50%; top: -4px;
+  width: 9px; height: 9px;
+  margin-left: -4.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #EAF2FF 0%, #8FB6F5 60%, rgba(143, 182, 245, 0) 100%);
+  box-shadow: 0 0 12px 3px rgba(160, 200, 255, 0.7);
+}
+@keyframes dist-moon-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes dist-planet-glow {
+  0%, 100% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.85), inset 6px 6px 18px rgba(160, 200, 255, 0.25), 0 0 34px rgba(46, 125, 255, 0.35); }
+  25% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.7), inset 6px 6px 20px rgba(191, 217, 255, 0.45), 0 0 60px rgba(94, 162, 255, 0.6), 0 0 110px rgba(46, 125, 255, 0.3); }
+  50% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.85), inset 6px 6px 18px rgba(160, 200, 255, 0.25), 0 0 34px rgba(46, 125, 255, 0.35); }
+}
+@media (prefers-reduced-motion: reduce) { .dist-moon-orbit { animation: none; } }
+
+/* ---------- Universe Tour rail ---------- */
+.tour-rail {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.tour-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(94, 162, 255, 0.45);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.tour-dot:hover { transform: scale(1.5); border-color: var(--blue-bright); }
+.tour-dot.active {
+  background: var(--amber-bright);
+  border-color: var(--amber-bright);
+  box-shadow: 0 0 12px rgba(247, 151, 63, 0.8);
+  transform: scale(1.35);
+}
+.tour-label {
+  position: absolute;
+  right: 22px;
+  top: -8px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--amber-bright);
+  writing-mode: vertical-rl;
+  opacity: 0.85;
+  pointer-events: none;
+}
+@media (max-width: 900px) { .tour-rail { display: none; } }

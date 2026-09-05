@@ -1885,3 +1885,66 @@ section p { color: var(--muted); max-width: 680px; }
   .dist-planet { animation: none; }
   .star-counter.pop { animation: none; }
 }
+
+/* ---------- Kinetic masked hero titles (inner pages) ---------- */
+.kt-mask { overflow: hidden; display: block; padding: 0.08em 0; margin: -0.08em 0 18px; }
+.kt-line { display: block; animation: kt-rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; will-change: transform; }
+@keyframes kt-rise { from { transform: translateY(118%); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .kt-line { animation: none; } }
+
+/* ---------- Constellation reward toast ---------- */
+.constellation-toast {
+  position: fixed;
+  left: 50%; bottom: 70px;
+  transform: translate(-50%, 24px);
+  z-index: 80;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber-bright);
+  background: rgba(13, 20, 36, 0.85);
+  border: 1px solid rgba(247, 151, 63, 0.5);
+  border-radius: 999px;
+  padding: 12px 26px;
+  box-shadow: 0 0 30px rgba(224, 129, 47, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.constellation-toast.show { opacity: 1; transform: translate(-50%, 0); }
+.constellation-toast b { color: #FFD9AE; }
+
+/* ---------- Distant planet: orbiting moon + synced glow ---------- */
+.dist-planet { animation: dist-planet-drift 110s ease-in-out infinite alternate, dist-planet-glow 26s linear infinite; }
+.dist-moon-orbit {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 210%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  animation: dist-moon-spin 26s linear infinite;
+  pointer-events: none;
+}
+.dist-moon {
+  position: absolute;
+  left: 50%; top: -4px;
+  width: 9px; height: 9px;
+  margin-left: -4.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #EAF2FF 0%, #8FB6F5 60%, rgba(143, 182, 245, 0) 100%);
+  box-shadow: 0 0 12px 3px rgba(160, 200, 255, 0.7);
+}
+@keyframes dist-moon-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes dist-planet-glow {
+  0%, 100% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.85), inset 6px 6px 18px rgba(160, 200, 255, 0.25), 0 0 34px rgba(46, 125, 255, 0.35); }
+  25% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.7), inset 6px 6px 20px rgba(191, 217, 255, 0.45), 0 0 60px rgba(94, 162, 255, 0.6), 0 0 110px rgba(46, 125, 255, 0.3); }
+  50% { box-shadow: inset -14px -12px 26px rgba(4, 6, 12, 0.85), inset 6px 6px 18px rgba(160, 200, 255, 0.25), 0 0 34px rgba(46, 125, 255, 0.35); }
+}
+@media (prefers-reduced-motion: reduce) { .dist-moon-orbit { animation: none; } }

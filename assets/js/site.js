@@ -14,6 +14,13 @@
     requestAnimationFrame(raf);
   }
 
+  /* Kinetic hero titles: masked rise, same signature as the homepage */
+  var heroH1 = document.querySelector('.hero h1');
+  if (heroH1 && !heroH1.classList.contains('kt-done')) {
+    heroH1.classList.add('kt-mask', 'kt-done');
+    heroH1.innerHTML = '<span class="kt-line">' + heroH1.innerHTML + '</span>';
+  }
+
   /* Scroll reveals: tag key blocks, then fade them up as they enter */
   var selector = [
     '.hero h1', '.hero .lede', '.hero-actions',

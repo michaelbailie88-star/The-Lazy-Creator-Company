@@ -11,6 +11,7 @@
   var lenis = null;
   if (!reduced && window.Lenis) {
     lenis = new window.Lenis({ duration: 1.15, smoothWheel: true });
+    window.__tlcLenis = lenis;
     var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
     requestAnimationFrame(raf);
   }
@@ -206,19 +207,31 @@
   btn.addEventListener('click', function () {
     enabled = !enabled;
     try { localStorage.setItem('tlc-sound', enabled ? 'on' : 'off'); } catch (e) {}
-    if (enabled && !actx) {
-      var AC = window.AudioContext || window.webkitAudioContext;
-      actx = new AC();
-    }
-    if (actx && actx.state === 'suspended') actx.resume();
+    if (enabled) ensureCtx();
     paint();
   });
 
-  function ready() {
-    if (!enabled || !actx) return false;
+  /* Browsers suspend audio until a gesture: nudge resume on any interaction */
+  window.addEventListener('pointerdown', function () {
+    if (actx && actx.state === 'suspended') actx.resume();
+  });
+
+  function ensureCtx() {
+    if (!actx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      actx = new AC();
+    }
     if (actx.state === 'suspended') actx.resume();
+  }
+
+  /* FIX: on return visits the saved "Sound On" never recreated the audio
+     engine, so comets played into a null context = silence. Create lazily. */
+  function ready() {
+    if (!enabled) return false;
+    ensureCtx();
     return true;
   }
+
 
   window.addEventListener('tlc:comet', function () {
     if (!ready()) return;
@@ -302,4 +315,46 @@
     osc.connect(g); g.connect(actx.destination);
     osc.start(now); osc.stop(now + 0.32);
   });
+})();
+
+
+/* ---------- Universe Tour: chapter rail on the right edge ---------- */
+(function () {
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.hero, .chapter[id]'));
+  if (chapters.length < 3) return;
+
+  var rail = document.createElement('nav');
+  rail.className = 'tour-rail';
+  rail.setAttribute('aria-label', 'Chapters');
+  rail.setAttribute('data-testid', 'tour-rail');
+  var label = document.createElement('span');
+  label.className = 'tour-label';
+  rail.appendChild(label);
+
+  var dots = chapters.map(function (sec, i) {
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'tour-dot';
+    var name = sec.classList.contains('hero') ? 'Launch'
+      : (sec.querySelector('.chapter-label') || {}).textContent || ('Chapter ' + i);
+    dot.setAttribute('aria-label', name);
+    dot.setAttribute('data-name', name);
+    dot.addEventListener('click', function () {
+      if (window.__tlcLenis) window.__tlcLenis.scrollTo(sec);
+      else sec.scrollIntoView({ behavior: 'smooth' });
+    });
+    rail.appendChild(dot);
+    return dot;
+  });
+  document.body.appendChild(rail);
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var i = chapters.indexOf(en.target);
+      dots.forEach(function (d, j) { d.classList.toggle('active', j === i); });
+      label.textContent = dots[i].getAttribute('data-name');
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  chapters.forEach(function (sec) { io.observe(sec); });
 })();
