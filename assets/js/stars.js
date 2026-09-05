@@ -185,7 +185,7 @@
 
   var nextMeteor = t0 + 1200;
   var nextShower = t0 + 9000 + Math.random() * 8000;
-  var nextComet = t0 + 9000 + Math.random() * 8000;
+  var nextComet = t0 + 10000 + Math.random() * 2000;
 
   function drawStar(s, t, par) {
     var y = ((s.y - par) % (H * 1.4) + H * 1.4) % (H * 1.4) - H * 0.2;
@@ -378,7 +378,7 @@
 
     if (now > nextMeteor) {
       spawnMeteor(false);
-      nextMeteor = now + 2600 + Math.random() * 4200;
+      nextMeteor = now + 4400 + Math.random() * 1400;
     }
     if (now > nextShower) {
       var burst = 3 + Math.floor(Math.random() * 4);
@@ -389,7 +389,7 @@
     }
     if (now > nextComet) {
       spawnComet();
-      nextComet = now + 24000 + Math.random() * 16000;
+      nextComet = now + 10000 + Math.random() * 2000;
     }
     for (i = meteors.length - 1; i >= 0; i--) {
       var m = meteors[i];
