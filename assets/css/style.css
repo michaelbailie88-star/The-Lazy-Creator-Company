@@ -67,13 +67,13 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: hidden; background: #04060C; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
 body {
   margin: 0;
-  background: var(--black);
+  background: transparent;
   color: var(--text);
   font-family: var(--font-body);
   font-weight: 300;
@@ -753,8 +753,7 @@ section p { color: var(--muted); max-width: 680px; }
   background:
     radial-gradient(ellipse 60% 40% at 22% 0%, rgba(46, 125, 255, 0.28) 0%, transparent 65%),
     radial-gradient(ellipse 60% 40% at 78% 10%, rgba(94, 162, 255, 0.16) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(46, 125, 255, 0.14) 0%, transparent 65%),
-    var(--black) !important;
+    radial-gradient(ellipse 70% 45% at 50% 100%, rgba(46, 125, 255, 0.14) 0%, transparent 65%) !important;
 }
 .av-electric .section-label { color: var(--blue-bright); }
 .av-electric .av-module-card { background: rgba(13, 22, 44, 0.55); border-color: rgba(94, 162, 255, 0.25); }
@@ -876,7 +875,7 @@ section p { color: var(--muted); max-width: 680px; }
 
 /* ---------- Themed page backgrounds -> black canvas + accent glows ---------- */
 .wood-bg, .gold-bg, .sunrise-bg {
-  background-color: var(--black);
+  background-color: transparent;
   background-image:
     radial-gradient(ellipse 700px 420px at 50% -6%, rgba(217, 119, 43, 0.16) 0%, transparent 68%),
     radial-gradient(ellipse 620px 420px at 90% 30%, rgba(46, 125, 255, 0.1) 0%, transparent 70%),
@@ -884,7 +883,7 @@ section p { color: var(--muted); max-width: 680px; }
   background-attachment: fixed;
 }
 .frost-bg {
-  background-color: var(--black);
+  background-color: transparent;
   background-image:
     radial-gradient(ellipse 700px 460px at 50% -6%, rgba(46, 125, 255, 0.2) 0%, transparent 68%),
     radial-gradient(ellipse 620px 420px at 90% 40%, rgba(94, 162, 255, 0.1) 0%, transparent 70%);
@@ -920,7 +919,7 @@ section p { color: var(--muted); max-width: 680px; }
 .crown-watermark { display: block; width: 100%; height: auto; }
 
 /* ---------- Contact page: faded iMessage thread background ---------- */
-.imessage-page { position: relative; background: var(--black); }
+.imessage-page { position: relative; background: transparent; }
 .imessage-bg {
   position: absolute;
   top: 0; left: 0;
@@ -947,7 +946,7 @@ section p { color: var(--muted); max-width: 680px; }
 .imessage-page .hero, .imessage-page .site-footer, .imessage-page nav { position: relative; z-index: 1; }
 
 /* ---------- Websites page: dark desktop + browser chrome ---------- */
-.desktop-bg { background-color: var(--black); background-image: none; }
+.desktop-bg { background-color: transparent; background-image: none; }
 .desktop-bg h2, .desktop-bg .section-title, .desktop-bg .quote-text,
 .desktop-bg .form-fieldset legend, .desktop-bg .form-row label { color: var(--white); }
 .desktop-bg .section-intro, .desktop-bg .form-row .field-hint,
@@ -1308,7 +1307,7 @@ section p { color: var(--muted); max-width: 680px; }
    frosted glass cards. (No photography.)
    ================================================================== */
 .manuscript-page {
-  background-color: var(--black);
+  background-color: transparent;
   background-image:
     linear-gradient(rgba(46, 125, 255, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(46, 125, 255, 0.045) 1px, transparent 1px);
@@ -1324,8 +1323,7 @@ section p { color: var(--muted); max-width: 680px; }
   background:
     radial-gradient(ellipse 800px 480px at 20% -4%, rgba(46, 125, 255, 0.16) 0%, transparent 68%),
     radial-gradient(ellipse 700px 460px at 88% 26%, rgba(46, 125, 255, 0.1) 0%, transparent 70%),
-    radial-gradient(ellipse 700px 460px at 10% 78%, rgba(217, 119, 43, 0.07) 0%, transparent 70%),
-    var(--black);
+    radial-gradient(ellipse 700px 460px at 10% 78%, rgba(217, 119, 43, 0.07) 0%, transparent 70%);
 }
 .manuscript-page::after { display: none; }
 .metallic-glass.manuscript-page::before,
@@ -1624,7 +1622,7 @@ section p { color: var(--muted); max-width: 680px; }
    METALLIC GLASS (About page) — electric blue chrome text + glass.
    ================================================================== */
 .metallic-glass {
-  background-color: var(--black);
+  background-color: transparent;
   background-image:
     radial-gradient(ellipse 800px 500px at 50% -6%, rgba(46, 125, 255, 0.18) 0%, transparent 68%),
     radial-gradient(ellipse 640px 420px at 92% 34%, rgba(94, 162, 255, 0.1) 0%, transparent 70%),
@@ -1679,3 +1677,41 @@ section p { color: var(--muted); max-width: 680px; }
 @media (prefers-reduced-motion: reduce) {
   .rvl { opacity: 1; transform: none; transition: none; }
 }
+
+
+/* ---------- Cosmos layer (stars + nebulae, injected by stars.js) ---------- */
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.nebulae { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+.nebula-a {
+  width: 72vw; height: 72vw;
+  top: -28vw; left: -22vw;
+  background: radial-gradient(circle, rgba(46, 125, 255, 0.22), transparent 62%);
+  animation: nebula-drift-a 70s ease-in-out infinite alternate;
+}
+.nebula-b {
+  width: 58vw; height: 58vw;
+  top: 6vh; right: -26vw;
+  background: radial-gradient(circle, rgba(94, 162, 255, 0.14), transparent 64%);
+  animation: nebula-drift-b 90s ease-in-out infinite alternate;
+}
+.nebula-c {
+  width: 66vw; height: 66vw;
+  bottom: -32vw; left: 12vw;
+  background: radial-gradient(circle, rgba(224, 129, 47, 0.12), transparent 62%);
+  animation: nebula-drift-c 80s ease-in-out infinite alternate;
+}
+@keyframes nebula-drift-a { to { transform: translate(6vw, 4vh) scale(1.08); } }
+@keyframes nebula-drift-b { to { transform: translate(-5vw, 6vh) scale(1.1); } }
+@keyframes nebula-drift-c { to { transform: translate(4vw, -5vh) scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { .nebula { animation: none; } }

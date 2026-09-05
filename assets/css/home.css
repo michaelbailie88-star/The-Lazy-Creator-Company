@@ -31,13 +31,13 @@
 }
 
 * { box-sizing: border-box; }
-html { overflow-x: hidden; }
+html { overflow-x: hidden; background: #04060C; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
 body {
   margin: 0;
-  background: var(--black);
+  background: transparent;
   color: var(--white);
   font-family: var(--font-body);
   font-weight: 300;
@@ -970,3 +970,40 @@ a { color: inherit; text-decoration: none; }
 }
 
 .marquee-run i { text-shadow: 0 0 14px rgba(247, 151, 63, 0.7); }
+
+/* ---------- Cosmos layer (stars + nebulae, injected by stars.js) ---------- */
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.nebulae { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+.nebula-a {
+  width: 72vw; height: 72vw;
+  top: -28vw; left: -22vw;
+  background: radial-gradient(circle, rgba(46, 125, 255, 0.22), transparent 62%);
+  animation: nebula-drift-a 70s ease-in-out infinite alternate;
+}
+.nebula-b {
+  width: 58vw; height: 58vw;
+  top: 6vh; right: -26vw;
+  background: radial-gradient(circle, rgba(94, 162, 255, 0.14), transparent 64%);
+  animation: nebula-drift-b 90s ease-in-out infinite alternate;
+}
+.nebula-c {
+  width: 66vw; height: 66vw;
+  bottom: -32vw; left: 12vw;
+  background: radial-gradient(circle, rgba(224, 129, 47, 0.12), transparent 62%);
+  animation: nebula-drift-c 80s ease-in-out infinite alternate;
+}
+@keyframes nebula-drift-a { to { transform: translate(6vw, 4vh) scale(1.08); } }
+@keyframes nebula-drift-b { to { transform: translate(-5vw, 6vh) scale(1.1); } }
+@keyframes nebula-drift-c { to { transform: translate(4vw, -5vh) scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { .nebula { animation: none; } }
