@@ -1007,3 +1007,67 @@ a { color: inherit; text-decoration: none; }
 @keyframes nebula-drift-b { to { transform: translate(-5vw, 6vh) scale(1.1); } }
 @keyframes nebula-drift-c { to { transform: translate(4vw, -5vh) scale(1.06); } }
 @media (prefers-reduced-motion: reduce) { .nebula { animation: none; } }
+
+/* ---------- The Digital Product Planet ---------- */
+.hero-planet {
+  position: absolute;
+  left: 50%;
+  bottom: -46vmin;
+  width: 104vmin;
+  height: 104vmin;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 12%, rgba(247, 151, 63, 0.22), transparent 34%),
+    radial-gradient(circle at 50% 8%, #1B4396 0%, #0E2452 26%, #081430 52%, #04060C 78%);
+  box-shadow:
+    0 -40px 160px rgba(46, 125, 255, 0.5),
+    0 -12px 70px rgba(111, 171, 255, 0.45),
+    inset 0 44px 110px rgba(140, 190, 255, 0.35),
+    inset 24px 20px 90px rgba(247, 151, 63, 0.14),
+    inset 0 -80px 160px rgba(4, 6, 12, 0.95);
+  will-change: transform;
+}
+.hero-planet::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: conic-gradient(from 200deg, transparent 0 12%, rgba(191, 217, 255, 0.75) 22%, rgba(247, 151, 63, 0.5) 32%, transparent 44% 100%);
+  mask-image: radial-gradient(circle, transparent 66%, #000 71%, #000 76%, transparent 82%);
+  -webkit-mask-image: radial-gradient(circle, transparent 66%, #000 71%, #000 76%, transparent 82%);
+  filter: blur(2px);
+  animation: ring-spin 90s linear infinite reverse;
+}
+.hero-moon-orbit {
+  position: absolute;
+  left: 50%; top: 46%;
+  width: min(78vmin, 760px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  animation: ring-spin 46s linear infinite;
+  pointer-events: none;
+}
+.hero-moon {
+  position: absolute;
+  left: 50%; top: -5px;
+  width: 10px; height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #FFF6E8 0%, var(--amber-bright) 55%, rgba(247, 151, 63, 0) 100%);
+  box-shadow: 0 0 18px 5px rgba(247, 151, 63, 0.75), 0 0 46px 12px rgba(247, 151, 63, 0.3);
+}
+
+/* Hotter nebulae on the homepage */
+.nebula-a { background: radial-gradient(circle, rgba(46, 125, 255, 0.3), transparent 62%); }
+.nebula-c { background: radial-gradient(circle, rgba(224, 129, 47, 0.17), transparent 62%); }
+.nebula-d {
+  position: absolute;
+  width: 46vw; height: 46vw;
+  top: 32vh; left: 30vw;
+  border-radius: 50%;
+  filter: blur(100px);
+  background: radial-gradient(circle, rgba(111, 171, 255, 0.13), transparent 60%);
+  animation: nebula-drift-b 74s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+}

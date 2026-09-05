@@ -1715,3 +1715,18 @@ section p { color: var(--muted); max-width: 680px; }
 @keyframes nebula-drift-b { to { transform: translate(-5vw, 6vh) scale(1.1); } }
 @keyframes nebula-drift-c { to { transform: translate(4vw, -5vh) scale(1.06); } }
 @media (prefers-reduced-motion: reduce) { .nebula { animation: none; } }
+
+/* Fourth nebula (v2 sky): soft blue mid-field haze */
+.nebula-d {
+  position: absolute;
+  width: 46vw; height: 46vw;
+  top: 32vh; left: 30vw;
+  border-radius: 50%;
+  filter: blur(100px);
+  background: radial-gradient(circle, rgba(111, 171, 255, 0.11), transparent 60%);
+  animation: nebula-drift-b 74s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+}
+/* Hotter core nebulae site-wide */
+.nebula-a { background: radial-gradient(circle, rgba(46, 125, 255, 0.27), transparent 62%); }
+.nebula-c { background: radial-gradient(circle, rgba(224, 129, 47, 0.15), transparent 62%); }
