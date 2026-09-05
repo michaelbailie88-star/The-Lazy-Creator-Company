@@ -2175,3 +2175,31 @@ section p { color: var(--muted); max-width: 680px; }
   .hero .glass-frame .hl-row, .hero .glass-frame .hero-actions { justify-content: center; }
   .hero .glass-frame::after { font-size: 2.6rem; right: 20px; top: 12px; }
 }
+
+/* ---------- Global sound toggle (inner pages; homepage uses its hero pill) ---------- */
+.sound-toggle-global {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--faint);
+  background: rgba(13, 20, 36, 0.55);
+  border: 1px solid rgba(94, 162, 255, 0.22);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: color 0.4s var(--ease-out), border-color 0.4s var(--ease-out),
+              box-shadow 0.4s var(--ease-out);
+}
+.sound-toggle-global:hover { color: var(--white); border-color: rgba(94, 162, 255, 0.6); }
+.sound-toggle-global.on {
+  color: var(--amber-bright);
+  border-color: rgba(247, 151, 63, 0.6);
+  box-shadow: 0 0 18px rgba(224, 129, 47, 0.35);
+}

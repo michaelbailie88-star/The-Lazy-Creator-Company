@@ -470,3 +470,151 @@
   build();
   if (reduced) { staticField(); } else { requestAnimationFrame(frame); }
 })();
+
+/* ---------- Comet whoosh: optional, off by default, now global, every page ---------- */
+(function () {
+  if (!window.AudioContext && !window.webkitAudioContext) return;
+  /* homepage has a designed hero button; everywhere else gets a floating pill */
+  var btn = document.querySelector('[data-testid="sound-toggle"]');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'sound-toggle-global';
+    btn.setAttribute('data-testid', 'sound-toggle');
+    document.body.appendChild(btn);
+  }
+
+  var enabled = false;
+  try { enabled = localStorage.getItem('tlc-sound') === 'on'; } catch (e) {}
+  var actx = null;
+
+  function paint() {
+    btn.textContent = enabled ? 'Sound On' : 'Sound Off';
+    btn.classList.toggle('on', enabled);
+    btn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+  }
+  paint();
+
+  btn.addEventListener('click', function () {
+    enabled = !enabled;
+    try { localStorage.setItem('tlc-sound', enabled ? 'on' : 'off'); } catch (e) {}
+    if (enabled) ensureCtx();
+    paint();
+  });
+
+  /* Browsers suspend audio until a gesture: nudge resume on any interaction */
+  window.addEventListener('pointerdown', function () {
+    if (actx && actx.state === 'suspended') actx.resume();
+  });
+
+  function ensureCtx() {
+    if (!actx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      actx = new AC();
+    }
+    if (actx.state === 'suspended') actx.resume();
+  }
+
+  /* FIX: on return visits the saved "Sound On" never recreated the audio
+     engine, so comets played into a null context = silence. Create lazily. */
+  function ready() {
+    if (!enabled) return false;
+    ensureCtx();
+    return true;
+  }
+
+
+  window.addEventListener('tlc:comet', function (e) {
+    if (!ready()) return;
+    var now = actx.currentTime;
+    /* persist for the comet's full crossing of the page */
+    var dur = (e.detail && e.detail.duration) || 14;
+    var peak = now + dur * 0.62;   /* closest approach */
+
+    /* stereo field: the comet always travels left -> right, and the sound follows */
+    var pan = actx.createStereoPanner ? actx.createStereoPanner() : null;
+    var out = actx.destination;
+    if (pan) {
+      pan.pan.setValueAtTime(-0.85, now);
+      pan.pan.linearRampToValueAtTime(0.85, now + dur);
+      pan.connect(out);
+      out = pan;
+    }
+
+    /* engine drone: two detuned saws beating against each other, doppler pitch
+       rising as it nears, dropping away as it passes */
+    [0, 0.9].forEach(function (detune) {
+      var osc = actx.createOscillator();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(38 + detune, now);
+      osc.frequency.linearRampToValueAtTime(92 + detune, peak);
+      osc.frequency.exponentialRampToValueAtTime(30 + detune, now + dur);
+      var lp = actx.createBiquadFilter();
+      lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(120, now);
+      lp.frequency.exponentialRampToValueAtTime(700, peak);
+      lp.frequency.exponentialRampToValueAtTime(140, now + dur);
+      var g = actx.createGain();
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.setValueAtTime(0.0001, now + 0.1);
+      g.gain.exponentialRampToValueAtTime(0.012, now + dur * 0.3);
+      g.gain.exponentialRampToValueAtTime(0.075, peak);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+      osc.connect(lp); lp.connect(g); g.connect(out);
+      osc.start(now); osc.stop(now + dur);
+    });
+
+    /* rushing air layer: noise through a slowly opening filter, dragging on
+       and swelling with the approach */
+    var len = Math.floor(actx.sampleRate * dur);
+    var buf = actx.createBuffer(1, len, actx.sampleRate);
+    var data = buf.getChannelData(0);
+    for (var i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+    var src = actx.createBufferSource();
+    src.buffer = buf;
+    var filt = actx.createBiquadFilter();
+    filt.type = 'lowpass';
+    filt.Q.value = 0.6;
+    filt.frequency.setValueAtTime(220, now);
+    filt.frequency.exponentialRampToValueAtTime(3400, peak);
+    filt.frequency.exponentialRampToValueAtTime(300, now + dur);
+    var gain = actx.createGain();
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.setValueAtTime(0.0001, now + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.015, now + dur * 0.32);
+    gain.gain.exponentialRampToValueAtTime(0.22, peak);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    src.connect(filt); filt.connect(gain); gain.connect(out);
+    src.start();
+
+    /* sub rumble that only really arrives when it's close */
+    var sub = actx.createOscillator();
+    sub.type = 'sine';
+    sub.frequency.setValueAtTime(30, now);
+    sub.frequency.linearRampToValueAtTime(52, peak);
+    sub.frequency.exponentialRampToValueAtTime(24, now + dur);
+    var sg = actx.createGain();
+    sg.gain.setValueAtTime(0.0001, now);
+    sg.gain.exponentialRampToValueAtTime(0.008, now + dur * 0.4);
+    sg.gain.exponentialRampToValueAtTime(0.11, peak);
+    sg.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    sub.connect(sg); sg.connect(out);
+    sub.start(now); sub.stop(now + dur);
+  });
+
+  /* tiny chime when a visitor catches a shooting star */
+  window.addEventListener('tlc:catch', function () {
+    if (!ready()) return;
+    var now = actx.currentTime;
+    var osc = actx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(1900, now);
+    osc.frequency.exponentialRampToValueAtTime(950, now + 0.22);
+    var g = actx.createGain();
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(0.14, now + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+    osc.connect(g); g.connect(actx.destination);
+    osc.start(now); osc.stop(now + 0.32);
+  });
+})();
