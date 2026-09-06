@@ -705,6 +705,60 @@ section p { color: var(--muted); max-width: 680px; }
   aspect-ratio: 700 / 450;
 }
 
+/* ---------- Real Builds: standout section, separate from mock grid ---------- */
+.real-builds-section {
+  position: relative;
+  padding: 64px 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240, 138, 60, 0.09), transparent 70%);
+  border-top: 1px solid rgba(240, 138, 60, 0.18);
+  border-bottom: 1px solid rgba(240, 138, 60, 0.18);
+}
+.real-build-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 32px;
+  margin-top: 8px;
+}
+.real-build-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 42%) 1fr;
+  background: linear-gradient(155deg, rgba(240, 138, 60, 0.08), var(--surface) 55%);
+  border: 1px solid rgba(240, 138, 60, 0.35);
+  border-radius: var(--radius);
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px -22px rgba(217, 119, 43, 0.35);
+  transition: transform 0.4s var(--ease-out), border-color 0.4s var(--ease-out),
+              box-shadow 0.4s var(--ease-out);
+}
+.real-build-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(240, 138, 60, 0.6);
+  box-shadow: 0 30px 64px -20px rgba(217, 119, 43, 0.5);
+}
+.real-build-card .thumb-wrap { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+.real-build-card .thumb-wrap img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
+  transition: transform 0.8s var(--ease-out);
+}
+.real-build-card:hover .thumb-wrap img { transform: scale(1.05); }
+.real-build-card .real-build-body { padding: 28px 30px; display: flex; flex-direction: column; justify-content: center; }
+.real-build-card .real-build-title { font-family: var(--font-display); font-weight: 700; font-size: 1.4rem; color: var(--white); margin-bottom: 8px; }
+.real-build-card .real-build-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.55; margin-bottom: 16px; }
+.real-build-empty {
+  border: 1px dashed rgba(240, 138, 60, 0.35);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 40px 24px;
+  color: var(--muted); font-size: 0.9rem;
+  min-height: 220px;
+}
+@media (max-width: 640px) {
+  .real-build-card { grid-template-columns: 1fr; }
+  .real-build-card .thumb-wrap { aspect-ratio: 700 / 450; }
+}
+
 /* ---------- Activity Vault module pills (real product colors) ---------- */
 .av-pill-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0 8px; }
 .av-pill {
