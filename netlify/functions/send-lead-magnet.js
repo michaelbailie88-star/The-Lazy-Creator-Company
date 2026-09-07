@@ -143,6 +143,20 @@ const RESOURCES = {
       extraHtml: `<p style="margin-top:14px;"><a href="https://thelazycreatoractivityvault.netlify.app/app.html" style="color:${BLUE};">Or try the free demo of the actual library &rarr;</a></p>`,
     }),
   },
+  'book-story': {
+    subject: 'Your free summary of Nothing Lazy About It',
+    pdf: `${SITE}/assets/pdfs/nothing-lazy-about-it-summary.pdf`,
+    build: (pdfUrl) => emailShell({
+      accentColor: RUST,
+      eyebrow: 'Your Free Summary',
+      headline: "Here's the Story So Far",
+      bodyHtml: `<p>Thanks for grabbing this. It's the short version of the six-month story behind The Lazy Creator &mdash; laid off, no line on the resume about building anything digital, and what actually got built anyway.</p>
+        <p>If it lands, the full book (all ten chapters, PDF and EPUB) is $7 in the TLC Library.</p>`,
+      pdfUrl,
+      buttonLabel: 'Download the Summary',
+      extraHtml: `<p style="margin-top:14px;"><a href="${SITE}/book/nothing-lazy-about-it.html" style="color:${RUST};">Or get the full book now, $7 &rarr;</a></p>`,
+    }),
+  },
 };
 
 exports.handler = async (event) => {

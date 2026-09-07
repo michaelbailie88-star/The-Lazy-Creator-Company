@@ -1604,7 +1604,7 @@ section p { color: var(--muted); max-width: 680px; }
    ================================================================== */
 .product-card { border-left: 3px solid transparent; }
 
-/* Faith Library — warm wood/oak brown */
+/* TLC Library — warm wood/oak brown */
 .pc-faithlib { border-left-color: #a85c3a; }
 .pc-faithlib:hover { box-shadow: 0 0 30px rgba(168, 92, 58, 0.4); }
 .pc-faithlib .product-badge.live { background: rgba(168, 92, 58, 0.16); color: #d99a7a; border-color: rgba(168, 92, 58, 0.4); }
