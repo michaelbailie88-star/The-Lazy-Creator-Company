@@ -440,6 +440,9 @@
 
   function makeMatrix(canvas, opts) {
     const ctx = canvas.getContext('2d');
+    /* Mobile/touch devices: skip ctx.shadowBlur (the most expensive canvas 2D op)
+       to prevent frame-rate lag. Desktop visuals are untouched. */
+    const isMobile = window.matchMedia('(max-width: 820px), (hover: none) and (pointer: coarse)').matches;
     let cols, drops, colColors, safeZone = null;
     const fontSize = opts.fontSize || 16;
     const pad = opts.safeZonePadding || 18;
@@ -489,7 +492,7 @@
         const char = CHARS[Math.floor(Math.random() * CHARS.length)];
         ctx.fillStyle = colColors[i];
         ctx.shadowColor = colColors[i];
-        ctx.shadowBlur = opts.glow || 4;
+        ctx.shadowBlur = isMobile ? 0 : (opts.glow || 4);
         ctx.fillText(char, x, y);
         ctx.shadowBlur = 0;
 

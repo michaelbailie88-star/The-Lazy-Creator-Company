@@ -6,6 +6,9 @@
   'use strict';
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Mobile/touch devices: skip ctx.shadowBlur (the most expensive canvas 2D op)
+     to prevent frame-rate lag. Desktop visuals are untouched. */
+  var isMobile = window.matchMedia('(max-width: 820px), (hover: none) and (pointer: coarse)').matches;
 
   var nebulae = document.createElement('div');
   nebulae.className = 'nebulae';
@@ -221,7 +224,7 @@
     ctx.arc(x, y, s.r, 0, Math.PI * 2);
     ctx.fillStyle = 'rgba(' + s.c + ',' + alpha.toFixed(3) + ')';
     ctx.shadowColor = 'rgba(' + s.c + ',' + (alpha * 0.95).toFixed(3) + ')';
-    ctx.shadowBlur = s.r * 5;
+    ctx.shadowBlur = isMobile ? 0 : s.r * 5;
     ctx.fill();
   }
 
@@ -232,7 +235,7 @@
     ctx.save();
     ctx.translate(f.x, f.y);
     ctx.shadowColor = 'rgba(' + f.c + ',' + alpha.toFixed(3) + ')';
-    ctx.shadowBlur = 18;
+    ctx.shadowBlur = isMobile ? 0 : 18;
     ctx.beginPath();
     ctx.arc(0, 0, f.r * (0.8 + 0.3 * tw), 0, Math.PI * 2);
     ctx.fillStyle = 'rgba(' + f.c + ',' + alpha.toFixed(3) + ')';
@@ -274,7 +277,7 @@
     ctx.lineWidth = m.width;
     ctx.lineCap = 'round';
     ctx.shadowColor = 'rgba(' + mid + ',' + (0.8 * m.life).toFixed(3) + ')';
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = isMobile ? 0 : 12;
     ctx.beginPath();
     ctx.moveTo(m.x, m.y);
     ctx.lineTo(tailX, tailY);
@@ -299,7 +302,7 @@
     ctx.lineWidth = 3.4;
     ctx.lineCap = 'round';
     ctx.shadowColor = 'rgba(247,180,120,0.85)';
-    ctx.shadowBlur = 26;
+    ctx.shadowBlur = isMobile ? 0 : 26;
     ctx.beginPath();
     ctx.moveTo(c.x, c.y);
     ctx.lineTo(tailX, tailY);
@@ -384,7 +387,7 @@
       ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(' + p.c + ',' + (p.life * 0.9).toFixed(3) + ')';
       ctx.shadowColor = 'rgba(' + p.c + ',' + (p.life * 0.8).toFixed(3) + ')';
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = isMobile ? 0 : 8;
       ctx.fill();
     }
     ctx.shadowBlur = 0;
@@ -441,7 +444,7 @@
         ctx.arc(rp[ri][0], rp[ri][1], 2.2, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(255, 226, 190,' + (0.85 * twk).toFixed(3) + ')';
         ctx.shadowColor = 'rgba(247, 180, 120, 0.9)';
-        ctx.shadowBlur = 12;
+        ctx.shadowBlur = isMobile ? 0 : 12;
         ctx.fill();
       }
       ctx.shadowBlur = 0;
