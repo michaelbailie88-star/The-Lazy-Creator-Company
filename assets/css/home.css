@@ -940,9 +940,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Amber-family chapters wear the warm accent */
-#renewed .chapter-label, #gift .chapter-label, #newsletter .chapter-label,
+#renewed .chapter-label, #book .chapter-label, #gift .chapter-label, #newsletter .chapter-label,
 #marketplace .chapter-label { color: var(--amber-bright); }
-#renewed .chapter-num, #gift .chapter-num, #newsletter .chapter-num,
+#renewed .chapter-num, #book .chapter-num, #gift .chapter-num, #newsletter .chapter-num,
 #marketplace .chapter-num { -webkit-text-stroke-color: rgba(247, 151, 63, 0.6); }
 
 .dest-arrow { color: var(--amber-bright); }
