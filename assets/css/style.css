@@ -1634,6 +1634,12 @@ section p { color: var(--muted); max-width: 680px; }
 .pc-kingdomradar .product-badge.live { background: rgba(139, 111, 214, 0.16); color: #b8a3ec; border-color: rgba(139, 111, 214, 0.4); }
 .pc-kingdomradar .btn { background: #8b6fd6; color: #f6f3ff; border-color: #8b6fd6; box-shadow: 0 0 14px rgba(139, 111, 214, 0.5); }
 
+/* The Director's Chair — cinematic red, matching the app's own accent color */
+.pc-directorschair { border-left-color: #C4432E; }
+.pc-directorschair:hover { box-shadow: 0 0 28px rgba(196, 67, 46, 0.4); }
+.pc-directorschair .product-badge.live { background: rgba(196, 67, 46, 0.16); color: #e8735c; border-color: rgba(196, 67, 46, 0.4); }
+.pc-directorschair .btn { background: #C4432E; color: #FBEAE6; border-color: #C4432E; box-shadow: 0 0 14px rgba(196, 67, 46, 0.5); }
+
 /* Content Packs — blue */
 .pc-contentpacks { border-left-color: var(--blue-bright); }
 .pc-contentpacks:hover { box-shadow: 0 0 28px rgba(94, 162, 255, 0.4); }
