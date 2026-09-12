@@ -1148,6 +1148,15 @@ section p { color: var(--muted); max-width: 680px; }
 }
 .product-card:hover { transform: translateY(-5px); }
 .product-card-soon { opacity: 0.66; }
+.product-thumb {
+  display: block;
+  width: calc(100% + 48px);
+  margin: -24px -24px 16px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+  border-bottom: 1px solid var(--border);
+}
 .product-badge {
   align-self: flex-start;
   font-family: var(--font-mono);
