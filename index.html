@@ -23,6 +23,16 @@
 <meta name="twitter:description" content="A digital product universe: hand-coded websites for local businesses, a 5,330-activity library for educators, faith-centered books and journals, and a growing creator marketplace, all built by Michael Bailie.">
 <meta name="twitter:image" content="https://thelazycreatorcompany.com/assets/images/og-image.jpg">
 <script>document.documentElement.classList.add('js');</script>
+<script>
+(function() {
+  setTimeout(function() {
+    if (window.__tlcHeroDone) return;
+    window.__tlcHeroForced = true;
+    document.querySelectorAll('.mask-line').forEach(function (el) { el.style.transform = 'none'; });
+    document.querySelectorAll('[data-hero]').forEach(function (el) { el.style.opacity = '1'; });
+  }, 700);
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Outfit:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">

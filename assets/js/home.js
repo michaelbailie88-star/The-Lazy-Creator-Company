@@ -28,9 +28,11 @@
   var heroInner = document.querySelector('.hero-inner');
 
   function heroIntro() {
+    if (window.__tlcHeroForced) { window.__tlcHeroDone = true; return; }
     if (!M || reduced) {
       document.querySelectorAll('.mask-line').forEach(function (el) { el.style.transform = 'none'; });
       document.querySelectorAll('[data-hero]').forEach(function (el) { el.style.opacity = '1'; });
+      window.__tlcHeroDone = true;
       return;
     }
     var lines = document.querySelectorAll('.hero-title .mask-line');
@@ -43,6 +45,7 @@
     M.animate('[data-hero="lede"]', { opacity: [0, 1], y: [24, 0] }, { duration: 1.1, delay: 0.95, easing: [0.22, 1, 0.36, 1] });
     M.animate('[data-hero="actions"]', { opacity: [0, 1], y: [24, 0] }, { duration: 1.1, delay: 1.15, easing: [0.22, 1, 0.36, 1] });
     M.animate('[data-hero="cue"]', { opacity: [0, 1] }, { duration: 1.2, delay: 1.6 });
+    window.__tlcHeroDone = true;
   }
 
   /* ---------- Section scroll reveals ---------- */
