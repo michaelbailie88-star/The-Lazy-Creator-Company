@@ -7,15 +7,6 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var M = window.Motion || null;
 
-  /* ---------- Smooth scroll (Lenis) ---------- */
-  var lenis = null;
-  if (!reduced && window.Lenis) {
-    lenis = new window.Lenis({ duration: 1.15, smoothWheel: true });
-    window.__tlcLenis = lenis;
-    var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
-    requestAnimationFrame(raf);
-  }
-
   /* ---------- Nav scrolled state ---------- */
   var nav = document.querySelector('.nav');
   var onScroll = function () {
