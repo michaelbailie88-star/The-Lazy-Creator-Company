@@ -1174,6 +1174,13 @@ section p { color: var(--muted); max-width: 680px; }
   border: 1px solid rgba(240, 138, 60, 0.45);
 }
 .product-badge.soon { background: rgba(166, 176, 194, 0.1); color: var(--muted); border: 1px solid var(--border); }
+.product-badge.feature {
+  background: var(--amber-bright);
+  color: #1a1408;
+  border: 1px solid var(--amber-bright);
+  font-weight: 700;
+  box-shadow: 0 0 20px -4px rgba(247, 151, 63, 0.7);
+}
 .product-title { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; margin-bottom: 8px; color: var(--white); }
 .product-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.5; margin-bottom: 16px; }
 .product-card-soon .product-desc { margin-bottom: 0; }
