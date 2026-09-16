@@ -74,6 +74,33 @@
   }
   .mkt-category-select option { background: var(--ns-navy); color: var(--ns-white); }
   .mkt-price { font-weight: 700; font-size: 0.95rem; margin: 4px 0 12px; }
+
+  /* Services legend — tier color coding, page-local, does not affect the global product accent system */
+  .tier-legend {
+    display: flex; flex-wrap: wrap; gap: 18px 28px;
+    margin: 20px 0 28px; padding: 18px 22px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .tier-legend-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--muted); }
+  .tier-legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .tier-legend-item strong { color: var(--white); font-weight: 700; }
+
+  .project-card.tier-1 { border-left: 3px solid var(--blue-bright); }
+  .project-card.tier-1:hover { border-color: rgba(94,162,255,0.5); box-shadow: 0 26px 56px -20px rgba(94,162,255,0.45); }
+  .project-card.tier-1 .project-card-cta { color: var(--blue-bright); }
+
+  .project-card.tier-2 { border-left: 3px solid var(--blue); }
+  .project-card.tier-2:hover { border-color: rgba(46,125,255,0.5); box-shadow: 0 26px 56px -20px rgba(46,125,255,0.45); }
+  .project-card.tier-2 .project-card-cta { color: var(--blue); }
+
+  .project-card.tier-3 { border-left: 3px solid #8b6fd6; }
+  .project-card.tier-3:hover { border-color: rgba(139,111,214,0.5); box-shadow: 0 26px 56px -20px rgba(139,111,214,0.45); }
+  .project-card.tier-3 .project-card-cta { color: #8b6fd6; }
+
+  .project-card.tier-4 { border-left: 3px solid var(--amber); }
+  .project-card.tier-4:hover { border-color: rgba(217,119,43,0.5); box-shadow: 0 26px 56px -20px rgba(217,119,43,0.45); }
+  .project-card.tier-4 .project-card-cta { color: var(--amber); }
 </style>
 
 </head>
@@ -276,8 +303,14 @@
     four complexity tiers, static sites through AI-native automation and two-sided marketplaces, each
     one shipped and currently running. Pick the closest match to what you need and read exactly how it
     was built.</p>
+    <div class="tier-legend">
+      <div class="tier-legend-item"><span class="tier-legend-dot" style="background:var(--blue-bright);"></span><strong>Tier 1</strong>&nbsp;&mdash; Static + Payment &middot; $3K&ndash;$15K</div>
+      <div class="tier-legend-item"><span class="tier-legend-dot" style="background:var(--blue);"></span><strong>Tier 2</strong>&nbsp;&mdash; Full-Stack SaaS &middot; $15K&ndash;$150K</div>
+      <div class="tier-legend-item"><span class="tier-legend-dot" style="background:#8b6fd6;"></span><strong>Tier 3</strong>&nbsp;&mdash; AI-Native / Autonomous &middot; $50K&ndash;$250K+</div>
+      <div class="tier-legend-item"><span class="tier-legend-dot" style="background:var(--amber);"></span><strong>Tier 4</strong>&nbsp;&mdash; Two-Sided Marketplace &middot; $60K&ndash;$300K+</div>
+    </div>
     <div class="project-grid">
-      <a class="project-card" href="/work/kingdom-radar.html">
+      <a class="project-card tier-2" href="/work/kingdom-radar.html">
         <div class="project-card-body">
           <div class="project-card-title">Kingdom Radar<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 2+</span></div>
           <p class="project-card-desc">Full-Stack SaaS, Custom Logic Engine</p>
@@ -285,7 +318,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/directors-chair.html">
+      <a class="project-card tier-3" href="/work/directors-chair.html">
         <div class="project-card-body">
           <div class="project-card-title">The Director's Chair<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 3</span></div>
           <p class="project-card-desc">AI-Native Pipeline</p>
@@ -293,7 +326,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/activity-vault.html">
+      <a class="project-card tier-2" href="/work/activity-vault.html">
         <div class="project-card-body">
           <div class="project-card-title">Activity Vault<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 2</span></div>
           <p class="project-card-desc">Licensed Software Product</p>
@@ -301,7 +334,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/safe-passage.html">
+      <a class="project-card tier-3" href="/work/safe-passage.html">
         <div class="project-card-body">
           <div class="project-card-title">Safe Passage<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 2/3</span></div>
           <p class="project-card-desc">SaaS + AI Companion</p>
@@ -309,7 +342,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/vaneskald.html">
+      <a class="project-card tier-3" href="/work/vaneskald.html">
         <div class="project-card-body">
           <div class="project-card-title">Vaneskald<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 3</span></div>
           <p class="project-card-desc">Autonomous AI Content Engine</p>
@@ -317,7 +350,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/tlc-library.html">
+      <a class="project-card tier-1" href="/work/tlc-library.html">
         <div class="project-card-body">
           <div class="project-card-title">TLC Library<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 1</span></div>
           <p class="project-card-desc">Static Product + Automated Production Pipeline</p>
@@ -325,7 +358,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/content-packs.html">
+      <a class="project-card tier-1" href="/work/content-packs.html">
         <div class="project-card-body">
           <div class="project-card-title">Content Packs<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 1</span></div>
           <p class="project-card-desc">Static Site + Stripe Checkout</p>
@@ -333,7 +366,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/marketplace.html">
+      <a class="project-card tier-2" href="/work/marketplace.html">
         <div class="project-card-body">
           <div class="project-card-title">The Marketplace<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 2-lite</span></div>
           <p class="project-card-desc">Automated Listing Platform</p>
@@ -341,7 +374,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/tlcc-site-build.html">
+      <a class="project-card tier-2" href="/work/tlcc-site-build.html">
         <div class="project-card-body">
           <div class="project-card-title">The Lazy Creator Company (Main Site)<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 1/2</span></div>
           <p class="project-card-desc">Marketing Site + Automated Systems</p>
@@ -349,7 +382,7 @@
         </div>
       </a>
 
-      <a class="project-card" href="/work/oddly.html">
+      <a class="project-card tier-4" href="/work/oddly.html">
         <div class="project-card-body">
           <div class="project-card-title">Oddly<span style="font-size:0.75rem;font-weight:600;color:var(--text-muted);"> &mdash; Tier 4</span></div>
           <p class="project-card-desc">Two-Sided Marketplace UI/UX — Scope Note</p>
