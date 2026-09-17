@@ -140,7 +140,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 0 18px rgba(46, 125, 255, 0.55), 0 0 0 1px rgba(94, 162, 255, 0.4);
 }
 .brand-logo {
-  height: 63px;
+  height: 69px;
   width: auto;
   display: block;
 }
@@ -203,7 +203,7 @@ a { color: inherit; text-decoration: none; }
   }
   .brand { font-size: 0.92rem; white-space: normal; line-height: 1.2; gap: 8px; }
   .brand-mark { width: 28px; height: 28px; }
-  .brand-logo { height: 46px; }
+  .brand-logo { height: 51px; }
   .nav-links {
     display: flex;
     position: absolute;
