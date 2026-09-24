@@ -1,0 +1,46 @@
+From 0892ad8fe9ce7848e031ddb33c91a089702b6091 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 23 Sep 2026 16:30:29 -0400
+Subject: [PATCH] Add partner-inquiry CTA links to Safe Passage, Director's
+ Chair, Activity Vault cards
+
+Each card now links to that product's B2B Jotform inquiry form for
+organizations/partners interested in working with us.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_012tztmb8XjpK8LPyw12A6ps
+---
+ products.html | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/products.html b/products.html
+index 85edafc..e70d0ca 100644
+--- a/products.html
++++ b/products.html
+@@ -191,6 +191,7 @@
+           daycares, and SSMs across Ontario.</p>
+           <a class="btn btn-teal" href="/activity-vault.html">See Activity Vault &rarr;</a>
+           <a href="/work/activity-vault.html" style="display:inline-block;margin-top:10px;font-size:0.85rem;font-weight:600;color:var(--amber-bright);">Interested in a build like this? &rarr;</a>
++          <a href="https://form.jotform.com/262655765775070" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:0.85rem;font-weight:600;color:var(--amber-bright);">School, daycare, or SSM? Partner with us &rarr;</a>
+         </div>
+       </div>
+ 
+@@ -218,6 +219,7 @@
+           that are always accessible.</p>
+           <a class="btn btn-outline" href="https://safe-passage-two.vercel.app" target="_blank" rel="noopener">Visit Safe Passage &rarr;</a>
+           <a href="/work/safe-passage.html" style="display:inline-block;margin-top:10px;font-size:0.85rem;font-weight:600;color:var(--amber-bright);">Interested in a build like this? &rarr;</a>
++          <a href="https://form.jotform.com/262655906336060" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:0.85rem;font-weight:600;color:var(--amber-bright);">Church, counseling practice, or men's group? Partner with us &rarr;</a>
+         </div>
+       </div>
+ 
+@@ -249,6 +251,7 @@
+           and applicants are credited by name.</p>
+           <a class="btn btn-outline" href="https://thedirectorschair.netlify.app" target="_blank" rel="noopener">Visit The Director's Chair &rarr;</a>
+           <a href="/work/directors-chair.html" style="display:inline-block;margin-top:10px;font-size:0.85rem;font-weight:600;color:var(--amber-bright);">Interested in a build like this? &rarr;</a>
++          <a href="https://form.jotform.com/262656491420054" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;font-size:0.85rem;font-weight:600;color:var(--amber-bright);">Casting agency or production partner? Partner with us &rarr;</a>
+         </div>
+       </div>
+ 
+-- 
+2.43.0
+
